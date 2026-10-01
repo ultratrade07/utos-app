@@ -1,0 +1,541 @@
+<!DOCTYPE html><html lang="en" style=""><svg class="inline-defs-container" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"></svg><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+<title>UTOS Mobile Trade Details</title>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 with Forms & Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+            },
+            surface: {
+              base: '#f8fafc',
+              card: '#ffffff',
+              subtle: '#f1f5f9',
+            },
+            bullish: '#10b981',
+            bearish: '#ef4444'
+          },
+          boxShadow: {
+            card: '0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.03)',
+            float: '0 10px 25px -5px rgba(37, 99, 235, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.04)',
+            pill: '0 2px 8px rgba(15, 23, 42, 0.08)'
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="base-typography">
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+  </style>
+<style data-purpose="chart-effects">
+    /* Chart and interactive pulse animations */
+    @keyframes pulse-ring {
+      0% {
+        transform: scale(0.85);
+        opacity: 0.8;
+      }
+      50% {
+        transform: scale(1.4);
+        opacity: 0.2;
+      }
+      100% {
+        transform: scale(0.85);
+        opacity: 0.8;
+      }
+    }
+    .indicator-pulse {
+      animation: pulse-ring 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-[#f8fafc] text-slate-900 min-h-screen flex flex-col justify-between selection:bg-brand-100 selection:text-brand-700">
+<!-- BEGIN: MainContentWrapper -->
+<div class="w-full max-w-md mx-auto flex flex-col min-h-screen relative pb-28">
+<!-- BEGIN: TopHeader -->
+<header class="sticky top-0 z-30 bg-[#f8fafc]/90 backdrop-blur-md px-4 pt-3 pb-3 flex items-center justify-between border-b border-slate-200/50">
+<!-- Back Button -->
+<button aria-label="Go back" class="w-10 h-10 rounded-full bg-white border border-slate-200/80 shadow-sm flex items-center justify-center text-slate-600 active:scale-95 transition-transform" type="button">
+<svg class="w-5 h-5 -ml-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<!-- Screen Title -->
+<h1 class="text-base font-bold text-slate-900 tracking-tight">Market Details</h1>
+<!-- Header Action Icons -->
+<div class="flex items-center space-x-1.5" data-purpose="header-action-group">
+<!-- Contract / Whitepaper details -->
+
+<!-- Share Icon -->
+<button aria-label="Share market" class="w-9 h-9 rounded-full bg-white border border-slate-200/80 shadow-sm flex items-center justify-center text-slate-600 hover:text-slate-900 active:scale-95 transition-all" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<!-- Favorite Star -->
+<button aria-label="Favorite coin" class="w-9 h-9 rounded-full bg-white border border-slate-200/80 shadow-sm flex items-center justify-center text-amber-500 active:scale-95 transition-all" id="favorite-btn" type="button">
+<svg class="w-4 h-4 fill-amber-400 stroke-amber-500" id="favorite-icon" stroke-width="1.8" viewBox="0 0 24 24">
+<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+</svg>
+</button>
+<!-- 3-Dots More Options -->
+
+</div>
+</header>
+<!-- END: TopHeader -->
+<!-- BEGIN: AssetInformationHeader -->
+<section class="px-5 pt-4 pb-2" data-purpose="asset-header">
+<!-- Coin Identity Row -->
+<div class="flex items-center space-x-3 mb-2.5">
+<!-- Official Bitcoin Badge -->
+<div class="w-10 h-10 rounded-full bg-[#f7931a] flex items-center justify-center text-white shadow-sm font-bold text-xl flex-shrink-0">
+          ₿
+        </div>
+<div>
+<div class="flex items-center space-x-1.5">
+<span class="text-lg font-extrabold text-slate-900 tracking-tight leading-none">BTC</span>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-600 border border-slate-200">#1</span>
+</div>
+<span class="text-xs font-semibold text-slate-400">Bitcoin</span>
+</div>
+</div>
+<!-- Price & 24h Extrems Layout -->
+<div class="flex items-end justify-between pt-1">
+<!-- Main Price Display -->
+<div data-purpose="primary-price-container">
+<div class="text-[34px] font-extrabold tracking-tight text-slate-900 leading-none" id="hero-price">
+            $98,049<span class="text-2xl font-bold text-slate-500">.00</span>
+</div>
+<!-- Positive Percentage Change Indicator -->
+<div class="inline-flex items-center space-x-1 mt-2 px-2 py-0.5 rounded-full bg-emerald-50 border border-emerald-200/60 text-bullish font-bold text-xs">
+<svg class="w-3.5 h-3.5 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M5 15l7-7 7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span id="hero-change" class="">+$579.00 (+0.59%)</span>
+<span class="text-slate-400 font-medium ml-1">Today</span>
+</div>
+</div>
+<!-- High/Low Statistics Column -->
+<div class="text-right flex flex-col space-y-1 pb-1" data-purpose="key-extremes">
+<div class="text-[11px] leading-tight">
+<span class="text-slate-400 font-medium">High</span>
+<span class="text-slate-800 font-bold ml-1">$98,061</span>
+</div>
+<div class="text-[11px] leading-tight">
+<span class="text-slate-400 font-medium">Low</span>
+<span class="text-slate-800 font-bold ml-1">$95,959</span>
+</div>
+<div class="text-[11px] leading-tight">
+<span class="text-slate-400 font-medium">All-Time</span>
+<span class="text-brand-600 font-bold ml-1">$109,114</span>
+</div>
+</div>
+</div>
+</section>
+<!-- END: AssetInformationHeader -->
+<!-- BEGIN: ChartContainerSection -->
+<section class="px-3 pt-3 relative" data-purpose="interactive-chart-viewport">
+<div class="relative w-full h-64 bg-white rounded-3xl border border-slate-200/80 shadow-card p-3 overflow-hidden select-none" id="chart-card">
+<!-- Background Price Grid Lines & Labels -->
+<div class="absolute inset-0 px-4 py-3 flex flex-col justify-between pointer-events-none z-0">
+<div class="flex items-center justify-between border-b border-dashed border-slate-100 pb-0.5">
+<span class="text-[9px] font-semibold text-slate-300">98,500</span>
+<div class="w-full ml-2 border-t border-slate-100"></div>
+</div>
+<div class="flex items-center justify-between border-b border-dashed border-slate-100 pb-0.5">
+<span class="text-[9px] font-semibold text-slate-300">97,000</span>
+<div class="w-full ml-2 border-t border-slate-100"></div>
+</div>
+<div class="flex items-center justify-between border-b border-dashed border-slate-100 pb-0.5">
+<span class="text-[9px] font-semibold text-slate-300">95,500</span>
+<div class="w-full ml-2 border-t border-slate-100"></div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[9px] font-semibold text-slate-300">94,000</span>
+<div class="w-full ml-2 border-t border-slate-100"></div>
+</div>
+</div>
+<!-- Dynamic SVG Chart Canvas -->
+<svg class="w-full h-full relative z-10 overflow-visible" id="crypto-chart-svg" preserveAspectRatio="none" viewBox="0 0 350 200">
+<defs>
+<!-- Emerald Gradient Fill for UTOS theme -->
+<linearGradient id="chartEmeraldGrad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#10b981" stop-opacity="0.32"></stop>
+<stop offset="60%" stop-color="#10b981" stop-opacity="0.08"></stop>
+<stop offset="100%" stop-color="#10b981" stop-opacity="0.0"></stop>
+</linearGradient>
+<!-- Soft Shadow on Line -->
+<filter height="130%" id="glow" width="120%" x="-10%" y="-10%">
+<feDropShadow dx="0" dy="3" flood-color="#10b981" flood-opacity="0.35" stdDeviation="3"></feDropShadow>
+</filter>
+</defs>
+<!-- Gradient Area Path -->
+<path d="M 10 110 L 25 92 L 40 118 L 55 105 L 72 125 L 90 100 L 110 108 L 130 88 L 155 112 L 180 86 L 215 102 L 245 90 L 260 74 L 285 70 L 310 92 L 335 60 L 335 200 L 10 200 Z" fill="url(#chartEmeraldGrad)" id="chart-area"></path>
+<!-- Main Trend Polyline -->
+<path d="M 10 110 L 25 92 L 40 118 L 55 105 L 72 125 L 90 100 L 110 108 L 130 88 L 155 112 L 180 86 L 215 102 L 245 90 L 260 74 L 285 70 L 310 92 L 335 60" fill="none" filter="url(#glow)" id="chart-line" stroke="#10b981" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6"></path>
+<!-- Interactive Calibration Crosshair (Vertical Line) -->
+<line id="scrub-line" opacity="0.9" stroke="#94a3b8" stroke-dasharray="3 3" stroke-width="1.2" x1="180" x2="180" y1="10" y2="195"></line>
+<!-- Glowing Marker Outer Aura -->
+<circle class="indicator-pulse" cx="180" cy="86" fill="#10b981" id="scrub-glow" r="9"></circle>
+<!-- Scrubbing Focus Dot Point -->
+<circle cx="180" cy="86" fill="#ffffff" id="scrub-point" r="4.5" stroke="#10b981" stroke-width="3"></circle>
+</svg>
+<!-- Floating Data Tooltip Card Pinned to Crosshair -->
+<div class="absolute z-20 pointer-events-none transition-transform duration-75 ease-out shadow-float bg-slate-900/95 backdrop-blur-md text-white px-3 py-2 rounded-xl border border-slate-700/80 w-36 text-center" id="chart-tooltip" style="left: 116.229px; top: 35.08px;">
+<div class="text-[10px] font-medium text-slate-300 tracking-tight" id="tooltip-date">20 Apr, 07:45</div>
+<div class="text-sm font-extrabold text-white mt-0.5 tracking-tight" id="tooltip-price">$96,650</div>
+<div class="text-[10px] font-bold text-emerald-400 flex items-center justify-center space-x-0.5 mt-0.5" id="tooltip-delta">
+        <svg class="w-2.5 h-2.5 stroke-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"></path>
+        </svg>
+        <span class="">+1.30% (+$1,240)</span>
+      </div>
+</div>
+</div>
+</section>
+<!-- END: ChartContainerSection -->
+<!-- BEGIN: TimeRangeSelector -->
+<section class="px-4 mt-3" data-purpose="chart-timeframe-controls">
+<div aria-label="Timeframe intervals" class="bg-slate-200/70 p-1 rounded-2xl flex items-center justify-between" role="tablist">
+<button aria-selected="true" class="tf-btn flex-1 py-1.5 text-xs font-bold rounded-xl transition-all bg-white text-slate-900 shadow-pill" data-timeframe="12H" role="tab" type="button">
+          12H
+        </button>
+<button aria-selected="false" class="tf-btn flex-1 py-1.5 text-xs font-semibold rounded-xl transition-all hover:text-slate-800 text-slate-500" data-timeframe="1D" role="tab" type="button">
+          1D
+        </button>
+<button aria-selected="false" class="tf-btn flex-1 py-1.5 text-xs font-semibold rounded-xl transition-all hover:text-slate-800 text-slate-500" data-timeframe="1W" role="tab" type="button">
+          1W
+        </button>
+<button aria-selected="false" class="tf-btn flex-1 py-1.5 text-xs font-semibold rounded-xl transition-all hover:text-slate-800 text-slate-500" data-timeframe="1M" role="tab" type="button">
+          1M
+        </button>
+<button aria-selected="false" class="tf-btn flex-1 py-1.5 text-xs font-semibold rounded-xl transition-all hover:text-slate-800 text-slate-500" data-timeframe="1Y" role="tab" type="button">
+          1Y
+        </button>
+<button aria-selected="false" class="tf-btn flex-1 py-1.5 text-xs font-semibold rounded-xl transition-all hover:text-slate-800 text-slate-500" data-timeframe="5Y" role="tab" type="button">
+          5Y
+        </button>
+</div>
+</section>
+<!-- END: TimeRangeSelector -->
+<!-- BEGIN: CoinOverviewCard -->
+<section class="px-4 mt-4" data-purpose="coin-overview-metrics">
+<div class="bg-white rounded-3xl p-5 border border-slate-200/80 shadow-card">
+<!-- Section Title with Live Dot -->
+<div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-100">
+<h2 class="text-base font-bold text-slate-900 tracking-tight">Coin Overview</h2>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-bullish">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5 animate-pulse"></span>
+            Realtime
+          </span>
+</div>
+<!-- 2-Column Metrics Grid -->
+<div class="grid grid-cols-2 gap-y-4 gap-x-5">
+<!-- Metric 1: Market Cap -->
+<div>
+<span class="text-xs font-medium text-slate-400 block mb-0.5">Market Cap</span>
+<span class="text-sm font-bold text-slate-900 tracking-tight">$1.87 Trillion</span>
+</div>
+<!-- Metric 2: Max Supply -->
+<div>
+<span class="text-xs font-medium text-slate-400 block mb-0.5">Max Supply</span>
+<span class="text-sm font-bold text-slate-900 tracking-tight">21 Million BTC</span>
+</div>
+<!-- Metric 3: Market Dominance -->
+<div>
+<span class="text-xs font-medium text-slate-400 block mb-0.5">Market Dominance</span>
+<span class="text-sm font-bold text-slate-900 tracking-tight">56.55%</span>
+</div>
+<!-- Metric 4: 24h Trading Volume -->
+<div>
+<span class="text-xs font-medium text-slate-400 block mb-0.5">24h Volume</span>
+<span class="text-sm font-bold text-slate-900 tracking-tight">$42.73 Billion</span>
+</div>
+<!-- Metric 5: 1 Month Range -->
+<div>
+<span class="text-xs font-medium text-slate-400 block mb-0.5">1 Month Range</span>
+<span class="text-xs font-bold text-slate-800 tracking-tight whitespace-nowrap">$93,735 – $99,301</span>
+</div>
+<!-- Metric 6: All-Time Range -->
+<div>
+<span class="text-xs font-medium text-slate-400 block mb-0.5">All-Time Range</span>
+<span class="text-xs font-bold text-slate-800 tracking-tight whitespace-nowrap">$67.81 – $109,114</span>
+</div>
+</div>
+</div>
+</section>
+<!-- END: CoinOverviewCard -->
+</div>
+<!-- END: MainContentWrapper -->
+<!-- BEGIN: StickyTradingDock -->
+<aside class="fixed bottom-0 inset-x-0 bg-white/95 backdrop-blur-xl border-t border-slate-200/80 p-3.5 z-40 max-w-md mx-auto shadow-2xl safe-area-bottom" data-purpose="bottom-trade-actions">
+<div class="flex items-center space-x-3">
+<!-- Sell Action Button (Rose Red Theme) -->
+
+<!-- Buy Action Button (UTOS Brand Blue) -->
+<button class="flex-1 h-13 py-3.5 rounded-2xl bg-brand-600 hover:bg-brand-700 active:bg-brand-800 text-white font-bold text-base shadow-lg shadow-brand-500/25 transition-all active:scale-[0.98] flex items-center justify-center space-x-1.5" id="btn-buy" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+<path d="M5 10l7-7m0 0l7 7m-7-7v18" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="">Got it<br></span>
+</button>
+</div>
+</aside>
+<!-- END: StickyTradingDock -->
+<!-- BEGIN: QuickToastFeedback -->
+<div class="fixed top-5 inset-x-4 max-w-xs mx-auto bg-slate-900 text-white text-xs font-semibold py-2.5 px-4 rounded-full shadow-2xl transition-all duration-300 z-50 flex items-center justify-center space-x-2 opacity-0 pointer-events-none" id="toast-notification">
+<span id="toast-message" class="">Opening Buy order modal...</span>
+</div>
+<!-- END: QuickToastFeedback -->
+<!-- BEGIN: ScriptChartAndInteractions -->
+<script data-purpose="chart-interactive-engine">
+    // Mock dataset for timeframes mirroring the realistic visual swings in reference screenshot
+    const chartDataByTimeframe = {
+      '12H': [
+        { x: 10, y: 110, price: '$94,400', date: '20 Apr, 00:00', delta: '+0.12% (+$113)' },
+        { x: 25, y: 92,  price: '$95,120', date: '20 Apr, 01:15', delta: '+0.45% (+$420)' },
+        { x: 40, y: 118, price: '$94,150', date: '20 Apr, 02:30', delta: '-0.20% (-$190)' },
+        { x: 55, y: 105, price: '$94,800', date: '20 Apr, 03:45', delta: '+0.32% (+$302)' },
+        { x: 72, y: 125, price: '$93,920', date: '20 Apr, 04:30', delta: '-0.51% (-$480)' },
+        { x: 90, y: 100, price: '$95,450', date: '20 Apr, 05:15', delta: '+0.88% (+$830)' },
+        { x: 110, y: 108, price: '$95,200', date: '20 Apr, 06:00', delta: '+0.70% (+$660)' },
+        { x: 130, y: 88,  price: '$96,300', date: '20 Apr, 06:45', delta: '+1.15% (+$1,090)' },
+        { x: 155, y: 112, price: '$95,050', date: '20 Apr, 07:15', delta: '+0.62% (+$580)' },
+        { x: 180, y: 86,  price: '$96,650', date: '20 Apr, 07:45', delta: '+1.30% (+$1,240)' },
+        { x: 215, y: 102, price: '$95,800', date: '20 Apr, 08:00', delta: '+0.95% (+$905)' },
+        { x: 245, y: 90,  price: '$96,400', date: '20 Apr, 08:30', delta: '+1.20% (+$1,140)' },
+        { x: 260, y: 74,  price: '$84,785', date: '20 April 2025, 08:00', delta: '+1.94% (+$1,615)' },
+        { x: 285, y: 70,  price: '$97,800', date: '20 Apr, 09:15', delta: '+2.10% (+$2,010)' },
+        { x: 310, y: 92,  price: '$96,750', date: '20 Apr, 10:00', delta: '+1.45% (+$1,380)' },
+        { x: 335, y: 60,  price: '$98,049', date: '20 Apr, 11:30', delta: '+0.59% (+$579)' }
+      ],
+      '1D': [
+        { x: 10, y: 130, price: '$92,300', date: 'Yesterday, 12:00', delta: '-1.02% (-$950)' },
+        { x: 60, y: 110, price: '$93,800', date: 'Yesterday, 18:00', delta: '+0.40% (+$370)' },
+        { x: 140, y: 95, price: '$95,200', date: 'Today, 02:00', delta: '+1.10% (+$1,040)' },
+        { x: 220, y: 80, price: '$96,900', date: 'Today, 07:00', delta: '+1.75% (+$1,660)' },
+        { x: 280, y: 65, price: '$97,850', date: 'Today, 10:00', delta: '+2.15% (+$2,050)' },
+        { x: 335, y: 55, price: '$98,049', date: 'Now', delta: '+0.59% (+$579)' }
+      ],
+      '1W': [
+        { x: 10, y: 145, price: '$89,100', date: '14 Apr 2025', delta: '-2.40% (-$2,200)' },
+        { x: 80, y: 125, price: '$91,400', date: '16 Apr 2025', delta: '+1.20% (+$1,080)' },
+        { x: 160, y: 105, price: '$94,200', date: '17 Apr 2025', delta: '+3.10% (+$2,840)' },
+        { x: 240, y: 80, price: '$96,500', date: '19 Apr 2025', delta: '+5.40% (+$4,950)' },
+        { x: 335, y: 50, price: '$98,049', date: 'Today', delta: '+7.12% (+$6,520)' }
+      ],
+      '1M': [
+        { x: 10, y: 135, price: '$86,500', date: '20 Mar 2025', delta: '+3.15% (+$2,640)' },
+        { x: 100, y: 115, price: '$89,800', date: '30 Mar 2025', delta: '+6.20% (+$5,250)' },
+        { x: 200, y: 90, price: '$94,300', date: '10 Apr 2025', delta: '+10.8% (+$9,200)' },
+        { x: 335, y: 48, price: '$98,049', date: '20 Apr 2025', delta: '+13.3% (+$11,549)' }
+      ],
+      '1Y': [
+        { x: 10, y: 160, price: '$64,200', date: 'Apr 2024', delta: '+12.4% (+$7,100)' },
+        { x: 110, y: 120, price: '$76,000', date: 'Aug 2024', delta: '+25.1% (+$15,200)' },
+        { x: 210, y: 80, price: '$89,400', date: 'Dec 2024', delta: '+41.2% (+$26,100)' },
+        { x: 335, y: 42, price: '$98,049', date: 'Apr 2025', delta: '+52.7% (+$33,849)' }
+      ],
+      '5Y': [
+        { x: 10, y: 175, price: '$11,500', date: '2020', delta: '+45.0% (+$3,560)' },
+        { x: 90, y: 115, price: '$47,000', date: '2021', delta: '+320.0% (+$35,500)' },
+        { x: 170, y: 155, price: '$28,000', date: '2022', delta: '+143.0% (+$16,500)' },
+        { x: 250, y: 95, price: '$67,000', date: '2024', delta: '+482.0% (+$55,500)' },
+        { x: 335, y: 38, price: '$98,049', date: '2025', delta: '+752.6% (+$86,549)' }
+      ]
+    };
+
+    let activePoints = chartDataByTimeframe['12H'];
+    const chartLine = document.getElementById('chart-line');
+    const chartArea = document.getElementById('chart-area');
+    const scrubLine = document.getElementById('scrub-line');
+    const scrubPoint = document.getElementById('scrub-point');
+    const scrubGlow = document.getElementById('scrub-glow');
+    const chartTooltip = document.getElementById('chart-tooltip');
+    const chartSvg = document.getElementById('crypto-chart-svg');
+    const chartCard = document.getElementById('chart-card');
+
+    // Tooltip elements
+    const tooltipDate = document.getElementById('tooltip-date');
+    const tooltipPrice = document.getElementById('tooltip-price');
+    const tooltipDelta = document.getElementById('tooltip-delta');
+
+    // Build SVG Path strings
+    function buildPaths(points) {
+      if (!points.length) return { line: '', area: '' };
+      
+      let dLine = `M ${points[0].x} ${points[0].y}`;
+      for (let i = 1; i < points.length; i++) {
+        dLine += ` L ${points[i].x} ${points[i].y}`;
+      }
+      
+      const lastX = points[points.length - 1].x;
+      const firstX = points[0].x;
+      const dArea = `${dLine} L ${lastX} 200 L ${firstX} 200 Z`;
+
+      return { line: dLine, area: dArea };
+    }
+
+    // Render chart according to points
+    function renderChart(points) {
+      const { line, area } = buildPaths(points);
+      chartLine.setAttribute('d', line);
+      chartArea.setAttribute('d', area);
+
+      // Default highlight item (point at index 12 or near 75% point)
+      const defaultIndex = Math.min(12, points.length - 2 >= 0 ? points.length - 2 : points.length - 1);
+      updateScrubPosition(points[defaultIndex]);
+    }
+
+    // Move crosshair, glowing dot & tooltip
+    function updateScrubPosition(pt) {
+      scrubLine.setAttribute('x1', pt.x);
+      scrubLine.setAttribute('x2', pt.x);
+      scrubPoint.setAttribute('cx', pt.x);
+      scrubPoint.setAttribute('cy', pt.y);
+      scrubGlow.setAttribute('cx', pt.x);
+      scrubGlow.setAttribute('cy', pt.y);
+
+      // Update text in floating card
+      tooltipDate.textContent = pt.date;
+      tooltipPrice.textContent = pt.price;
+      tooltipDelta.innerHTML = `
+        <svg class="w-2.5 h-2.5 stroke-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/>
+        </svg>
+        <span>${pt.delta}</span>
+      `;
+
+      // Position tooltip safely within bounds
+      const cardRect = chartCard.getBoundingClientRect();
+      const svgRatio = cardRect.width / 350;
+      let pixelX = pt.x * svgRatio - 72; // half tooltip width
+      pixelX = Math.max(10, Math.min(cardRect.width - 150, pixelX));
+      
+      let pixelY = (pt.y * (cardRect.height / 200)) - 75;
+      if (pixelY < 8) pixelY = 12;
+
+      chartTooltip.style.left = `${pixelX}px`;
+      chartTooltip.style.top = `${pixelY}px`;
+    }
+
+    // Initial render
+    renderChart(activePoints);
+
+    // Scrubbing gesture handling (Mouse & Touch)
+    function handlePointerMove(e) {
+      const rect = chartCard.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const relativeX = clientX - rect.left;
+      const svgX = (relativeX / rect.width) * 350;
+
+      // Find closest data point
+      let closestPt = activePoints[0];
+      let minDiff = Infinity;
+      for (let pt of activePoints) {
+        const diff = Math.abs(pt.x - svgX);
+        if (diff < minDiff) {
+          minDiff = diff;
+          closestPt = pt;
+        }
+      }
+      updateScrubPosition(closestPt);
+    }
+
+    chartCard.addEventListener('mousemove', handlePointerMove);
+    chartCard.addEventListener('touchmove', handlePointerMove, { passive: true });
+
+    // Timeframe selector switcher
+    const timeframeButtons = document.querySelectorAll('.tf-btn');
+    timeframeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Clear active styles
+        timeframeButtons.forEach(b => {
+          b.classList.remove('bg-white', 'text-slate-900', 'shadow-pill');
+          b.classList.add('text-slate-500');
+          b.setAttribute('aria-selected', 'false');
+        });
+
+        // Set active style
+        btn.classList.add('bg-white', 'text-slate-900', 'shadow-pill');
+        btn.classList.remove('text-slate-500');
+        btn.setAttribute('aria-selected', 'true');
+
+        const range = btn.getAttribute('data-timeframe');
+        if (chartDataByTimeframe[range]) {
+          activePoints = chartDataByTimeframe[range];
+          renderChart(activePoints);
+        }
+      });
+    });
+
+    // Favorite Button Interaction
+    const favBtn = document.getElementById('favorite-btn');
+    const favIcon = document.getElementById('favorite-icon');
+    let isFav = true;
+    favBtn.addEventListener('click', () => {
+      isFav = !isFav;
+      if (isFav) {
+        favIcon.setAttribute('class', 'w-4 h-4 fill-amber-400 stroke-amber-500');
+        showToast('Added to Watchlist');
+      } else {
+        favIcon.setAttribute('class', 'w-4 h-4 fill-transparent stroke-slate-400');
+        showToast('Removed from Watchlist');
+      }
+    });
+
+    // Toast Notification Feedback Helper
+    const toast = document.getElementById('toast-notification');
+    const toastMsg = document.getElementById('toast-message');
+    let toastTimeout;
+    function showToast(text) {
+      clearTimeout(toastTimeout);
+      toastMsg.textContent = text;
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+      toast.classList.add('opacity-100');
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0', 'pointer-events-none');
+      }, 2000);
+    }
+
+    // Trade button actions
+    document.getElementById('btn-sell').addEventListener('click', () => {
+      showToast('Opening Sell order modal...');
+    });
+    document.getElementById('btn-buy').addEventListener('click', () => {
+      showToast('Opening Buy order modal...');
+    });
+  </script>
+<!-- END: ScriptChartAndInteractions -->
+
+
+</body></html>

@@ -1,0 +1,378 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+<title>Binance (BNB Inc) - Financials</title>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS CDN with Forms & Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              bg: '#F9FAFC',
+              darkGreen: '#0D381E',
+              mint: '#34D399',
+              mintLight: '#6EE7B7',
+              accentBlue: '#2563EB',
+              coralRed: '#E15241',
+              gold: '#F3BA2F',
+            }
+          },
+          boxShadow: {
+            'tab': '0 4px 14px -2px rgba(0, 0, 0, 0.06), 0 2px 6px -1px rgba(0, 0, 0, 0.04)',
+            'card': '0 8px 30px -4px rgba(16, 24, 40, 0.04), 0 2px 6px -1px rgba(16, 24, 40, 0.02)',
+            'fab': '0 10px 25px -5px rgba(13, 56, 30, 0.4), 0 8px 10px -6px rgba(13, 56, 30, 0.3)',
+          }
+        }
+      }
+    }
+  </script>
+<!-- Custom styles for iOS simulation & chart styling -->
+<style data-purpose="layout-adjustments">
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #F9FAFC;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    /* Hide scrollbars cleanly */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    * {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<style data-purpose="visual-effects">
+    .glass-tab-active {
+      background: #FFFFFF;
+      box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.08);
+    }
+    .faded-bar {
+      background: linear-gradient(180deg, rgba(74, 222, 128, 0.4) 0%, rgba(74, 222, 128, 0.05) 100%);
+    }
+    .solid-bar {
+      background: linear-gradient(180deg, #4ade80 0%, #22c55e 100%);
+    }
+    .safe-bottom {
+      padding-bottom: max(env(safe-area-inset-bottom, 16px), 16px);
+    }
+  </style>
+</head>
+<body class="bg-[#F9FAFC] text-slate-900 min-h-screen flex justify-center">
+<!-- BEGIN: MobileDeviceContainer -->
+<!-- Container is styled to seamlessly fill mobile viewports, or behave as a centered device mock on desktops -->
+<div class="w-full max-w-[428px] min-h-screen bg-[#F9FAFC] flex flex-col relative pb-32">
+<!-- BEGIN: iOSStatusBar -->
+<header class="w-full pt-3 px-7 flex items-center justify-between z-30 sticky top-0 bg-[#F9FAFC]/90 backdrop-blur-md">
+<!-- iOS Clock -->
+<span class="text-[15px] font-bold tracking-tight text-slate-900">9:41</span>
+<!-- iOS Dynamic Island Placeholder -->
+<div class="h-6 w-28 bg-black rounded-full mx-auto flex items-center justify-end pr-2.5">
+<div class="w-2.5 h-2.5 rounded-full bg-[#171725] border border-slate-900"></div>
+</div>
+<!-- iOS Status Icons: Cellular, Wifi, Battery -->
+<div class="flex items-center space-x-1.5 text-slate-900">
+<!-- Cellular Bars -->
+<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+<path d="M2 17h3v4H2v-4zm6-5h3v9H8v-9zm6-4h3v13h-3V8zm6-5h3v18h-3V3z"></path>
+</svg>
+<!-- Wifi Icon -->
+<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+<path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98C20.93 5.9 16.69 4 12 4zm0 3.27c3.67 0 7.04 1.41 9.58 3.73l-2.02 2.02C17.65 11.41 14.97 10.4 12 10.4s-5.65 1.01-7.56 2.62L2.42 11C4.96 8.68 8.33 7.27 12 7.27z"></path>
+</svg>
+<!-- Battery Icon -->
+<div class="w-5 h-2.5 border border-slate-900 rounded-[3px] p-[1px] flex items-center">
+<div class="h-full w-full bg-slate-900 rounded-[1.5px]"></div>
+</div>
+</div>
+</header>
+<!-- END: iOSStatusBar -->
+<!-- BEGIN: HeaderSection -->
+<main class="flex-1 px-5 pt-3">
+<!-- Title & Token Badge Row -->
+<section class="flex items-center justify-between mb-4">
+<div>
+<h1 class="text-3xl font-extrabold tracking-tight text-slate-900">Binance</h1>
+<p class="text-sm font-semibold text-slate-500 mt-0.5">BNB Inc</p>
+</div>
+<!-- Gold BNB Token Circular Badge -->
+<div class="w-11 h-11 rounded-full bg-amber-100 flex items-center justify-center p-2 shadow-sm border border-amber-200/40">
+<svg class="w-6 h-6 text-[#F3BA2F]" fill="currentColor" viewBox="0 0 24 24">
+<path d="M12 2L6.5 7.5L8.6 9.6L12 6.2L15.4 9.6L17.5 7.5L12 2ZM2 12L4.1 9.9L6.2 12L4.1 14.1L2 12ZM17.8 12L19.9 9.9L22 12L19.9 14.1L17.8 12ZM12 17.8L8.6 14.4L6.5 16.5L12 22L17.5 16.5L15.4 14.4L12 17.8ZM12 9.4L9.4 12L12 14.6L14.6 12L12 9.4Z"></path>
+</svg>
+</div>
+</section>
+<!-- Price & Buy Action Row -->
+<section class="flex items-center justify-between mb-6">
+<div>
+<!-- Big Bold Price Display -->
+<div class="text-[34px] font-extrabold tracking-tight text-slate-900 leading-none">
+            583,93
+          </div>
+<!-- Daily Change Negative Indicator -->
+<div class="flex items-center space-x-1.5 mt-1.5">
+<span class="text-xs font-bold text-red-500 tracking-tight">-2,07 (-0.35%)</span>
+<span class="text-xs font-medium text-slate-400">Today</span>
+</div>
+</div>
+<!-- + Buy Primary Action Button -->
+<button class="flex items-center justify-center space-x-1.5 bg-blue-600 active:bg-blue-700 transition px-6 py-2.5 rounded-full text-white font-semibold text-sm shadow-md shadow-blue-600/25">
+
+<span class="">Running</span>
+</button>
+</section>
+<!-- Horizontal Navigation Tabs -->
+<div class="grid grid-cols-2 gap-3 mb-6"><div class="bg-white rounded-2xl p-3 border border-slate-100 shadow-sm flex flex-col items-center justify-center"><span class="text-xs font-semibold text-emerald-500 mb-1">Entry</span><span class="text-base font-bold text-slate-900 tracking-tight">$123.45</span></div><div class="bg-white rounded-2xl p-3 border border-slate-100 shadow-sm flex flex-col items-center justify-center"><span class="text-xs font-semibold text-red-500 mb-1">Close</span><span class="text-base font-bold text-slate-900 tracking-tight">$123.45</span></div></div>
+<!-- BEGIN: IncomeStatementCard -->
+<!-- Seamlessly continuing directly underneath tabs -->
+<section class="w-full mb-6">
+<!-- Section Title & Link Header -->
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-xl font-bold tracking-tight text-slate-900">Trade Statement</h2>
+<a class="text-sm font-bold text-emerald-800 hover:text-emerald-900 transition" href="#">See All</a>
+</div>
+<!-- Financial Chart Card -->
+<div class="bg-white rounded-3xl p-5 border border-slate-100 shadow-card">
+<!-- Toggle Pill Switcher: Annual vs Quarterly -->
+
+<!-- Financial High-Level Metric & Delta -->
+<div class="mb-5">
+<div class="text-2xl font-black tracking-tight text-slate-900 leading-none">
+              $2,388<span class="text-lg font-bold text-slate-600">.12</span>
+</div>
+<div class="flex items-center space-x-1 mt-1">
+<span class="text-emerald-500 text-sm font-bold leading-none">↑ 3.24%</span>
+</div>
+</div>
+<!-- Multi-Year Dual-Bar Comparison Chart -->
+<div class="relative w-full pt-2 pb-1">
+  <svg class="w-full h-48 select-none" viewBox="0 0 350 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="emaGlow" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.15"></stop>
+        <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.0"></stop>
+      </linearGradient>
+    </defs>
+    <!-- Background Grid Lines -->
+    <line x1="10" y1="20" x2="295" y2="20" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="2 2"></line>
+    <line x1="10" y1="55" x2="295" y2="55" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="2 2"></line>
+    <line x1="10" y1="90" x2="295" y2="90" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="2 2"></line>
+    <line x1="10" y1="125" x2="295" y2="125" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="2 2"></line>
+    
+    <!-- Right Y-Axis Price Scales -->
+    <text x="302" y="23" font-size="9" font-weight="600" fill="#94A3B8" font-family="'Plus Jakarta Sans', sans-serif">$126.00</text>
+    <text x="302" y="58" font-size="9" font-weight="600" fill="#94A3B8" font-family="'Plus Jakarta Sans', sans-serif">$124.50</text>
+    <text x="302" y="93" font-size="9" font-weight="600" fill="#94A3B8" font-family="'Plus Jakarta Sans', sans-serif">$123.45</text>
+    <text x="302" y="128" font-size="9" font-weight="600" fill="#94A3B8" font-family="'Plus Jakarta Sans', sans-serif">$122.00</text>
+
+    <!-- Entry Reference Line & Tag ($123.45) -->
+    <line x1="10" y1="90" x2="220" y2="90" stroke="#10B981" stroke-width="1.2" stroke-dasharray="3 3" stroke-opacity="0.8"></line>
+    <rect x="10" y="81" width="74" height="16" rx="4" fill="#ECFDF5" stroke="#10B981" stroke-width="0.8"></rect>
+    <circle cx="16" cy="89" r="2.5" fill="#10B981"></circle>
+    <text x="22" y="92.5" font-size="8.5" font-weight="700" fill="#059669" font-family="'Plus Jakarta Sans', sans-serif">Entry $123.45</text>
+
+    <!-- Close / Exit Target Reference Line & Tag ($123.45) -->
+    <line x1="170" y1="90" x2="295" y2="90" stroke="#EF4444" stroke-width="1.2" stroke-dasharray="3 3" stroke-opacity="0.8"></line>
+    <rect x="225" y="81" width="72" height="16" rx="4" fill="#FEF2F2" stroke="#EF4444" stroke-width="0.8"></rect>
+    <circle cx="231" cy="89" r="2.5" fill="#EF4444"></circle>
+    <text x="237" y="92.5" font-size="8.5" font-weight="700" fill="#DC2626" font-family="'Plus Jakarta Sans', sans-serif">Close $123.45</text>
+
+    <!-- Candlestick Series -->
+    <!-- 1: Bullish -->
+    <line x1="22" y1="108" x2="22" y2="136" stroke="#10B981" stroke-width="1.2" stroke-linecap="round"></line>
+    <rect x="19" y="116" width="6" height="14" rx="1" fill="#10B981"></rect>
+
+    <!-- 2: Bullish -->
+    <line x1="40" y1="96" x2="40" y2="124" stroke="#10B981" stroke-width="1.2" stroke-linecap="round"></line>
+    <rect x="37" y="102" width="6" height="16" rx="1" fill="#10B981"></rect>
+
+    <!-- 3: Bearish pullback -->
+    <line x1="58" y1="98" x2="58" y2="120" stroke="#EF4444" stroke-width="1.2" stroke-linecap="round"></line>
+    <rect x="55" y="104" width="6" height="12" rx="1" fill="#EF4444"></rect>
+
+    <!-- 4: Bullish recovery -->
+    <line x1="76" y1="84" x2="76" y2="112" stroke="#10B981" stroke-width="1.2" stroke-linecap="round"></line>
+    <rect x="73" y="90" width="6" height="18" rx="1" fill="#10B981"></rect>
+
+    <!-- 5: Bullish breakout through Entry -->
+    <line x1="94" y1="70" x2="94" y2="100" stroke="#10B981" stroke-width="1.2" stroke-linecap="round"></line>
+    <rect x="91" y="74" width="6" height="20" rx="1" fill="#10B981"></rect>
+
+    <!-- 6: Bearish consolidation -->
+    <line x1="112" y1="68" x2="112" y2="88" stroke="#EF4444" stroke-width="1.2" stroke-linecap="round"></line>
+    <rect x="109" y="72" width="6" height="10" rx="1" fill="#EF4444"></rect>
+
+    <!-- 7: Bullish strong impulsive wave -->
+    <line x1="130" y1="44" x2="130" y2="76" stroke="#10B981" stroke-width="1.2" stroke-linecap="round"></line>
+    <rect x="127" y="50" width="6" height="22" rx="1" fill="#10B981"></rect>
+
+    <!-- 8: Bullish peak wick -->
+    <line x1="148" y1="24" x2="148" y2="60" stroke="#10B981" stroke-width="1.2" stroke-linecap="round"></line>
+    <rect x="145" y="32" width="6" height="20" rx="1" fill="#10B981"></rect>
+
+    <!-- 9: Bearish rejection from top -->
+    <line x1="166" y1="28" x2="166" y2="62" stroke="#EF4444" stroke-width="1.2" stroke-linecap="round"></line>
+    <rect x="163" y="34" width="6" height="22" rx="1" fill="#EF4444"></rect>
+
+    <!-- 10: Bearish continuation -->
+    <line x1="184" y1="50" x2="184" y2="80" stroke="#EF4444" stroke-width="1.2" stroke-linecap="round"></line>
+    <rect x="181" y="56" width="6" height="18" rx="1" fill="#EF4444"></rect>
+
+    <!-- 11: Doji / stabilization -->
+    <line x1="202" y1="64" x2="202" y2="86" stroke="#10B981" stroke-width="1.2" stroke-linecap="round"></line>
+    <rect x="199" y="72" width="6" height="4" rx="1" fill="#10B981"></rect>
+
+    <!-- 12: Bullish rebound wave -->
+    <line x1="220" y1="52" x2="220" y2="78" stroke="#10B981" stroke-width="1.2" stroke-linecap="round"></line>
+    <rect x="217" y="56" width="6" height="16" rx="1" fill="#10B981"></rect>
+
+    <!-- 13: Bullish continuation -->
+    <line x1="238" y1="40" x2="238" y2="68" stroke="#10B981" stroke-width="1.2" stroke-linecap="round"></line>
+    <rect x="235" y="46" width="6" height="14" rx="1" fill="#10B981"></rect>
+
+    <!-- 14: Bearish rejection candle -->
+    <line x1="256" y1="42" x2="256" y2="76" stroke="#EF4444" stroke-width="1.2" stroke-linecap="round"></line>
+    <rect x="253" y="48" width="6" height="20" rx="1" fill="#EF4444"></rect>
+
+    <!-- 15: Bearish slide to Close price level ($123.45) -->
+    <line x1="274" y1="66" x2="274" y2="96" stroke="#EF4444" stroke-width="1.2" stroke-linecap="round"></line>
+    <rect x="271" y="72" width="6" height="18" rx="1" fill="#EF4444"></rect>
+
+    <!-- Moving Average / EMA line -->
+    <path d="M22 125 C 50 115, 80 95, 112 78 C 135 65, 150 42, 175 48 C 205 58, 230 52, 274 86" fill="none" stroke="#3B82F6" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.75"></path>
+
+    <!-- Bottom Time Axis -->
+    <line x1="10" y1="148" x2="295" y2="148" stroke="#F1F5F9" stroke-width="1"></line>
+    <text x="20" y="162" font-size="9" font-weight="600" fill="#94A3B8" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif">09:00</text>
+    <text x="85" y="162" font-size="9" font-weight="600" fill="#94A3B8" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif">10:30</text>
+    <text x="150" y="162" font-size="9" font-weight="600" fill="#94A3B8" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif">12:00</text>
+    <text x="215" y="162" font-size="9" font-weight="600" fill="#94A3B8" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif">13:30</text>
+    <text x="275" y="162" font-size="9" font-weight="600" fill="#94A3B8" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif">15:00</text>
+  </svg>
+</div>
+</div>
+</section>
+<!-- END: IncomeStatementCard -->
+<!-- BEGIN: MarketStatsSection -->
+<section class="w-full mb-8">
+<h3 class="text-base font-bold text-slate-900 mb-3 px-1">Market Stats</h3>
+<!-- Key-Value Metrics Card -->
+<div class="bg-white rounded-3xl p-5 border border-slate-100 shadow-card">
+<div class="space-y-3.5 text-sm">
+<!-- Row 1: Open & High -->
+<div class="flex justify-between items-center text-slate-500 font-medium">
+<span class="w-1/4">S&amp;L</span>
+<span class="w-1/4 text-right font-bold text-slate-900">585,93</span>
+<span class="w-1/4 pl-4 text-slate-500">T&amp;P</span>
+<span class="w-1/4 text-right font-bold text-slate-900">595,93</span>
+</div>
+<!-- Row 2: Close & Low -->
+<div class="flex justify-between items-center text-slate-500 font-medium">
+<span class="w-1/4">T&amp;P 1</span>
+<span class="w-1/4 text-right font-bold text-slate-900">583,93</span>
+<span class="w-1/4 pl-4 text-slate-500">T&amp;P 3</span>
+<span class="w-1/4 text-right font-bold text-slate-900">578,21</span>
+</div>
+<!-- Row 3: Daily volume & Market cap -->
+<div class="flex justify-between items-center text-slate-500 font-medium">
+<span class="w-1/4">Dropdown</span>
+<span class="w-1/4 text-right font-bold text-slate-900">$42.73B</span>
+<span class="w-1/4 pl-4 text-slate-500">Market cap</span>
+<span class="w-1/4 text-right font-bold text-slate-900">$900K</span>
+</div>
+</div>
+</div>
+</section>
+<!-- END: MarketStatsSection -->
+<!-- BEGIN: QuickActionsRow -->
+<!-- Secondary Action Pills: Back, Notifications, Share, Bookmark -->
+<section class="flex items-center justify-between mb-8 px-1">
+<!-- Back Circular Button -->
+<button class="w-11 h-11 rounded-full bg-slate-100/90 hover:bg-slate-200 transition flex items-center justify-center text-slate-700 shadow-sm border border-slate-200/50">
+<svg class="w-5 h-5 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<div class="flex items-center space-x-2.5">
+<!-- Notification Bell -->
+<button class="w-11 h-11 rounded-full bg-slate-100/90 hover:bg-slate-200 transition flex items-center justify-center text-slate-700 shadow-sm border border-slate-200/50">
+<svg class="w-5 h-5 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<!-- Share Arrow -->
+<button class="w-11 h-11 rounded-full bg-slate-100/90 hover:bg-slate-200 transition flex items-center justify-center text-slate-700 shadow-sm border border-slate-200/50">
+<svg class="w-5 h-5 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<!-- Favorite Star -->
+<button class="w-11 h-11 rounded-full bg-slate-100/90 hover:bg-slate-200 transition flex items-center justify-center text-slate-700 shadow-sm border border-slate-200/50">
+<svg class="w-5 h-5 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+</section>
+<!-- END: QuickActionsRow -->
+</main>
+<!-- BEGIN: BottomNavigationDock -->
+<nav class="fixed bottom-0 left-0 right-0 max-w-[428px] mx-auto bg-white/95 backdrop-blur-md border-t border-slate-100 px-6 pt-2 pb-6 z-40 safe-bottom">
+<div class="relative flex items-center justify-between">
+<!-- Home Navigation Item -->
+<a class="flex flex-col items-center justify-center text-slate-400 hover:text-slate-800 transition space-y-1 w-12" href="#">
+<svg class="w-6 h-6 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-[11px] font-semibold">Home</span>
+</a>
+<!-- Stock Navigation Item (Active) -->
+<a class="flex flex-col items-center justify-center text-slate-900 transition space-y-1 w-12" href="#">
+<svg class="w-6 h-6 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-[11px] font-bold">Stock</span>
+<!-- Active Dot -->
+<div class="w-1 h-1 bg-slate-950 rounded-full mt-0.5"></div>
+</a>
+<!-- Centered Floating Circular FAB with Sparkle Icon -->
+<div class="relative -top-5 flex justify-center">
+<button class="w-14 h-14 rounded-full bg-[#103D20] text-white flex items-center justify-center shadow-fab border-4 border-[#F9FAFC] active:scale-95 transition-transform duration-150">
+<!-- Sparkle/Star Icon -->
+<svg class="w-6 h-6 fill-current text-emerald-300" viewBox="0 0 24 24">
+<path d="M12 2L14.2 8.3L20.5 10.5L14.2 12.7L12 19L9.8 12.7L3.5 10.5L9.8 8.3L12 2ZM19 17L20.1 20.1L23.2 21.2L20.1 22.3L19 25.4L17.9 22.3L14.8 21.2L17.9 20.1L19 17Z"></path>
+</svg>
+</button>
+</div>
+<!-- Card Navigation Item -->
+<a class="flex flex-col items-center justify-center text-slate-400 hover:text-slate-800 transition space-y-1 w-12" href="#">
+<svg class="w-6 h-6 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-6 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-[11px] font-semibold">Card</span>
+</a>
+<!-- Profile Navigation Item -->
+<a class="flex flex-col items-center justify-center text-slate-400 hover:text-slate-800 transition space-y-1 w-12" href="#">
+<svg class="w-6 h-6 stroke-[1.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-[11px] font-semibold">Profile</span>
+</a>
+</div>
+</nav>
+<!-- END: BottomNavigationDock -->
+</div>
+<!-- END: MobileDeviceContainer -->
+
+
+</body></html>

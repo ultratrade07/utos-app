@@ -1,0 +1,618 @@
+<!DOCTYPE html><html lang="en"><head></head><body class="antialiased min-h-screen w-full bg-[#F7F8FA] text-[#111827] flex flex-col m-0 p-0"><svg class="inline-defs-container" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"></svg>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+<title>Account Created Successfully - UTOS</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Plus Jakarta Sans Font -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      min-height: max(884px, 100dvh);
+      background-color: #f1f2f6;
+    }
+
+    /* --- Phase 1: Header Fade-In (0ms - 200ms) --- */
+    @keyframes headerFadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(-6px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* --- Phase 1 & Continuous: Ambient Soft Bloom --- */
+    @keyframes ambientBloomAwaken {
+      0% {
+        opacity: 0;
+        transform: scale(0.65);
+      }
+      60% {
+        opacity: 0.85;
+        transform: scale(1.15);
+      }
+      100% {
+        opacity: 0.6;
+        transform: scale(1);
+      }
+    }
+
+    /* Calibration wave pulse triggered upon tap */
+    @keyframes coreTapWave {
+      0% {
+        transform: scale(1);
+      }
+      35% {
+        transform: scale(1.06);
+      }
+      65% {
+        transform: scale(0.97);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes ambientPulseGlow {
+      0%, 100% {
+        opacity: 0.55;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.82;
+        transform: scale(1.1);
+      }
+    }
+
+    /* --- Phase 2: Concentric Hairline Orbital Rings --- */
+    @keyframes outerOrbitalSpinLock {
+      0% {
+        opacity: 0;
+        transform: rotate(-140deg) scale(0.82);
+      }
+      65% {
+        opacity: 0.9;
+        transform: rotate(12deg) scale(1.02);
+      }
+      100% {
+        opacity: 0.7;
+        transform: rotate(0deg) scale(1);
+      }
+    }
+
+    @keyframes innerOrbitalSpinLock {
+      0% {
+        opacity: 0;
+        transform: rotate(160deg) scale(0.85);
+      }
+      70% {
+        opacity: 0.85;
+        transform: rotate(-10deg) scale(1.02);
+      }
+      100% {
+        opacity: 0.65;
+        transform: rotate(0deg) scale(1);
+      }
+    }
+
+    /* Calibration Ticks / Micro Dots Staggered Reveal */
+    @keyframes tickPop {
+      0% {
+        opacity: 0;
+        transform: scale(0);
+      }
+      70% {
+        opacity: 1;
+        transform: scale(1.25);
+      }
+      100% {
+        opacity: 0.7;
+        transform: scale(1);
+      }
+    }
+
+    /* Orbital Light Sweep Glide */
+    @keyframes lightSweepA {
+      0% {
+        stroke-dashoffset: 140;
+        opacity: 0;
+      }
+      25% {
+        opacity: 1;
+      }
+      80% {
+        stroke-dashoffset: 0;
+        opacity: 0.95;
+      }
+      100% {
+        stroke-dashoffset: 0;
+        opacity: 0.7;
+      }
+    }
+
+    @keyframes lightSweepB {
+      0% {
+        stroke-dashoffset: 120;
+        opacity: 0;
+      }
+      35% {
+        opacity: 1;
+      }
+      85% {
+        stroke-dashoffset: 0;
+        opacity: 0.9;
+      }
+      100% {
+        stroke-dashoffset: 0;
+        opacity: 0.6;
+      }
+    }
+
+    /* Central Glass Core Scale Reveal + Energy Pulse */
+    @keyframes glassCoreReveal {
+      0% {
+        opacity: 0;
+        transform: scale(0.85);
+        box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+      }
+      60% {
+        opacity: 1;
+        transform: scale(1.04);
+        box-shadow: 0 0 28px rgba(37, 99, 235, 0.4), 0 0 45px rgba(52, 211, 153, 0.25);
+      }
+      80% {
+        transform: scale(0.99);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 16px 36px -6px rgba(11, 15, 25, 0.18), 0 0 0 1px rgba(255, 255, 255, 0.8), inset 0 1px 2px rgba(255, 255, 255, 0.9);
+      }
+    }
+
+    /* Outward Ripple Ring from Glass Core */
+    @keyframes coreEnergyPulseOut {
+      0% {
+        opacity: 0;
+        transform: scale(0.7);
+      }
+      45% {
+        opacity: 0.6;
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1.45);
+      }
+    }
+
+    /* Badge & Verification Emblem Path Draw */
+    @keyframes emblemBadgeDraw {
+      0% {
+        stroke-dashoffset: 160;
+        opacity: 0;
+        transform: scale(0.8) rotate(-15deg);
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+      }
+    }
+
+    /* Checkmark Draw Inside Badge */
+    @keyframes checkmarkDraw {
+      0% {
+        stroke-dashoffset: 30;
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+      }
+    }
+
+    /* Emerald-Cyan Accent Dot Pulse & Glow */
+    @keyframes accentDotSettle {
+      0% {
+        opacity: 0;
+        transform: scale(0);
+      }
+      60% {
+        opacity: 1;
+        transform: scale(1.4);
+        box-shadow: 0 0 16px rgba(52, 211, 153, 1), 0 0 24px rgba(37, 99, 235, 0.6);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 0 8px rgba(52, 211, 153, 0.8), 0 0 14px rgba(37, 99, 235, 0.4);
+      }
+    }
+
+    @keyframes accentDotBreathing {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.85;
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 1;
+        box-shadow: 0 0 12px rgba(52, 211, 153, 0.9), 0 0 20px rgba(37, 99, 235, 0.5);
+      }
+    }
+
+    /* --- Phase 3 & 4: Text Stagger Sequences --- */
+    @keyframes textSlideUpHead {
+      0% {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes textSlideUpSub {
+      0% {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* --- Phase 5: CTA Button Reveal & Shimmer Gleam --- */
+    @keyframes ctaRevealUp {
+      0% {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes buttonShimmerPass {
+      0% {
+        transform: translateX(-140%) skewX(-20deg);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.65;
+      }
+      70% {
+        opacity: 0.65;
+      }
+      100% {
+        transform: translateX(180%) skewX(-20deg);
+        opacity: 0;
+      }
+    }
+
+    /* Element Animation Classes */
+    .anim-header {
+      animation: headerFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0ms forwards;
+    }
+
+    .anim-bloom {
+      animation: ambientBloomAwaken 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0ms forwards,
+                 ambientPulseGlow 4s ease-in-out 1s infinite alternate;
+    }
+
+    .anim-outer-orbit {
+      animation: outerOrbitalSpinLock 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.18s forwards;
+    }
+
+    .anim-inner-orbit {
+      animation: innerOrbitalSpinLock 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.22s forwards;
+    }
+
+    .anim-sweep-a {
+      stroke-dasharray: 80;
+      stroke-dashoffset: 80;
+      animation: lightSweepA 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.24s forwards;
+    }
+
+    .anim-sweep-b {
+      stroke-dasharray: 60;
+      stroke-dashoffset: 60;
+      animation: lightSweepB 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.28s forwards;
+    }
+
+    .anim-tick-1 { animation: tickPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.35s forwards; }
+    .anim-tick-2 { animation: tickPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.42s forwards; }
+    .anim-tick-3 { animation: tickPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.48s forwards; }
+    .anim-tick-4 { animation: tickPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.54s forwards; }
+
+    .anim-glass-core {
+      opacity: 0;
+      animation: glassCoreReveal 0.68s cubic-bezier(0.16, 1, 0.3, 1) 0.26s forwards;
+    }
+
+    .anim-core-wave {
+      animation: coreEnergyPulseOut 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.48s forwards;
+    }
+
+    .anim-emblem-badge {
+      animation: emblemBadgeDraw 0.72s cubic-bezier(0.16, 1, 0.3, 1) 0.38s forwards;
+    }
+
+    .anim-emblem-check {
+      stroke-dasharray: 30;
+      stroke-dashoffset: 30;
+      animation: checkmarkDraw 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.62s forwards;
+    }
+
+    .anim-accent-dot {
+      opacity: 0;
+      animation: accentDotSettle 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) 0.72s forwards,
+                 accentDotBreathing 3.2s ease-in-out 1.2s infinite;
+    }
+
+    .anim-heading {
+      opacity: 0;
+      animation: textSlideUpHead 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.62s forwards;
+    }
+
+    .anim-subtext {
+      opacity: 0;
+      animation: textSlideUpSub 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.76s forwards;
+    }
+
+    .anim-cta-wrap {
+      opacity: 0;
+      animation: ctaRevealUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
+    }
+
+    .anim-btn-shimmer {
+      animation: buttonShimmerPass 1.2s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
+    }
+
+    .core-active-pulse {
+      animation: coreTapWave 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Accessibility: Respect Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .anim-header, .anim-bloom, .anim-outer-orbit, .anim-inner-orbit, 
+      .anim-glass-core, .anim-heading, .anim-subtext, .anim-cta-wrap, 
+      .anim-accent-dot, .anim-emblem-badge, .anim-emblem-check {
+        opacity: 1 !important;
+        transform: none !important;
+        stroke-dashoffset: 0 !important;
+      }
+    }
+  </style>
+
+
+<!-- Mobile Viewport Shell (iPhone 390x844 Frame) -->
+<main class="w-full min-h-screen flex-1 flex flex-col justify-between relative overflow-hidden bg-[#F7F8FA]">
+<!-- Strata 1: iOS Status Bar + Centered Brand Header (Phase 1 Entrance) -->
+<header class="w-full flex-none z-20 pt-8 sm:pt-10 px-6 anim-header">
+<!-- iOS Status Bar with Dynamic Island notch pill -->
+
+<!-- UTOS Header: Centered circular black 'U' emblem with bold 'UTOS' wordmark -->
+<div class="w-full flex items-center justify-center pt-5 pb-1">
+<div class="flex items-center gap-2 select-none">
+<!-- Brand Icon -->
+<div class="w-8 h-8 rounded-full bg-black flex items-center justify-center text-white shadow-sm transition-transform hover:scale-105 active:scale-95 duration-200">
+<span class="font-bold text-[17px] tracking-tight leading-none">U</span>
+</div>
+<!-- Wordmark -->
+<span class="text-[19px] font-bold tracking-tight text-[#111827]">UTOS</span>
+</div>
+</div>
+</header>
+<!-- Strata 2: Upper-Middle Core Content (UTOS Verification Core + Heading + Subtitle) -->
+<section class="flex-1 flex flex-col items-center justify-center px-6 text-center py-6">
+<!-- UTOS Verification Core (~104dp container, interactive tap with ripple calibration pulse) -->
+<div class="relative w-[114px] h-[114px] flex items-center justify-center mb-7 select-none cursor-pointer group" id="verificationCore" title="UTOS Verified Digital Core">
+<!-- 1. Ambient soft blue & emerald radial backdrop bloom (Phase 1 entry) -->
+<div class="absolute -inset-5 rounded-full blur-2xl pointer-events-none anim-bloom" id="ambientBloom" style="background: radial-gradient(circle, rgba(37,99,235,0.28) 0%, rgba(59,130,246,0.14) 45%, rgba(16,185,129,0.08) 72%, transparent 90%);"></div>
+<!-- Outward energy wave burst element -->
+<div class="absolute w-[80px] h-[80px] rounded-[26px] border border-blue-400/50 pointer-events-none anim-core-wave" id="coreWaveRing"></div>
+<!-- 2. Outer Precision Orbital Hairline Geometry & Calibrated Arcs (114x114 Viewport) -->
+<svg class="absolute w-[114px] h-[114px] pointer-events-none origin-center anim-outer-orbit" fill="none" id="outerOrbitSvg" viewBox="0 0 114 114">
+<!-- Outer Boundary Calibration Track -->
+<circle cx="57" cy="57" r="53" stroke="#2563EB" stroke-dasharray="2 5" stroke-opacity="0.16" stroke-width="1"></circle>
+<!-- Precision Orbital Segments -->
+<path d="M 57 4 A 53 53 0 0 1 110 57" stroke="#2563EB" stroke-linecap="round" stroke-opacity="0.38" stroke-width="1.3"></path>
+<path d="M 57 110 A 53 53 0 0 1 4 57" stroke="#3B82F6" stroke-linecap="round" stroke-opacity="0.32" stroke-width="1.3"></path>
+<!-- Micro Alignment Calibration Ticks (Scales into view with staggered delay) -->
+<line class="anim-tick-1 origin-center" stroke="#2563EB" stroke-opacity="0.55" stroke-width="1.3" x1="57" x2="57" y1="1" y2="5.5"></line>
+<line class="anim-tick-2 origin-center" stroke="#2563EB" stroke-opacity="0.55" stroke-width="1.3" x1="57" x2="57" y1="108.5" y2="113"></line>
+<line class="anim-tick-3 origin-center" stroke="#2563EB" stroke-opacity="0.55" stroke-width="1.3" x1="1" x2="5.5" y1="57" y2="57"></line>
+<line class="anim-tick-4 origin-center" stroke="#2563EB" stroke-opacity="0.55" stroke-width="1.3" x1="108.5" x2="113" y1="57" y2="57"></line>
+<!-- Micro Alignment Dots -->
+<circle class="anim-tick-2 origin-center" cx="94.5" cy="19.5" fill="#3B82F6" fill-opacity="0.45" r="1.2"></circle>
+<circle class="anim-tick-4 origin-center" cx="19.5" cy="94.5" fill="#3B82F6" fill-opacity="0.45" r="1.2"></circle>
+</svg>
+<!-- 3. Inner Counter-rotational Precision Orbit with animated light sweep particles -->
+<svg class="absolute w-[94px] h-[94px] pointer-events-none origin-center anim-inner-orbit" fill="none" id="innerOrbitSvg" viewBox="0 0 94 94">
+<!-- Concentric Ring Track -->
+<circle cx="47" cy="47" r="44.5" stroke="#3B82F6" stroke-opacity="0.18" stroke-width="1"></circle>
+<!-- Sweeping Light Particle Arc Trace A -->
+<path class="anim-sweep-a" d="M 16 16 A 44.5 44.5 0 0 1 78 16" stroke="url(#sweepGradA)" stroke-linecap="round" stroke-width="1.9"></path>
+<!-- Sweeping Light Particle Arc Trace B -->
+<path class="anim-sweep-b" d="M 78 78 A 44.5 44.5 0 0 1 22 82" stroke="url(#sweepGradB)" stroke-linecap="round" stroke-width="1.6"></path>
+<defs>
+<linearGradient gradientUnits="userSpaceOnUse" id="sweepGradA" x1="16" x2="78" y1="16" y2="16">
+<stop offset="0%" stop-color="#2563EB" stop-opacity="0"></stop>
+<stop offset="50%" stop-color="#3B82F6" stop-opacity="0.95"></stop>
+<stop offset="100%" stop-color="#34D399" stop-opacity="1"></stop>
+</linearGradient>
+<linearGradient gradientUnits="userSpaceOnUse" id="sweepGradB" x1="78" x2="22" y1="78" y2="82">
+<stop offset="0%" stop-color="#34D399" stop-opacity="0"></stop>
+<stop offset="55%" stop-color="#2563EB" stop-opacity="0.85"></stop>
+<stop offset="100%" stop-color="#60A5FA" stop-opacity="1"></stop>
+</linearGradient>
+</defs>
+</svg>
+<!-- 4. Central Multi-Layered Glassmorphic Verification Core (Phase 2 reveal & scale 0.85 -> 1) -->
+<div class="relative w-[68px] h-[68px] rounded-[22px] flex items-center justify-center p-[2px] anim-glass-core transition-transform duration-200 group-hover:scale-105 active:scale-95" id="glassCoreBadge" style="background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(203,213,225,0.45) 100%);">
+<!-- Deep inner hub (#0B0F19 to #1E293B) -->
+<div class="relative w-full h-full rounded-[20px] overflow-hidden flex items-center justify-center" style="background: radial-gradient(circle at 35% 30%, #1E293B 0%, #0B0F19 100%); border: 1px solid rgba(255,255,255,0.09); box-shadow: inset 0 2px 4px rgba(255,255,255,0.14), inset 0 -3px 8px rgba(0,0,0,0.65);">
+<!-- Precision Geometric Verification Badge / Glyph SVG -->
+<svg class="w-10 h-10 relative z-10 origin-center anim-emblem-badge" fill="none" style="stroke-dasharray: 160; stroke-dashoffset: 160;" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient gradientUnits="userSpaceOnUse" id="emblemOuterGrad" x1="6" x2="34" y1="6" y2="34">
+<stop offset="0%" stop-color="#93C5FD"></stop>
+<stop offset="55%" stop-color="#3B82F6"></stop>
+<stop offset="100%" stop-color="#1D4ED8"></stop>
+</linearGradient>
+<linearGradient gradientUnits="userSpaceOnUse" id="emblemInnerGrad" x1="12" x2="28" y1="12" y2="28">
+<stop offset="0%" stop-color="#6EE7B7"></stop>
+<stop offset="60%" stop-color="#34D399"></stop>
+<stop offset="100%" stop-color="#2563EB"></stop>
+</linearGradient>
+</defs>
+<!-- Outer Hexagonal High-Tech Shield Geometry -->
+<polygon points="20,5 32,12 32,26 20,33 8,26 8,12" stroke="url(#emblemOuterGrad)" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.88" stroke-width="1.4"></polygon>
+<!-- Converging Precision Alignment Facets -->
+<line stroke="#60A5FA" stroke-linecap="round" stroke-opacity="0.6" stroke-width="1.2" x1="20" x2="20" y1="5" y2="13"></line>
+<line stroke="#60A5FA" stroke-linecap="round" stroke-opacity="0.6" stroke-width="1.2" x1="32" x2="25" y1="26" y2="22"></line>
+<line stroke="#60A5FA" stroke-linecap="round" stroke-opacity="0.6" stroke-width="1.2" x1="8" x2="15" y1="26" y2="22"></line>
+<!-- Inner High-Precision Verification Core Shield -->
+<polygon fill="rgba(37,99,235,0.14)" points="20,13 26.5,17 26.5,24 20,28 13.5,24 13.5,17" stroke="url(#emblemInnerGrad)" stroke-linejoin="round" stroke-width="1.6"></polygon>
+<!-- Central Harmonic Verified Checkmark Symbol (Draws in after badge) -->
+<path class="anim-emblem-check" d="M16 20.5L19 23.5L24.5 17.5" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.95" stroke-width="1.7"></path>
+</svg>
+<!-- Settled Crisp Emerald-Cyan Accent Dot Pulse -->
+<div class="absolute w-2 h-2 rounded-full pointer-events-none anim-accent-dot z-20" style="background: radial-gradient(circle, #34D399 35%, #009668 70%, #2563EB 100%);"></div>
+<!-- Micro Glint Specular Top-Edge Reflection -->
+<div class="absolute top-0 inset-x-2 h-[1px] bg-gradient-to-r from-transparent via-white/50 to-transparent"></div>
+</div>
+</div>
+</div>
+<!-- Strata 2.5: Typography Group (Phase 3 & 4 Cascade) -->
+<div class="max-w-[320px] flex flex-col items-center">
+<!-- Headline: Phase 3 (600ms - 900ms) translateY(14px) -> 0 with fade-in -->
+<h1 class="text-[26px] leading-[34px] font-semibold text-[#111827] tracking-[-0.025em] mb-3 anim-heading select-none">
+      Account created<br>successfully
+    </h1>
+<!-- Subtitle: Phase 4 (750ms - 1050ms) gentle slide-up + cascade -->
+<p class="text-[14px] leading-[22px] font-normal text-[#6B7280] anim-subtext select-none">
+      Your email has been verified.<br>You're ready to continue setting up your UTOS account.
+    </p>
+</div>
+</section>
+<!-- Strata 3: Primary Action CTA & iOS Home Indicator (Phase 5 Entrance) -->
+<footer class="w-full max-w-[420px] mx-auto flex-none px-6 pb-8 sm:pb-10 pt-4 z-20 anim-cta-wrap">
+<!-- Primary Action CTA Button: rounded-2xl (16px), 54px height, solid #111111 with shimmer and smooth interactive states -->
+<div class="relative w-full overflow-hidden rounded-2xl group">
+<button class="relative w-full h-[54px] rounded-2xl bg-[#111111] hover:bg-black text-white text-[15.5px] font-semibold flex items-center justify-center gap-2 active:scale-[0.98] transition-all duration-200 shadow-sm focus:outline-none overflow-hidden" id="continueBtn" type="button">
+<!-- Surface Gleam / Active Shimmer Pass Effect (Phase 5: 900ms - 1200ms) -->
+<span class="pointer-events-none absolute inset-0 -top-2 -bottom-2 w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent anim-btn-shimmer" id="btnShimmer"></span>
+<!-- Button Content -->
+<span class="flex items-center justify-center gap-2 relative z-10 transition-transform duration-200 group-active:scale-[0.99]" id="btnLabelWrap">
+<span class="tracking-[-0.01em]">Continue</span>
+<svg class="w-4 h-4 stroke-[2.2] stroke-current fill-none transition-transform duration-200 ease-out group-hover:translate-x-1 group-active:translate-x-1.5" id="btnArrow" viewBox="0 0 24 24">
+<line x1="5" x2="19" y1="12" y2="12"></line>
+<polyline points="12 5 19 12 12 19"></polyline>
+</svg>
+</span>
+</button>
+</div>
+<!-- Native iOS Home Indicator Bar -->
+
+</footer>
+</main>
+<!-- Production-Grade Micro-Interactions Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const continueBtn = document.getElementById('continueBtn');
+      const btnLabelWrap = document.getElementById('btnLabelWrap');
+      const btnShimmer = document.getElementById('btnShimmer');
+      const verificationCore = document.getElementById('verificationCore');
+      const ambientBloom = document.getElementById('ambientBloom');
+      const glassCoreBadge = document.getElementById('glassCoreBadge');
+      const coreWaveRing = document.getElementById('coreWaveRing');
+
+      // 1. Tapping / Clicking "Continue →" micro-interaction with spinner / progress state
+      let isProceeding = false;
+      if (continueBtn && btnLabelWrap) {
+        continueBtn.addEventListener('click', (e) => {
+          if (isProceeding) return;
+          isProceeding = true;
+
+          // Gentle active tactile sheen & pulse
+          continueBtn.classList.add('brightness-110');
+
+          // Smooth micro-spinner state
+          btnLabelWrap.innerHTML = `
+            <svg class="animate-spin h-[18px] w-[18px] text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3.5"></circle>
+              <path class="opacity-90" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <span class="tracking-[-0.01em]">Proceeding...</span>
+          `;
+
+          // Transition to verified confirmation state
+          setTimeout(() => {
+            btnLabelWrap.innerHTML = `
+              <span class="tracking-[-0.01em]">Done</span>
+              <svg class="w-[18px] h-[18px] stroke-[2.4] stroke-[#34D399] fill-none animate-bounce" viewBox="0 0 24 24">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            `;
+            continueBtn.classList.remove('brightness-110');
+            continueBtn.classList.add('bg-[#0B0F19]');
+          }, 850);
+        });
+      }
+
+      // 2. Interactive Verification Core Calibration Pulse:
+      // Tapping the core triggers an elegant calibration pulse re-energizing orbital rings and ambient glow
+      if (verificationCore) {
+        verificationCore.addEventListener('click', () => {
+          // Re-trigger core tap wave
+          verificationCore.classList.remove('core-active-pulse');
+          void verificationCore.offsetWidth; // trigger reflow
+          verificationCore.classList.add('core-active-pulse');
+
+          // Bloom boost effect
+          if (ambientBloom) {
+            ambientBloom.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+            ambientBloom.style.opacity = '1';
+            ambientBloom.style.transform = 'scale(1.25)';
+            setTimeout(() => {
+              ambientBloom.style.opacity = '';
+              ambientBloom.style.transform = '';
+            }, 400);
+          }
+
+          // Outward energy ripple ring animation
+          if (coreWaveRing) {
+            coreWaveRing.style.animation = 'none';
+            void coreWaveRing.offsetWidth;
+            coreWaveRing.style.animation = 'coreEnergyPulseOut 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards';
+          }
+        });
+      }
+    });
+  </script>
+
+
+</body></html>

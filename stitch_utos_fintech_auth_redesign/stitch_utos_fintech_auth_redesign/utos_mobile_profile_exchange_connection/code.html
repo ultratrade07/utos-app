@@ -1,0 +1,1108 @@
+<!DOCTYPE html><html lang="en" style="" class="dark"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+<title>UTOS - Profile Settings &amp; Exchanges</title>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+            },
+          },
+          boxShadow: {
+            'card-subtle': '0 2px 8px -2px rgba(15, 23, 42, 0.04), 0 1px 3px -1px rgba(15, 23, 42, 0.02)',
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="base-setup">
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+  </style>
+<style data-purpose="ambient-background">
+    .utos-bg-mesh {
+      background-color: #f8fafc;
+      background-image: 
+        radial-gradient(at 10% 0%, rgba(224, 231, 255, 0.6) 0px, transparent 55%),
+        radial-gradient(at 90% 12%, rgba(243, 232, 255, 0.55) 0px, transparent 50%),
+        radial-gradient(at 50% 100%, rgba(241, 245, 249, 0.8) 0px, transparent 60%);
+    }
+  </style>
+</head>
+<body class="utos-bg-mesh text-slate-900 min-h-screen antialiased selection:bg-blue-100 selection:text-blue-900 pb-8">
+<!-- BEGIN: MainContainer -->
+<main class="w-full max-w-md mx-auto min-h-screen flex flex-col px-4 pt-3 pb-8 sm:px-5" data-purpose="mobile-screen-container">
+<!-- Notification Toast Feedback -->
+<div class="mb-3 p-3 bg-emerald-500 text-white text-xs font-semibold rounded-2xl shadow-sm flex items-center justify-between transition-all duration-300 hidden" id="toast-banner">
+<span class="flex items-center gap-2">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M4.5 12.75l6 6 9-13.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span class="" id="toast-text">Bybit API successfully connected!</span>
+</span>
+<button class="opacity-80 hover:opacity-100" id="toast-close">×</button>
+</div>
+<!-- ============================================== -->
+<!-- VIEW 1: PROFILE & SETTINGS (MAIN VIEW)         -->
+<!-- ============================================== -->
+<div class="flex flex-col flex-1" id="view-profile">
+<!-- BEGIN: Header -->
+<header class="flex items-center justify-between py-3 mb-2" data-purpose="screen-header">
+<div class="flex items-center gap-3.5">
+<!-- Back Navigation Button -->
+<button aria-label="Go back" class="w-10 h-10 rounded-full bg-white/80 backdrop-blur-md border border-slate-200/70 shadow-sm flex items-center justify-center text-slate-700 active:scale-95 active:bg-slate-100 transition-all duration-150 cursor-pointer" id="header-back-btn" type="button">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+<path d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<h1 class="text-xl font-bold tracking-tight text-slate-900" id="screen-title">Profile</h1>
+</div>
+<!-- Action: Quick Info / Notification dot indicator -->
+<div class="flex items-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-100">
+<span class="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse"></span>
+        UTOS ID
+      </span>
+</div>
+</header>
+<!-- END: Header -->
+<!-- BEGIN: TopProfileCard -->
+<section aria-label="User Profile Overview" class="mb-5 cursor-pointer" data-purpose="user-profile-card" onclick="setView('profileDetails')">
+<div class="bg-white/95 backdrop-blur-sm rounded-3xl p-4 border border-slate-200/60 shadow-card-subtle transition-all duration-200 active:bg-slate-50/80">
+<div class="flex items-center justify-between gap-3">
+<!-- Avatar with status -->
+<div class="relative flex-shrink-0">
+<div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-sky-400 p-[2px] shadow-sm">
+<div class="w-full h-full bg-slate-900 rounded-[14px] flex items-center justify-center text-white font-bold text-lg tracking-wider overflow-hidden">
+<span class="bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-200">AM</span>
+</div>
+</div>
+<!-- Verification tick badge -->
+<div class="absolute -bottom-1 -right-1 w-5 h-5 bg-emerald-500 rounded-full border-2 border-white flex items-center justify-center text-white shadow-sm" title="Verified Account">
+<svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+<path d="M4.5 12.75l6 6 9-13.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+<!-- User Details -->
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2">
+<h2 class="text-base font-bold text-slate-900 truncate">Alex Morgan</h2>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-600 uppercase tracking-wide">free</span>
+</div>
+<p class="text-xs text-slate-500 font-medium truncate mt-0.5">alex.morgan@utos.io</p>
+<div class="mt-1 flex items-center gap-1.5">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+<span class="text-[11px] font-medium text-emerald-600">Verified Member</span>
+</div>
+</div>
+<!-- Chevron Right -->
+<div class="text-slate-400 flex-shrink-0">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M8.25 4.5l7.5 7.5-7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+</div>
+</section>
+<!-- END: TopProfileCard -->
+<!-- Subview: Exchanges Config (hidden by default) -->
+<div class="flex flex-col space-y-5 hidden" id="view-exchanges">
+<!-- Title & Context -->
+<section class="px-1">
+<div class="flex items-center justify-between">
+<h2 class="text-xl font-bold tracking-tight text-slate-900">Exchanges</h2>
+<button class="text-xs font-semibold text-blue-600 hover:text-blue-700 cursor-pointer" id="toggle-to-profile-btn">Settings Overview →</button>
+</div>
+<p class="text-xs text-slate-500 font-medium mt-1 leading-relaxed">
+        Connect your trading API keys to enable automated signals and portfolio tracking.
+      </p>
+</section>
+<!-- Exchange Form Card -->
+<section class="bg-white/95 backdrop-blur-sm rounded-3xl p-5 border border-slate-200/60 shadow-card-subtle space-y-4">
+<!-- Segmented Selector: Binance vs Bybit -->
+<div>
+<label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Select Exchange</label>
+<div class="grid grid-cols-2 gap-2 p-1 bg-slate-100/90 rounded-2xl">
+<button class="exchange-tab flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs font-bold transition-all text-slate-600 hover:text-slate-900 cursor-pointer" id="tab-binance" type="button">
+<!-- Binance Symbol Icon -->
+<svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
+<path d="M12 2.5L7.5 7 12 11.5 16.5 7 12 2.5zm-6.5 6.5L1 13.5l4.5 4.5 4.5-4.5L5.5 9zm13 0l-4.5 4.5 4.5 4.5L23 13.5 18.5 9zM12 12.5L7.5 17 12 21.5 16.5 17 12 12.5z"></path>
+</svg>
+            Binance
+          </button>
+<button class="exchange-tab flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs font-bold transition-all shadow-sm bg-slate-950 text-white cursor-pointer" id="tab-bybit" type="button">
+<!-- Bybit Symbol Icon -->
+<svg class="w-4 h-4 text-amber-500" fill="currentColor" viewBox="0 0 24 24">
+<path d="M4 4h5.2l3 5.4 3-5.4H20l-4.8 8.6L20 20h-5.2l-3-5.4-3 5.4H4l4.8-7.4L4 4z"></path>
+</svg>
+            Bybit
+          </button>
+</div>
+</div>
+<!-- Form Inputs -->
+<form class="space-y-3.5" id="exchange-form" novalidate="">
+<!-- API Key Input -->
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<label class="text-xs font-semibold text-slate-700" for="apiKeyInput">API Key</label>
+<button class="text-[11px] font-semibold text-blue-600 hover:text-blue-700 cursor-pointer" id="btn-paste-api" type="button">Paste Demo</button>
+</div>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+<path d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<input autocomplete="off" class="w-full rounded-2xl border border-slate-200/80 bg-white pl-10 pr-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all font-mono shadow-xs" id="apiKeyInput" placeholder="Enter API Key" required="" type="text">
+</div>
+<p class="hidden text-[11px] text-red-500 font-medium mt-1 ml-1" id="error-api-key">Please enter your API Key</p>
+</div>
+<!-- Secret Key Input -->
+<div>
+<label class="block text-xs font-semibold text-slate-700 mb-1.5" for="secretKeyInput">Secret Key</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+<path d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<input autocomplete="off" class="w-full rounded-2xl border border-slate-200/80 bg-white pl-10 pr-11 py-3.5 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all font-mono shadow-xs" id="secretKeyInput" placeholder="Enter Secret Key" required="" type="password">
+<button aria-label="Toggle secret visibility" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600 cursor-pointer" id="toggle-secret-visibility" type="button">
+<!-- Eye icon -->
+<svg class="w-4 h-4" fill="none" id="eye-icon" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+<path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+<p class="hidden text-[11px] text-red-500 font-medium mt-1 ml-1" id="error-secret-key">Please enter your Secret Key</p>
+</div>
+<!-- Action Button -->
+<button class="w-full mt-2 h-12 py-3.5 rounded-2xl bg-slate-950 hover:bg-slate-900 active:scale-[0.99] text-white font-semibold flex items-center justify-center gap-2 shadow-sm transition-all text-sm disabled:opacity-75 disabled:cursor-not-allowed cursor-pointer" id="connectExchangeBtn" type="submit">
+<span class="" id="btn-connect-text">Connect Exchange</span>
+<svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" id="btn-connect-icon" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+<path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</form>
+</section>
+<!-- Connected Exchanges Section -->
+<section class="space-y-3">
+<div class="flex items-center justify-between px-1">
+<h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Connected Exchanges</h3>
+<span class="text-[11px] font-semibold text-slate-500" id="connected-count-badge">0 connected</span>
+</div>
+<!-- Empty State Container -->
+<div class="bg-white/70 backdrop-blur-sm rounded-3xl p-6 border border-dashed border-slate-300/80 text-center flex flex-col items-center justify-center space-y-2 py-8 transition-all" data-purpose="empty-state" id="empty-state-container">
+<div class="w-12 h-12 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center mb-1">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+<path d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<h4 class="text-sm font-bold text-slate-800">No exchanges connected yet</h4>
+<p class="text-xs text-slate-500 max-w-xs leading-relaxed">
+          Connect your Binance or Bybit API keys above to start automated signals and portfolio tracking.
+        </p>
+</div>
+<!-- Exchange List Container (Dynamic) -->
+<div class="space-y-2.5 hidden" id="connectedExchangesList"></div>
+</section>
+</div>
+<!-- Subview: Main Settings Rows (Visible by default) -->
+<div class="flex flex-col space-y-5" id="view-profile-menu">
+<!-- BEGIN: AccountSection -->
+<section data-purpose="settings-group-account">
+<h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 px-2 mb-2">Account</h3>
+<div class="bg-white/95 backdrop-blur-sm rounded-3xl border border-slate-200/60 shadow-card-subtle divide-y divide-slate-100 overflow-hidden">
+<!-- Row: Profile Details -->
+<button class="w-full flex items-center justify-between p-4 hover:bg-slate-50/70 active:bg-slate-100/80 transition-colors group text-left cursor-pointer" id="row-profile-details-link" onclick="setView('profileDetails')" type="button">
+<div class="flex items-center gap-3.5">
+<div class="w-9 h-9 rounded-xl bg-slate-100/90 text-slate-600 flex items-center justify-center group-hover:text-blue-600 transition-colors">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+<path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<span class="text-sm font-semibold text-slate-800">Profile Details</span>
+</div>
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-600 transition-colors" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+<path d="M8.25 4.5l7.5 7.5-7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<!-- Row: Exchanges (toggles to exchanges view) -->
+<button class="w-full flex items-center justify-between p-4 hover:bg-slate-50/70 active:bg-slate-100/80 transition-colors group text-left cursor-pointer" id="row-exchanges-link" type="button">
+<div class="flex items-center gap-3.5">
+<div class="w-9 h-9 rounded-xl bg-slate-100/90 text-slate-600 flex items-center justify-center group-hover:text-blue-600 transition-colors">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+<path d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<span class="text-sm font-semibold text-slate-800">Exchanges</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-100" id="profile-exchanges-count-badge">0 active</span>
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-600 transition-colors" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+<path d="M8.25 4.5l7.5 7.5-7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</button>
+<!-- Row: KYC Verification -->
+<a class="flex items-center justify-between p-4 hover:bg-slate-50/70 active:bg-slate-100/80 transition-colors group" href="#kyc-verification">
+<div class="flex items-center gap-3.5">
+<div class="w-9 h-9 rounded-xl bg-slate-100/90 text-slate-600 flex items-center justify-center group-hover:text-blue-600 transition-colors">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+<path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<span class="text-sm font-semibold text-slate-800">KYC Verification</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/80">
+              Verified
+            </span>
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-600 transition-colors" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+<path d="M8.25 4.5l7.5 7.5-7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</a>
+</div>
+</section>
+<!-- END: AccountSection -->
+<!-- BEGIN: PreferencesSection -->
+<section data-purpose="settings-group-preferences">
+<h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 px-2 mb-2">Preferences</h3>
+<div class="bg-white/95 backdrop-blur-sm rounded-3xl border border-slate-200/60 shadow-card-subtle divide-y divide-slate-100 overflow-hidden">
+<!-- Row: Notifications -->
+<a class="flex items-center justify-between p-4 hover:bg-slate-50/70 active:bg-slate-100/80 transition-colors group" href="#notifications">
+<div class="flex items-center gap-3.5">
+<div class="w-9 h-9 rounded-xl bg-slate-100/90 text-slate-600 flex items-center justify-center group-hover:text-blue-600 transition-colors">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+<path d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<span class="text-sm font-semibold text-slate-800">Notifications</span>
+</div>
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-600 transition-colors" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+<path d="M8.25 4.5l7.5 7.5-7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+<!-- Row: Dark Mode Toggle -->
+<div class="flex items-center justify-between p-4">
+<div class="flex items-center gap-3.5">
+<div class="w-9 h-9 rounded-xl bg-slate-100/90 text-slate-600 flex items-center justify-center">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+<path d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<span class="text-sm font-semibold text-slate-800">Dark Mode</span>
+</div>
+<!-- Toggle Control -->
+<label aria-label="Toggle dark mode" class="relative inline-flex items-center cursor-pointer select-none">
+<input class="sr-only peer" id="dark-mode-toggle" type="checkbox">
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all after:shadow-sm peer-checked:bg-slate-900"></div>
+</label>
+</div>
+<!-- Row: Language Selector -->
+<a class="flex items-center justify-between p-4 hover:bg-slate-50/70 active:bg-slate-100/80 transition-colors group" href="#language">
+<div class="flex items-center gap-3.5">
+<div class="w-9 h-9 rounded-xl bg-slate-100/90 text-slate-600 flex items-center justify-center group-hover:text-blue-600 transition-colors">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+<path d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-.778.099-1.533.284-2.253" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<span class="text-sm font-semibold text-slate-800">Language</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="text-xs font-medium text-slate-500">English (US)</span>
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-600 transition-colors" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+<path d="M8.25 4.5l7.5 7.5-7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</a>
+</div>
+</section>
+<!-- END: PreferencesSection -->
+<!-- BEGIN: SupportSection -->
+<section data-purpose="settings-group-support">
+<h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 px-2 mb-2">Support</h3>
+<div class="bg-white/95 backdrop-blur-sm rounded-3xl border border-slate-200/60 shadow-card-subtle divide-y divide-slate-100 overflow-hidden">
+<!-- Row: Help & Support -->
+<button type="button" onclick="switchView('supportTicket')" class="w-full flex items-center justify-between p-4 hover:bg-slate-50/70 active:bg-slate-100/80 transition-colors group text-left cursor-pointer"><div class="flex items-center gap-3.5"><div class="w-9 h-9 rounded-xl bg-slate-100/90 text-slate-600 flex items-center justify-center group-hover:text-blue-600 transition-colors"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.516 0c.85.493 1.508 1.333 1.508 2.316V18" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><span class="text-sm font-semibold text-slate-800">Support</span></div><svg class="w-4 h-4 text-slate-400 group-hover:text-slate-600 transition-colors" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M8.25 4.5l7.5 7.5-7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+<!-- Row: Report an Issue -->
+<button type="button" onclick="switchView('supportTicket')" class="w-full flex items-center justify-between p-4 hover:bg-slate-50/70 active:bg-slate-100/80 transition-colors group text-left cursor-pointer"><div class="flex items-center gap-3.5"><div class="w-9 h-9 rounded-xl bg-slate-100/90 text-slate-600 flex items-center justify-center group-hover:text-blue-600 transition-colors"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><span class="text-sm font-semibold text-slate-800">Report an Issue</span></div><svg class="w-4 h-4 text-slate-400 group-hover:text-slate-600 transition-colors" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M8.25 4.5l7.5 7.5-7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+<!-- Row: About UTOS -->
+<a class="flex items-center justify-between p-4 hover:bg-slate-50/70 active:bg-slate-100/80 transition-colors group" href="#about-utos">
+<div class="flex items-center gap-3.5">
+<div class="w-9 h-9 rounded-xl bg-slate-100/90 text-slate-600 flex items-center justify-center group-hover:text-blue-600 transition-colors">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+<path d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<span class="text-sm font-semibold text-slate-800">About UTOS</span>
+</div>
+<svg class="w-4 h-4 text-slate-400 group-hover:text-slate-600 transition-colors" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+<path d="M8.25 4.5l7.5 7.5-7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+</div>
+</section>
+<!-- END: SupportSection -->
+<!-- BEGIN: LogoutSection -->
+<section class="mt-2" data-purpose="logout-action">
+<button class="w-full bg-white/95 backdrop-blur-sm rounded-3xl p-4 border border-rose-100/80 shadow-card-subtle flex items-center justify-start gap-3.5 text-rose-600 hover:bg-rose-50/40 active:scale-[0.99] active:bg-rose-50 transition-all duration-150 cursor-pointer" type="button">
+<div class="w-9 h-9 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<span class="text-sm font-bold text-rose-600">Log Out</span>
+</button>
+</section>
+<!-- END: LogoutSection -->
+</div>
+</div>
+<!-- ============================================== -->
+<!-- VIEW 2: PROFILE DETAILS (EXACT SCREEN_7 UI)    -->
+<!-- ============================================== -->
+<div class="flex-col space-y-5 hidden" id="view-profile-details">
+<!-- Header with back button -->
+<header class="flex items-center justify-between py-3 mb-1">
+<div class="flex items-center gap-3.5">
+<button aria-label="Go back" class="w-10 h-10 rounded-full bg-white/80 backdrop-blur-md border border-slate-200/70 shadow-sm flex items-center justify-center text-slate-700 active:scale-95 active:bg-slate-100 transition-all duration-150 cursor-pointer" id="profile-details-back" onclick="setView('profile')" type="button">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+<path d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<h1 class="text-xl font-bold tracking-tight text-slate-900">Profile Details</h1>
+</div>
+<div class="flex items-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/80">
+<svg class="w-3.5 h-3.5 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+<path d="M4.5 12.75l6 6 9-13.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+        Verified
+      </span>
+</div>
+</header>
+<!-- Sanjay Kushwaha Card with 'SK' Avatar -->
+<section class="bg-white/95 backdrop-blur-sm rounded-3xl p-4 border border-slate-200/60 shadow-card-subtle">
+<div class="flex items-center justify-between gap-3">
+<div class="relative flex-shrink-0">
+<div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-sky-400 p-[2px] shadow-sm">
+<div class="w-full h-full bg-slate-900 rounded-[14px] flex items-center justify-center text-white font-bold text-lg tracking-wider overflow-hidden">
+<span class="bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-200">SK</span>
+</div>
+</div>
+<div class="absolute -bottom-1 -right-1 w-5 h-5 bg-emerald-500 rounded-full border-2 border-white flex items-center justify-center text-white shadow-sm">
+<svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+<path d="M4.5 12.75l6 6 9-13.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2">
+<h2 class="text-base font-bold text-slate-900 truncate">Sanjay Kushwaha</h2>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-600 uppercase tracking-wide">KYC VERIFIED</span>
+</div>
+<p class="text-xs text-slate-500 font-medium truncate mt-0.5">UTOS ID: UT-994821</p>
+<div class="mt-1 flex items-center gap-1.5">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+<span class="text-[11px] font-medium text-emerald-600">Level 2 Identity Complete</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Read-only Details Fields -->
+<section class="bg-white/95 backdrop-blur-sm rounded-3xl p-5 border border-slate-200/60 shadow-card-subtle space-y-3.5">
+<!-- Full Name -->
+<div class="space-y-1.5">
+<label class="block text-xs font-bold uppercase tracking-wider text-slate-400">Full Name</label>
+<div class="relative flex items-center">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+<path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<input class="w-full rounded-2xl border border-slate-200/80 bg-slate-50/70 pl-10 pr-10 py-3 text-sm text-slate-900 font-medium select-none shadow-xs focus:outline-none" readonly="" type="text" value="Sanjay Kushwaha">
+<div class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-blue-600">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+<path d="M4.5 12.75l6 6 9-13.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- Mobile Number -->
+<div class="space-y-1.5">
+<label class="block text-xs font-bold uppercase tracking-wider text-slate-400">Mobile Number</label>
+<div class="relative flex items-center">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+<path d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<input class="w-full rounded-2xl border border-slate-200/80 bg-slate-50/70 pl-10 pr-10 py-3 text-sm text-slate-900 font-medium select-none shadow-xs focus:outline-none" readonly="" type="text" value="+1 (555) 382-9014">
+<div class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-blue-600">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+<path d="M4.5 12.75l6 6 9-13.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- Aadhaar Number -->
+<div class="space-y-1.5">
+<label class="block text-xs font-bold uppercase tracking-wider text-slate-400">Aadhaar Number</label>
+<div class="relative flex items-center">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+<path d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 013.75 9.375v-4.5zM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 01-1.125-1.125v-4.5zM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0113.5 9.375v-4.5z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<input class="w-full rounded-2xl border border-slate-200/80 bg-slate-50/70 pl-10 pr-10 py-3 text-sm text-slate-900 font-medium select-none shadow-xs focus:outline-none" readonly="" type="text" value="XXXX XXXX 4829">
+<div class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-blue-600">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+<path d="M4.5 12.75l6 6 9-13.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- PAN Number -->
+<div class="space-y-1.5">
+<label class="block text-xs font-bold uppercase tracking-wider text-slate-400">PAN Number</label>
+<div class="relative flex items-center">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+<path d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0018.75 4.5H5.25A2.25 2.25 0 003 6.75v10.5a2.25 2.25 0 002.25 2.25z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<input class="w-full rounded-2xl border border-slate-200/80 bg-slate-50/70 pl-10 pr-10 py-3 text-sm text-slate-900 font-medium uppercase select-none shadow-xs focus:outline-none" readonly="" type="text" value="ABCDE1234F">
+<div class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-blue-600">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+<path d="M4.5 12.75l6 6 9-13.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- Address -->
+<div class="space-y-1.5">
+<label class="block text-xs font-bold uppercase tracking-wider text-slate-400">Address</label>
+<div class="relative flex items-start">
+<div class="absolute top-3.5 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+<path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div class="w-full rounded-2xl border border-slate-200/80 bg-slate-50/70 pl-10 pr-10 py-3 text-xs leading-relaxed text-slate-800 font-medium select-none shadow-xs">
+          428 Lotus Boulevard, Sector 100, Bengaluru, Karnataka, 560103
+        </div>
+<div class="absolute top-3.5 right-0 pr-3.5 flex items-center text-blue-600">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+<path d="M4.5 12.75l6 6 9-13.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+</div>
+</section>
+<!-- Security callout -->
+<section class="bg-white/70 backdrop-blur-sm rounded-3xl p-4 border border-slate-200/60 flex items-start gap-3 shadow-card-subtle">
+<div class="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+<path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div>
+<h4 class="text-xs font-bold text-slate-800">Identity Records Secured</h4>
+<p class="text-[11px] text-slate-500 mt-0.5 leading-relaxed">Verified identity details are locked to your UTOS ID. Contact support to request updates or re-authenticate credentials.</p>
+</div>
+</section>
+<p class="text-[10px] text-center text-slate-400 font-medium">Verified via UIDAI &amp; FinCEN standard encryption • UTOS v2.4.1</p>
+</div><div class="flex flex-col space-y-5 hidden" id="view-support-flow"><header class="flex items-center justify-between py-3 mb-1" id="supportTopBar"><div class="flex items-center gap-3.5"><button aria-label="Back" class="w-10 h-10 rounded-full bg-white/80 backdrop-blur-md border border-slate-200/70 shadow-sm flex items-center justify-center text-slate-700 active:scale-95 active:bg-slate-100 transition-all duration-150 cursor-pointer" id="support-back-btn" onclick="handleSupportHeaderBack()" type="button"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" stroke-linecap="round" stroke-linejoin="round"></path></svg></button><h1 class="text-xl font-bold tracking-tight text-slate-900" id="supportFlowTitle">Support Center</h1></div><div class="flex items-center gap-2"><button aria-label="Ticket History" class="text-xs font-semibold px-3 py-1.5 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors cursor-pointer" id="btn-view-history" onclick="goToHistory()" type="button">History</button><button aria-label="Close Support" class="w-10 h-10 rounded-full bg-white/80 backdrop-blur-md border border-slate-200/70 shadow-sm flex items-center justify-center text-slate-500 hover:text-slate-800 transition-all cursor-pointer" onclick="setView('profile')" type="button"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path></svg></button></div></header><div class="flex flex-col space-y-4" id="support-state-1"><div class="bg-white/95 backdrop-blur-sm rounded-3xl p-5 border border-slate-200/60 shadow-card-subtle"><h2 class="text-base font-bold text-slate-900 mb-1">How can we help you today?</h2><p class="text-xs text-slate-500 mb-4">Choose an issue category below to start your support ticket request.</p><div class="space-y-2.5"><button type="button" onclick="selectCategory('Technical issue')" class="w-full flex items-center justify-between p-3.5 rounded-2xl border border-slate-200/80 hover:border-blue-500 hover:bg-blue-50/40 text-left transition-all group cursor-pointer"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.07a4.5 4.5 0 004.486-6.32l-3.27 3.287a1.5 1.5 0 01-2.122-2.122l3.27-3.287A4.502 4.502 0 0014.28 4.28c-.58.118-1.193.094-1.743-.07" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div><h3 class="text-sm font-semibold text-slate-800">Technical Issue</h3><p class="text-xs text-slate-500 mt-0.5">App bugs, exchange syncing, or loading errors</p></div></div><svg class="w-4 h-4 text-slate-400 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M8.25 4.5l7.5 7.5-7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></button><button type="button" onclick="selectCategory('Account &amp; Security')" class="w-full flex items-center justify-between p-3.5 rounded-2xl border border-slate-200/80 hover:border-blue-500 hover:bg-blue-50/40 text-left transition-all group cursor-pointer"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div><h3 class="text-sm font-semibold text-slate-800">Account &amp; Security</h3><p class="text-xs text-slate-500 mt-0.5">Password reset, 2FA, or login issues</p></div></div><svg class="w-4 h-4 text-slate-400 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M8.25 4.5l7.5 7.5-7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></button><button type="button" onclick="selectCategory('API &amp; Exchange Keys')" class="w-full flex items-center justify-between p-3.5 rounded-2xl border border-slate-200/80 hover:border-blue-500 hover:bg-blue-50/40 text-left transition-all group cursor-pointer"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div><h3 class="text-sm font-semibold text-slate-800">API &amp; Exchange Keys</h3><p class="text-xs text-slate-500 mt-0.5">Binance, Bybit connection authentication</p></div></div><svg class="w-4 h-4 text-slate-400 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M8.25 4.5l7.5 7.5-7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></button><button type="button" onclick="selectCategory('Billing &amp; Subscription')" class="w-full flex items-center justify-between p-3.5 rounded-2xl border border-slate-200/80 hover:border-blue-500 hover:bg-blue-50/40 text-left transition-all group cursor-pointer"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0018.75 4.5H5.25A2.25 2.25 0 003 6.75v10.5a2.25 2.25 0 002.25 2.25z" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div><h3 class="text-sm font-semibold text-slate-800">Billing &amp; Subscription</h3><p class="text-xs text-slate-500 mt-0.5">Invoices, tier upgrades, PRO subscription</p></div></div><svg class="w-4 h-4 text-slate-400 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M8.25 4.5l7.5 7.5-7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></button></div></div></div><div class="flex flex-col space-y-4 hidden" id="support-state-2"><div class="bg-white/95 backdrop-blur-sm rounded-3xl p-5 border border-slate-200/60 shadow-card-subtle space-y-4"><div class="flex items-center justify-between pb-2 border-b border-slate-100"><div><span class="text-[11px] font-bold text-blue-600 uppercase tracking-wider">Step 2 of 2</span><h2 class="text-base font-bold text-slate-900 mt-0.5">Describe your issue</h2></div><span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-100" id="ticket-category-badge">Technical issue</span></div><div><label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5" for="ticket-subject">Subject</label><input autocomplete="off" class="w-full rounded-2xl border border-slate-200/80 bg-white px-3.5 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all font-medium" id="ticket-subject" placeholder="E.g. Bybit API fails to sync" type="text"><p class="hidden text-[11px] text-red-500 font-medium mt-1 ml-1" id="error-ticket-subject">Please enter a brief subject.</p></div><div><label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5" for="ticket-description">Description</label><textarea class="w-full rounded-2xl border border-slate-200/80 bg-white p-3.5 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all font-medium" id="ticket-description" placeholder="Provide details or steps to reproduce the issue..." rows="4"></textarea><p class="hidden text-[11px] text-red-500 font-medium mt-1 ml-1" id="error-ticket-desc">Please describe your issue.</p></div><div><label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Urgency Level</label><div class="grid grid-cols-3 gap-2"><button type="button" onclick="selectUrgency('Low')" class="urgency-pill py-2 px-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-600 hover:bg-slate-50 transition-all cursor-pointer" id="urgency-low">Low</button><button type="button" onclick="selectUrgency('Medium')" class="urgency-pill py-2 px-3 rounded-xl border border-blue-600 bg-blue-50 text-xs font-bold text-blue-700 transition-all cursor-pointer" id="urgency-medium">Medium</button><button type="button" onclick="selectUrgency('High')" class="urgency-pill py-2 px-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-600 hover:bg-slate-50 transition-all cursor-pointer" id="urgency-high">High</button></div></div><div class="flex items-center gap-3 pt-2"><button class="w-1/3 py-3 rounded-2xl bg-slate-100 text-slate-700 font-semibold text-sm hover:bg-slate-200 transition-all cursor-pointer" onclick="goToStep1()" type="button">Back</button><button class="flex-1 py-3 rounded-2xl bg-slate-950 text-white font-semibold text-sm hover:bg-slate-900 active:scale-[0.99] transition-all cursor-pointer flex items-center justify-center gap-1.5 shadow-sm" onclick="submitTicket()" type="button"><span class="">Submit Ticket</span><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M4.5 12.75l6 6 9-13.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></button></div></div></div><div class="flex flex-col space-y-4 hidden" id="support-state-3"><div class="bg-white/95 backdrop-blur-sm rounded-3xl p-6 border border-slate-200/60 shadow-card-subtle text-center flex flex-col items-center justify-center space-y-3 py-8"><div class="w-14 h-14 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mb-1"><svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M4.5 12.75l6 6 9-13.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><h2 class="text-lg font-bold text-slate-900">Ticket Submitted Successfully!</h2><p class="text-xs text-slate-500 max-w-xs leading-relaxed">Your request has been assigned to our support team. We usually respond within 2-4 hours.</p><div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-3 w-full max-w-xs font-mono text-xs text-slate-700 text-center"><span class="text-slate-400 block text-[10px] uppercase font-sans font-bold mb-0.5">Ticket Reference</span><span class="font-bold text-slate-900" id="ticket-created-id">#UT-89214</span></div><div class="flex flex-col w-full max-w-xs gap-2 pt-2"><button class="w-full py-3 rounded-2xl bg-slate-950 text-white font-semibold text-sm hover:bg-slate-900 active:scale-[0.99] transition-all cursor-pointer" onclick="goToState4()" type="button">View Ticket Status</button><button class="w-full py-2.5 rounded-2xl bg-slate-100 text-slate-700 font-semibold text-xs hover:bg-slate-200 transition-all cursor-pointer" onclick="setView('profile')" type="button">Return to Profile</button></div></div></div><div class="flex flex-col space-y-4 hidden" id="support-state-4"><div class="bg-white/95 backdrop-blur-sm rounded-3xl p-5 border border-slate-200/60 shadow-card-subtle space-y-4"><div class="flex items-center justify-between pb-3 border-b border-slate-100"><div class="min-w-0"><span class="text-[11px] font-mono font-semibold text-slate-400" id="state4-ticket-id">#UT-89214</span><h2 class="text-base font-bold text-slate-900 truncate mt-0.5" id="state4-ticket-subject">Bybit API fails to sync</h2></div><span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200/80" id="state4-ticket-status">In Progress</span></div><div class="space-y-2"><div class="flex justify-between text-xs"><span class="text-slate-400 font-medium">Category</span><span class="text-slate-800 font-semibold" id="state4-ticket-category">Technical issue</span></div><div class="flex justify-between text-xs"><span class="text-slate-400 font-medium">Urgency</span><span class="text-slate-800 font-semibold" id="state4-ticket-urgency">Medium</span></div><div class="flex justify-between text-xs"><span class="text-slate-400 font-medium">Created</span><span class="text-slate-800 font-semibold" id="state4-ticket-created">Just now</span></div></div><div class="bg-slate-50 rounded-2xl p-3.5 border border-slate-200/70"><span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Issue Description</span><p class="text-xs text-slate-700 leading-relaxed font-medium" id="state4-ticket-body">Connecting Bybit exchange displays error message and active badge is missing.</p></div><div class="pt-1 space-y-2"><button class="w-full py-2.5 rounded-2xl bg-blue-50 text-blue-700 border border-blue-100 text-xs font-semibold hover:bg-blue-100 transition-colors flex items-center justify-center gap-1.5 cursor-pointer" onclick="downloadAlert()" type="button"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" stroke-linecap="round" stroke-linejoin="round"></path></svg>Download Ticket Summary (.txt)</button><div class="flex gap-2"><button class="flex-1 py-2.5 rounded-2xl bg-slate-100 text-slate-700 text-xs font-semibold hover:bg-slate-200 transition-colors cursor-pointer" onclick="goToHistory()" type="button">All Tickets</button><button class="flex-1 py-2.5 rounded-2xl bg-slate-950 text-white text-xs font-semibold hover:bg-slate-900 transition-colors cursor-pointer" onclick="setView('profile')" type="button">Done</button></div></div></div></div><div class="flex flex-col space-y-4 hidden" id="support-state-5"><div class="bg-white/95 backdrop-blur-sm rounded-3xl p-5 border border-slate-200/60 shadow-card-subtle space-y-3.5"><div class="flex items-center justify-between pb-2 border-b border-slate-100"><h2 class="text-base font-bold text-slate-900">Ticket History</h2><button class="text-xs font-semibold text-blue-600 hover:text-blue-700 cursor-pointer" onclick="raiseNewTicket()" type="button">+ New Ticket</button></div><div class="space-y-2.5" id="ticketHistoryList"><div class="p-3.5 rounded-2xl border border-slate-200/80 bg-slate-50/60 flex items-center justify-between"><div class="min-w-0"><div class="flex items-center gap-2"><span class="text-xs font-bold text-slate-900">#UT-89214</span><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200/60 uppercase">In Progress</span></div><p class="text-xs text-slate-600 font-medium truncate mt-1">Bybit API fails to sync</p><span class="text-[11px] text-slate-400 mt-0.5 block">Technical issue • 2 hours ago</span></div><button type="button" onclick="goToState4()" class="text-xs font-semibold text-blue-600 hover:text-blue-700 px-2 py-1 cursor-pointer">View</button></div><div class="p-3.5 rounded-2xl border border-slate-200/80 bg-slate-50/60 flex items-center justify-between"><div class="min-w-0"><div class="flex items-center gap-2"><span class="text-xs font-bold text-slate-900">#UT-84102</span><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200/60 uppercase">Resolved</span></div><p class="text-xs text-slate-600 font-medium truncate mt-1">Identity re-authentication query</p><span class="text-[11px] text-slate-400 mt-0.5 block">Account &amp; Security • 3 days ago</span></div><span class="text-xs font-medium text-slate-400 px-2 py-1">Closed</span></div></div></div></div></div><!-- Support Ticket Modal Flow -->
+<div id="support-ticket-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm hidden">
+  <div class="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-card-subtle max-w-sm w-full space-y-4">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <div class="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"></path>
+          </svg>
+        </div>
+        <h3 class="text-base font-bold text-slate-900">Report an Issue</h3>
+      </div>
+      <button type="button" onclick="closeSupportTicket()" class="text-slate-400 hover:text-slate-600 text-lg font-bold p-1 cursor-pointer">×</button>
+    </div>
+    <p class="text-xs text-slate-500 leading-relaxed">
+      Describe your issue or feedback. Our support team responds within 24 hours.
+    </p>
+    <div class="space-y-3">
+      <div>
+        <label class="block text-xs font-semibold text-slate-700 mb-1.5" for="ticket-subject">Topic</label>
+        <input id="ticket-subject" type="text" placeholder="Brief summary of the issue" class="w-full rounded-2xl border border-slate-200/80 bg-white px-3.5 py-2.5 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all">
+      </div>
+      <div>
+        <label class="block text-xs font-semibold text-slate-700 mb-1.5" for="ticket-details">Description</label>
+        <textarea id="ticket-details" rows="3" placeholder="Please provide details..." class="w-full rounded-2xl border border-slate-200/80 bg-white px-3.5 py-2.5 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all"></textarea>
+      </div>
+    </div>
+    <div class="flex items-center gap-2 pt-1">
+      <button type="button" onclick="closeSupportTicket()" class="flex-1 py-2.5 rounded-xl border border-slate-200/80 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition-colors cursor-pointer">Cancel</button>
+      <button type="button" onclick="submitSupportTicket()" class="flex-1 py-2.5 rounded-xl bg-slate-950 hover:bg-slate-900 text-xs font-semibold text-white transition-colors cursor-pointer">Submit Ticket</button>
+    </div>
+  </div>
+</div><script class="">
+  window.switchView = function(view) {
+    if (view === 'supportTicket') {
+      if (typeof window.setView === 'function') {
+        window.setView('supportTicket');
+      }
+      const profileView = document.getElementById('view-profile');
+      const supportFlow = document.getElementById('view-support-flow');
+      if (supportFlow) {
+        if (profileView) profileView.classList.add('hidden');
+        supportFlow.classList.remove('hidden');
+        const state1 = document.getElementById('support-state-1');
+        if (state1) state1.classList.remove('hidden');
+        ['support-state-2', 'support-state-3', 'support-state-4', 'support-state-5'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.classList.add('hidden');
+        });
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      } else if (typeof window.openSupportTicket === 'function') {
+        window.openSupportTicket();
+      }
+    } else {
+      if (typeof window.setView === 'function') {
+        window.setView(view);
+      }
+    }
+  };
+  window.openSupportFlow = function(topic) {
+    window.switchView('supportTicket');
+  };
+  window.handleSupportHeaderBack = function() {
+    const state1 = document.getElementById('support-state-1');
+    const supportFlow = document.getElementById('view-support-flow');
+    if (state1 && !state1.classList.contains('hidden')) {
+      if (typeof window.setView === 'function') {
+        window.setView('profile');
+      } else {
+        if (supportFlow) supportFlow.classList.add('hidden');
+        const profileView = document.getElementById('view-profile');
+        if (profileView) profileView.classList.remove('hidden');
+      }
+    } else if (typeof goToStep1 === 'function') {
+      goToStep1();
+    } else {
+      if (typeof window.setView === 'function') {
+        window.setView('profile');
+      }
+    }
+  };
+  window.goToStep1 = function() {
+    const s1 = document.getElementById('support-state-1');
+    if (s1) s1.classList.remove('hidden');
+    ['support-state-2', 'support-state-3', 'support-state-4', 'support-state-5'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('hidden');
+    });
+  };
+  window.selectCategory = function(cat) {
+    const s1 = document.getElementById('support-state-1');
+    const s2 = document.getElementById('support-state-2');
+    const badge = document.getElementById('ticket-category-badge');
+    if (badge) badge.textContent = cat;
+    if (s1) s1.classList.add('hidden');
+    if (s2) s2.classList.remove('hidden');
+  };
+  window.goToState4 = function() {
+    ['support-state-1', 'support-state-2', 'support-state-3', 'support-state-5'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('hidden');
+    });
+    const s4 = document.getElementById('support-state-4');
+    if (s4) s4.classList.remove('hidden');
+  };
+  window.goToHistory = function() {
+    ['support-state-1', 'support-state-2', 'support-state-3', 'support-state-4'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('hidden');
+    });
+    const s5 = document.getElementById('support-state-5');
+    if (s5) s5.classList.remove('hidden');
+  };
+  window.raiseNewTicket = function() {
+    window.goToStep1();
+  };
+  window.submitTicket = function() {
+    const subj = document.getElementById('ticket-subject');
+    const desc = document.getElementById('ticket-description');
+    if (subj && !subj.value.trim()) {
+      const err = document.getElementById('error-ticket-subject');
+      if (err) err.classList.remove('hidden');
+      return;
+    }
+    ['support-state-1', 'support-state-2', 'support-state-4', 'support-state-5'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('hidden');
+    });
+    const s3 = document.getElementById('support-state-3');
+    if (s3) s3.classList.remove('hidden');
+  };
+  window.selectUrgency = function(level) {
+    ['urgency-low', 'urgency-medium', 'urgency-high'].forEach(id => {
+      const btn = document.getElementById(id);
+      if (btn) {
+        btn.className = 'urgency-pill py-2 px-3 rounded-xl border border-slate-200 text-xs font-bold text-slate-600 hover:bg-slate-50 transition-all cursor-pointer';
+      }
+    });
+    const activeBtn = document.getElementById('urgency-' + level.toLowerCase());
+    if (activeBtn) {
+      activeBtn.className = 'urgency-pill py-2 px-3 rounded-xl border border-blue-600 bg-blue-50 text-xs font-bold text-blue-700 transition-all cursor-pointer';
+    }
+  };
+</script>
+<script>
+  window.openSupportTicket = function() {
+    const modal = document.getElementById('support-ticket-modal');
+    if (modal) modal.classList.remove('hidden');
+  };
+  window.closeSupportTicket = function() {
+    const modal = document.getElementById('support-ticket-modal');
+    if (modal) modal.classList.add('hidden');
+  };
+  window.submitSupportTicket = function() {
+    const subject = document.getElementById('ticket-subject');
+    const details = document.getElementById('ticket-details');
+    if (subject) subject.value = '';
+    if (details) details.value = '';
+    window.closeSupportTicket();
+    if (typeof showToast === 'function') {
+      showToast('Support ticket submitted successfully!');
+    } else {
+      alert('Support ticket submitted successfully!');
+    }
+  };
+</script>
+<!-- BEGIN: FooterSafeArea -->
+<footer class="mt-auto pt-6 text-center" data-purpose="app-version-info">
+<p class="text-[11px] font-medium text-slate-400 tracking-wide">UTOS v2.4.1 (Build 108)</p>
+<!-- Safe Area Indicator Spacer -->
+<div class="w-32 h-1 bg-slate-300/60 rounded-full mx-auto mt-4"></div>
+</footer>
+<!-- END: FooterSafeArea -->
+</main>
+<!-- END: MainContainer -->
+<script data-purpose="exchange-and-nav-handlers">
+  // State initialization with localStorage persistence
+  const STORAGE_KEY = 'utos_connected_exchanges';
+  let currentView = 'profile';
+  let currentExchange = 'bybit'; // Matches initial UI active state (tab-bybit)
+
+  function loadExchanges() {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      return stored ? JSON.parse(stored) : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function saveExchanges(data) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    } catch (e) {
+      console.error('Storage error:', e);
+    }
+  }
+
+  let connectedExchanges = loadExchanges();
+
+  // Elements
+  const viewProfile = document.getElementById('view-profile');
+  const viewProfileDetails = document.getElementById('view-profile-details');
+  const viewExchanges = document.getElementById('view-exchanges');
+  const viewProfileMenu = document.getElementById('view-profile-menu');
+  const screenTitle = document.getElementById('screen-title');
+  const headerBackBtn = document.getElementById('header-back-btn');
+  const toggleToProfileBtn = document.getElementById('toggle-to-profile-btn');
+  const rowExchangesLink = document.getElementById('row-exchanges-link');
+
+  const tabBinance = document.getElementById('tab-binance');
+  const tabBybit = document.getElementById('tab-bybit');
+  const apiKeyInput = document.getElementById('apiKeyInput');
+  const secretKeyInput = document.getElementById('secretKeyInput');
+  const toggleSecretBtn = document.getElementById('toggle-secret-visibility');
+  const form = document.getElementById('exchange-form');
+  const btnPasteApi = document.getElementById('btn-paste-api');
+  const connectExchangeBtn = document.getElementById('connectExchangeBtn');
+  const btnConnectText = document.getElementById('btn-connect-text');
+  const btnConnectIcon = document.getElementById('btn-connect-icon');
+  const errorApiKey = document.getElementById('error-api-key');
+  const errorSecretKey = document.getElementById('error-secret-key');
+  const toastBanner = document.getElementById('toast-banner');
+  const toastText = document.getElementById('toast-text');
+  const toastClose = document.getElementById('toast-close');
+  const emptyStateContainer = document.getElementById('empty-state-container');
+  const connectedExchangesList = document.getElementById('connectedExchangesList');
+  const connectedCountBadge = document.getElementById('connected-count-badge');
+  const profileExchangesCountBadge = document.getElementById('profile-exchanges-count-badge');
+
+  // Toggle View Function (Switching between Profile, Profile Details, and Exchanges)
+  function setView(view) {
+    currentView = view;
+    const profileView = document.getElementById('view-profile');
+    const detailsView = document.getElementById('view-profile-details');
+    if (view === 'profileDetails') {
+      if (profileView) profileView.classList.add('hidden');
+      if (detailsView) {
+        detailsView.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }
+    } else if (view === 'exchanges') {
+      if (detailsView) detailsView.classList.add('hidden');
+      if (profileView) profileView.classList.remove('hidden');
+      if (viewProfileMenu) viewProfileMenu.classList.add('hidden');
+      if (viewExchanges) viewExchanges.classList.remove('hidden');
+      if (screenTitle) screenTitle.textContent = 'Exchanges';
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    } else {
+      // default 'profile'
+      if (detailsView) detailsView.classList.add('hidden');
+      if (profileView) profileView.classList.remove('hidden');
+      if (viewExchanges) viewExchanges.classList.add('hidden');
+      if (viewProfileMenu) viewProfileMenu.classList.remove('hidden');
+      if (screenTitle) screenTitle.textContent = 'Profile';
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+  }
+  window.setView = setView;
+
+  if (headerBackBtn) {
+    headerBackBtn.addEventListener('click', () => {
+      if (currentView === 'exchanges') {
+        setView('profile');
+      } else {
+        setView('profile');
+      }
+    });
+  }
+
+  if (toggleToProfileBtn) {
+    toggleToProfileBtn.addEventListener('click', () => setView('profile'));
+  }
+
+  if (rowExchangesLink) {
+    rowExchangesLink.addEventListener('click', () => setView('exchanges'));
+  }
+
+  // Segmented Exchange Tab Selection
+  function updateTabUI(targetExchange) {
+    currentExchange = targetExchange.toLowerCase();
+    if (currentExchange === 'binance') {
+      tabBinance.className = 'exchange-tab flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs font-bold transition-all shadow-sm bg-slate-950 text-white cursor-pointer';
+      tabBybit.className = 'exchange-tab flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs font-bold transition-all text-slate-600 hover:text-slate-900 cursor-pointer';
+    } else {
+      tabBybit.className = 'exchange-tab flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs font-bold transition-all shadow-sm bg-slate-950 text-white cursor-pointer';
+      tabBinance.className = 'exchange-tab flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs font-bold transition-all text-slate-600 hover:text-slate-900 cursor-pointer';
+    }
+  }
+
+  if (tabBinance) tabBinance.addEventListener('click', () => updateTabUI('binance'));
+  if (tabBybit) tabBybit.addEventListener('click', () => updateTabUI('bybit'));
+
+  // Secret Key Visibility Toggle
+  let secretVisible = false;
+  if (toggleSecretBtn) {
+    toggleSecretBtn.addEventListener('click', () => {
+      secretVisible = !secretVisible;
+      secretKeyInput.type = secretVisible ? 'text' : 'password';
+    });
+  }
+
+  // Paste Demo Credentials Helper
+  if (btnPasteApi) {
+    btnPasteApi.addEventListener('click', () => {
+      const randomHex = Math.random().toString(16).substring(2, 8).toUpperCase();
+      const lastDigits = Math.floor(1000 + Math.random() * 9000);
+      apiKeyInput.value = `utos_${currentExchange}_${randomHex}${lastDigits}`;
+      secretKeyInput.value = 'sec_' + Math.random().toString(36).substring(2, 20);
+      clearValidationErrors();
+    });
+  }
+
+  function clearValidationErrors() {
+    if (errorApiKey) errorApiKey.classList.add('hidden');
+    if (errorSecretKey) errorSecretKey.classList.add('hidden');
+    if (apiKeyInput) apiKeyInput.classList.remove('border-red-400', 'focus:ring-red-500/20', 'focus:border-red-500');
+    if (secretKeyInput) secretKeyInput.classList.remove('border-red-400', 'focus:ring-red-500/20', 'focus:border-red-500');
+  }
+
+  if (apiKeyInput) {
+    apiKeyInput.addEventListener('input', () => {
+      if (apiKeyInput.value.trim()) {
+        errorApiKey.classList.add('hidden');
+        apiKeyInput.classList.remove('border-red-400', 'focus:ring-red-500/20', 'focus:border-red-500');
+      }
+    });
+  }
+
+  if (secretKeyInput) {
+    secretKeyInput.addEventListener('input', () => {
+      if (secretKeyInput.value.trim()) {
+        errorSecretKey.classList.add('hidden');
+        secretKeyInput.classList.remove('border-red-400', 'focus:ring-red-500/20', 'focus:border-red-500');
+      }
+    });
+  }
+
+  let toastTimer = null;
+  function showToast(msg, isError = false) {
+    if (toastTimer) clearTimeout(toastTimer);
+    if (!toastBanner || !toastText) return;
+    toastText.textContent = msg;
+    if (isError) {
+      toastBanner.className = 'mb-3 p-3 bg-rose-600 text-white text-xs font-semibold rounded-2xl shadow-sm flex items-center justify-between transition-all duration-300';
+    } else {
+      toastBanner.className = 'mb-3 p-3 bg-emerald-500 text-white text-xs font-semibold rounded-2xl shadow-sm flex items-center justify-between transition-all duration-300';
+    }
+    toastBanner.classList.remove('hidden');
+    toastTimer = setTimeout(() => {
+      toastBanner.classList.add('hidden');
+    }, 3800);
+  }
+
+  if (toastClose) {
+    toastClose.addEventListener('click', () => toastBanner.classList.add('hidden'));
+  }
+
+  // Delete Exchange global function
+  window.deleteExchange = function(id) {
+    const found = connectedExchanges.find(item => item.id === id);
+    const exName = found ? found.name : 'Exchange';
+    const cardEl = document.getElementById(`exchange-card-${id}`);
+
+    if (cardEl) {
+      cardEl.style.transition = 'all 0.25s ease-out';
+      cardEl.style.opacity = '0';
+      cardEl.style.transform = 'scale(0.95)';
+    }
+
+    setTimeout(() => {
+      connectedExchanges = connectedExchanges.filter(item => item.id !== id);
+      saveExchanges(connectedExchanges);
+      renderConnectedExchanges();
+      showToast(`${exName} disconnected.`);
+    }, 250);
+  };
+
+  // Retry exchange connection helper
+  window.retryExchange = function(id) {
+    const item = connectedExchanges.find(ex => ex.id === id);
+    if (!item) return;
+
+    item.status = 'Active';
+    saveExchanges(connectedExchanges);
+    renderConnectedExchanges();
+    showToast(`${item.name} reconnected successfully!`);
+  };
+
+  // Render Connected Exchanges UI
+  function renderConnectedExchanges() {
+    const count = connectedExchanges.length;
+    if (connectedCountBadge) {
+      connectedCountBadge.textContent = `${count} connected`;
+    }
+    
+    // Count active connections for profile overview badge
+    const activeCount = connectedExchanges.filter(item => item.status === 'Active').length;
+    if (profileExchangesCountBadge) {
+      profileExchangesCountBadge.textContent = `${activeCount} active`;
+    }
+
+    if (!emptyStateContainer || !connectedExchangesList) return;
+
+    if (count === 0) {
+      emptyStateContainer.classList.remove('hidden');
+      connectedExchangesList.classList.add('hidden');
+      connectedExchangesList.innerHTML = '';
+      return;
+    }
+
+    emptyStateContainer.classList.add('hidden');
+    connectedExchangesList.classList.remove('hidden');
+
+    let cardsHtml = '';
+    connectedExchanges.forEach((item) => {
+      const isBinance = item.id.toLowerCase() === 'binance' || (item.name && item.name.toLowerCase() === 'binance');
+      const isFailed = item.status === 'Failed';
+      const displayName = item.name || (isBinance ? 'Binance' : 'Bybit');
+      const maskedKey = item.maskedKey || (item.lastFour ? `API ••••••${item.lastFour}` : 'API ••••••4829');
+
+      const iconSvg = isBinance ? `
+        <div class="w-10 h-10 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-600 flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-amber-500" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2.5L7.5 7 12 11.5 16.5 7 12 2.5zm-6.5 6.5L1 13.5l4.5 4.5 4.5-4.5L5.5 9zm13 0l-4.5 4.5 4.5 4.5L23 13.5 18.5 9zM12 12.5L7.5 17 12 21.5 16.5 17 12 12.5z"></path>
+          </svg>
+        </div>
+      ` : `
+        <div class="w-10 h-10 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-600 flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-amber-600" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M4 4h5.2l3 5.4 3-5.4H20l-4.8 8.6L20 20h-5.2l-3-5.4-3 5.4H4l4.8-7.4L4 4z"></path>
+          </svg>
+        </div>
+      `;
+
+      const statusBadge = isFailed ? `
+        <span class="status-badge inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-red-50 text-red-700 border border-red-100">
+          <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>Failed
+        </span>
+        <button type="button" onclick="retryExchange('${item.id}')" class="btn-retry-exchange text-xs font-semibold text-blue-600 hover:text-blue-700 px-2 py-1 rounded-lg hover:bg-blue-50 transition-colors flex items-center gap-1 cursor-pointer">
+          Retry
+        </button>
+      ` : `
+        <span class="status-badge inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-100">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>Active
+        </span>
+      `;
+
+      cardsHtml += `
+        <div class="bg-white/95 backdrop-blur-sm rounded-3xl p-4 border border-slate-200/60 shadow-card-subtle flex items-center justify-between transition-all duration-200" id="exchange-card-${item.id}">
+          <div class="flex items-center gap-3.5 min-w-0">
+            ${iconSvg}
+            <div class="min-w-0">
+              <h4 class="text-sm font-bold text-slate-900 flex items-center gap-1.5">
+                <span>${displayName}</span>
+              </h4>
+              <p class="text-xs text-slate-500 font-mono mt-0.5 font-medium truncate">${maskedKey}</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 flex-shrink-0">
+            ${statusBadge}
+            <button class="btn-remove-exchange p-1.5 rounded-xl text-slate-400 hover:text-rose-500 hover:bg-rose-50 transition-colors cursor-pointer" onclick="deleteExchange('${item.id}')" title="Disconnect" type="button">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      `;
+    });
+    connectedExchangesList.innerHTML = cardsHtml;
+  }
+
+  // Handle Form Submission (Add / Connect)
+  function handleConnectSubmission(e) {
+    if (e) e.preventDefault();
+    clearValidationErrors();
+
+    const apiKeyVal = apiKeyInput.value.trim();
+    const secretVal = secretKeyInput.value.trim();
+
+    let hasError = false;
+    if (!apiKeyVal) {
+      errorApiKey.classList.remove('hidden');
+      apiKeyInput.classList.add('border-red-400', 'focus:ring-red-500/20', 'focus:border-red-500');
+      hasError = true;
+    }
+    if (!secretVal) {
+      errorSecretKey.classList.remove('hidden');
+      secretKeyInput.classList.add('border-red-400', 'focus:ring-red-500/20', 'focus:border-red-500');
+      hasError = true;
+    }
+    if (hasError) return;
+
+    // Determine status & masked API key
+    const shouldFail = apiKeyVal.toLowerCase().includes('fail') || apiKeyVal.toLowerCase().includes('error');
+    const status = shouldFail ? 'Failed' : 'Active';
+    const lastFour = apiKeyVal.length >= 4 ? apiKeyVal.slice(-4) : (apiKeyVal || '4829');
+    const maskedKey = `API ••••••${lastFour}`;
+    const displayName = currentExchange === 'binance' ? 'Binance' : 'Bybit';
+
+    // Update existing if same exchange already present or add new
+    const existingIdx = connectedExchanges.findIndex(ex => (ex.id && ex.id.toLowerCase() === currentExchange) || (ex.name && ex.name.toLowerCase() === currentExchange));
+    
+    const newEntry = {
+      id: currentExchange,
+      name: displayName,
+      maskedKey: maskedKey,
+      lastFour: lastFour,
+      status: status,
+      connectedAt: new Date().toISOString()
+    };
+
+    if (existingIdx >= 0) {
+      connectedExchanges[existingIdx] = newEntry;
+    } else {
+      connectedExchanges.unshift(newEntry);
+    }
+
+    // Persist immediately and render in real-time
+    saveExchanges(connectedExchanges);
+    renderConnectedExchanges();
+
+    // Clear input fields
+    apiKeyInput.value = '';
+    secretKeyInput.value = '';
+    secretKeyInput.type = 'password';
+    secretVisible = false;
+
+    // Immediate button feedback
+    btnConnectText.textContent = 'Connected ✓';
+    setTimeout(() => {
+      btnConnectText.textContent = 'Connect Exchange';
+    }, 1200);
+
+    if (shouldFail) {
+      showToast(`${displayName} connection failed: Check your API permissions`, true);
+    } else {
+      showToast(`${displayName} API successfully connected!`);
+    }
+  }
+
+  if (form) form.addEventListener('submit', handleConnectSubmission);
+  if (connectExchangeBtn) {
+    connectExchangeBtn.addEventListener('click', (e) => {
+      if (e.target.type !== 'submit') {
+        handleConnectSubmission(e);
+      }
+    });
+  }
+
+  // Dark mode toggle handler
+  const toggle = document.getElementById('dark-mode-toggle');
+  if (toggle) {
+    toggle.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    });
+  }
+
+  // Initial Boot
+  document.addEventListener('DOMContentLoaded', () => {
+    renderConnectedExchanges();
+  });
+  renderConnectedExchanges();
+</script>
+
+
+
+
+</body></html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+<title>Payment Successful - UTOS</title>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            surface: '#f9f9ff',
+            'surface-container-low': '#f0f3ff',
+            primary: '#0f172a',
+          },
+          keyframes: {
+            scaleUp: {
+              '0%': { transform: 'scale(0.8)', opacity: '0' },
+              '60%': { transform: 'scale(1.08)', opacity: '1' },
+              '100%': { transform: 'scale(1)', opacity: '1' },
+            },
+            pulseSlow: {
+              '0%, 100%': { transform: 'scale(1)', opacity: '0.4' },
+              '50%': { transform: 'scale(1.06)', opacity: '0.7' },
+            },
+            checkDraw: {
+              '0%': { strokeDashoffset: '48' },
+              '100%': { strokeDashoffset: '0' },
+            }
+          },
+          animation: {
+            'success-badge': 'scaleUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            'ring-pulse': 'pulseSlow 3.5s ease-in-out infinite',
+            'check-stroke': 'checkDraw 0.6s cubic-bezier(0.65, 0, 0.45, 1) 0.3s forwards',
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-animations">
+    .checkmark-path {
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      animation: checkDraw 0.6s cubic-bezier(0.65, 0, 0.45, 1) 0.25s forwards;
+    }
+    @keyframes checkDraw {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+  </style>
+<style data-purpose="confetti-canvas">
+    #confetti-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body class="bg-[#f9f9ff] text-slate-800 antialiased font-sans min-h-screen flex flex-col justify-between selection:bg-emerald-500/20 selection:text-emerald-900 relative overflow-x-hidden">
+<!-- BEGIN: ConfettiOverlay -->
+<!-- Dynamic celebration particle canvas element -->
+<canvas aria-hidden="true" data-purpose="celebration-particles" id="confetti-canvas"></canvas>
+<!-- END: ConfettiOverlay -->
+<!-- BEGIN: StatusHeader -->
+<!-- Top mobile bar spacing / micro navigation -->
+<header class="w-full pt-4 px-6 flex items-center justify-between z-20" data-purpose="top-navigation">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="text-xs font-semibold uppercase tracking-wider text-slate-400">UTOS Pay</span>
+</div>
+<div class="text-xs font-medium text-slate-500 bg-white/80 backdrop-blur-sm px-2.5 py-1 rounded-full border border-slate-200/60 shadow-xs">
+      Order #UT-89241
+    </div>
+</header>
+<!-- END: StatusHeader -->
+<!-- BEGIN: MainContent -->
+<main class="w-full max-w-sm mx-auto px-5 py-4 flex-1 flex flex-col justify-center items-center z-20">
+<!-- BEGIN: SuccessHero -->
+<!-- Glowing concentric circles with primary checkmark -->
+<div class="relative flex items-center justify-center my-3 animate-success-badge" data-purpose="success-indicator">
+<!-- Outer ambient ring -->
+<div class="absolute w-36 h-36 rounded-full bg-emerald-100/70 animate-ring-pulse"></div>
+<!-- Middle ring -->
+<div class="absolute w-28 h-28 rounded-full bg-emerald-200/50"></div>
+<!-- Core emerald badge -->
+<div class="relative w-20 h-20 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-lg shadow-emerald-500/30">
+<svg aria-hidden="true" class="w-10 h-10" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24">
+<!-- Double tick modern path -->
+<path class="checkmark-path opacity-70" d="M3 13l4 4L14 8"></path>
+<path class="checkmark-path" d="M8 13l4 4L21 6"></path>
+</svg>
+</div>
+</div>
+<!-- Title and Subheading -->
+<div class="text-center mt-2" data-purpose="payment-title">
+<h1 class="text-2xl font-bold text-slate-900 tracking-tight">Payment Successful!</h1>
+<p class="text-base font-semibold text-emerald-600 mt-1">Successfully Paid $48.00</p>
+<p class="text-xs text-slate-500 mt-0.5">Your Pro membership is now fully activated</p>
+</div>
+<!-- END: SuccessHero -->
+<!-- BEGIN: DetailsCard -->
+<!-- Breakdown of transaction values -->
+<section class="w-full bg-white rounded-3xl p-5 shadow-sm border border-slate-100 my-5 text-sm" data-purpose="receipt-card">
+<div class="flex items-center justify-between pb-3.5 border-b border-slate-100">
+<h2 class="font-bold text-slate-900 text-sm tracking-tight">Transaction Details</h2>
+<span class="text-[11px] text-slate-400 font-medium">May 24, 2026</span>
+</div>
+<dl class="space-y-3 pt-3.5 text-slate-500">
+<!-- Itemized row 1 -->
+<div class="flex justify-between items-center">
+<dt class="text-slate-600 font-medium">UTOS Pro Plan (Annual)</dt>
+<dd class="font-semibold text-slate-900">$38.00</dd>
+</div>
+<!-- Itemized row 2 -->
+<div class="flex justify-between items-center">
+<dt class="text-slate-500">Network Access Fee</dt>
+<dd class="font-semibold text-slate-900">$5.00</dd>
+</div>
+<!-- Itemized row 3 -->
+<div class="flex justify-between items-center">
+<dt class="text-slate-500">Tax &amp; Platform Security</dt>
+<dd class="font-semibold text-slate-900">$5.00</dd>
+</div>
+<!-- Itemized row 4 -->
+<div class="flex justify-between items-center text-emerald-600">
+<dt>Voucher Discount</dt>
+<dd class="font-semibold">-$0.00</dd>
+</div>
+<!-- Divider line -->
+<div class="border-t border-dashed border-slate-200 my-1"></div>
+<!-- Grand Total -->
+<div class="flex justify-between items-center pt-1">
+<dt class="text-slate-900 font-bold text-base">Grand Total</dt>
+<dd class="text-slate-900 font-extrabold text-base tracking-tight">$48.00</dd>
+</div>
+<!-- Status Row with Badge -->
+<div class="flex justify-between items-center pt-1">
+<dt class="text-slate-500 font-medium">Status</dt>
+<dd>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-600 border border-emerald-200/80">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              Paid
+            </span>
+</dd>
+</div>
+</dl>
+</section>
+<!-- END: DetailsCard -->
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: BottomNavigationCTA -->
+<!-- Fixed bottom actions and security signature -->
+<footer class="w-full max-w-sm mx-auto px-5 pb-6 pt-1 z-20" data-purpose="actions-footer">
+<div class="space-y-3">
+<!-- Primary Action Button -->
+<button class="w-full py-4 rounded-2xl bg-slate-900 hover:bg-slate-800 active:scale-[0.98] transition-transform text-white font-semibold text-center text-sm shadow-md flex items-center justify-center gap-2" data-purpose="return-home-button" type="button">
+<span>Back to Dashboard</span>
+<svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24">
+<line x1="5" x2="19" y1="12" y2="12"></line>
+<polyline points="12 5 19 12 12 19"></polyline>
+</svg>
+</button>
+<!-- Secondary receipt action -->
+<button class="w-full py-2.5 rounded-xl bg-transparent hover:bg-slate-100/80 active:bg-slate-200/50 text-slate-600 font-medium text-xs text-center transition-colors" data-purpose="download-invoice-button" type="button">
+        Download Tax Invoice (PDF)
+      </button>
+<!-- Trust footprint -->
+<div class="flex items-center justify-center gap-1.5 text-[11px] text-slate-400 font-medium pt-1">
+<svg class="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewBox="0 0 24 24">
+<rect height="11" rx="2" ry="2" width="18" x="3" y="11"></rect>
+<path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+</svg>
+<span>UTOS 256-bit encrypted • Receipt sent to your email</span>
+</div>
+</div>
+<!-- iOS Home Indicator Clearance Bar -->
+<div aria-hidden="true" class="w-32 h-1 bg-slate-200 rounded-full mx-auto mt-4"></div>
+</footer>
+<!-- END: BottomNavigationCTA -->
+<!-- BEGIN: ConfettiEngineScript -->
+<!-- Lightweight responsive confetti particle engine -->
+<script data-purpose="celebration-confetti">
+    (function initConfetti() {
+      // Respect user's motion preferences
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+      }
+
+      const canvas = document.getElementById('confetti-canvas');
+      const ctx = canvas.getContext('2d');
+
+      let width = window.innerWidth;
+      let height = window.innerHeight;
+
+      function resize() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width * window.devicePixelRatio;
+        canvas.height = height * window.devicePixelRatio;
+        ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      // UTOS brand confetti color palette
+      const colors = [
+        '#10b981', // Emerald green
+        '#2563eb', // UTOS electric blue
+        '#f59e0b', // Amber / Gold
+        '#f43f5e', // Coral / Rose
+        '#14b8a6', // Teal
+        '#6366f1'  // Indigo
+      ];
+
+      const particles = [];
+      const particleCount = 75;
+
+      // Spawn origin close to check badge
+      const originX = width / 2;
+      const originY = height * 0.28;
+
+      for (let i = 0; i < particleCount; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const velocity = 4 + Math.random() * 8.5;
+        particles.push({
+          x: originX,
+          y: originY,
+          vx: Math.cos(angle) * velocity * (0.8 + Math.random() * 0.5),
+          vy: Math.sin(angle) * velocity - 2.5,
+          size: 5 + Math.random() * 6,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rotation: Math.random() * 360,
+          rotationSpeed: (Math.random() - 0.5) * 12,
+          shape: Math.random() > 0.4 ? 'rect' : (Math.random() > 0.5 ? 'ribbon' : 'circle'),
+          gravity: 0.12 + Math.random() * 0.08,
+          drag: 0.985,
+          opacity: 1,
+          wobble: Math.random() * 10
+        });
+      }
+
+      let animationFrameId;
+      let startTime = null;
+
+      function animate(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const elapsed = timestamp - startTime;
+
+        ctx.clearRect(0, 0, width, height);
+
+        let activeCount = 0;
+
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+
+          // Physics updates
+          p.vx *= p.drag;
+          p.vy = (p.vy * p.drag) + p.gravity;
+          p.x += p.vx + Math.sin(p.wobble) * 0.5;
+          p.y += p.vy;
+          p.rotation += p.rotationSpeed;
+          p.wobble += 0.05;
+
+          // Fade out towards the end
+          if (elapsed > 2000) {
+            p.opacity = Math.max(0, p.opacity - 0.015);
+          }
+
+          if (p.opacity > 0 && p.y < height + 50) {
+            activeCount++;
+            ctx.save();
+            ctx.globalAlpha = p.opacity;
+            ctx.translate(p.x, p.y);
+            ctx.rotate((p.rotation * Math.PI) / 180);
+            ctx.fillStyle = p.color;
+
+            if (p.shape === 'rect') {
+              ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.65);
+            } else if (p.shape === 'ribbon') {
+              ctx.fillRect(-p.size * 0.8, -p.size * 0.25, p.size * 1.6, p.size * 0.45);
+            } else {
+              ctx.beginPath();
+              ctx.arc(0, 0, p.size * 0.35, 0, Math.PI * 2);
+              ctx.fill();
+            }
+
+            ctx.restore();
+          }
+        }
+
+        if (activeCount > 0 && elapsed < 5500) {
+          animationFrameId = requestAnimationFrame(animate);
+        } else {
+          ctx.clearRect(0, 0, width, height);
+          cancelAnimationFrame(animationFrameId);
+        }
+      }
+
+      // Trigger automatic launch
+      requestAnimationFrame(animate);
+    })();
+  </script>
+<!-- END: ConfettiEngineScript -->
+</body></html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Upgrade to UTOS Pro</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary-fixed": "#e5e2e1",
+            "outline-variant": "#c4c7c7",
+            "outline": "#747878",
+            "on-error": "#ffffff",
+            "on-tertiary-fixed": "#002113",
+            "on-error-container": "#93000a",
+            "surface-container-high": "#e2e8f8",
+            "on-secondary-fixed-variant": "#003ea8",
+            "on-tertiary-container": "#009668",
+            "background": "#f9f9ff",
+            "on-tertiary": "#ffffff",
+            "error": "#ba1a1a",
+            "on-surface": "#151c27",
+            "surface-container": "#e7eefe",
+            "primary-container": "#1c1b1b",
+            "surface-variant": "#dce2f3",
+            "tertiary-fixed-dim": "#4edea3",
+            "surface": "#f9f9ff",
+            "inverse-surface": "#2a313d",
+            "surface-container-lowest": "#ffffff",
+            "on-primary": "#ffffff",
+            "surface-tint": "#5f5e5e",
+            "error-container": "#ffdad6",
+            "on-secondary-fixed": "#00174b",
+            "secondary-fixed-dim": "#b4c5ff",
+            "on-secondary": "#ffffff",
+            "tertiary-fixed": "#6ffbbe",
+            "surface-container-low": "#f0f3ff",
+            "primary": "#000000",
+            "on-secondary-container": "#fefcff",
+            "tertiary-container": "#002113",
+            "primary-fixed-dim": "#c8c6c5",
+            "on-surface-variant": "#444748",
+            "on-primary-fixed": "#1c1b1b",
+            "secondary-fixed": "#dbe1ff",
+            "on-primary-container": "#858383",
+            "on-tertiary-fixed-variant": "#005236",
+            "surface-dim": "#d3daea",
+            "on-primary-fixed-variant": "#474646",
+            "secondary": "#0051d5",
+            "tertiary": "#000000",
+            "surface-bright": "#f9f9ff",
+            "inverse-on-surface": "#ebf1ff",
+            "inverse-primary": "#c8c6c5",
+            "secondary-container": "#316bf3",
+            "surface-container-highest": "#dce2f3",
+            "on-background": "#151c27"
+          },
+          "borderRadius": {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-sm": "0.5rem",
+            "gutter": "1rem",
+            "gutter-mobile": "0.75rem",
+            "space-xl": "2rem",
+            "space-xs": "0.25rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "margin": "1.5rem",
+            "margin-mobile": "1.25rem"
+          },
+          "fontFamily": {
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "headline-md": ["22px", { "lineHeight": "30px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "label-lg": ["15px", { "lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "400" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0.005em", "fontWeight": "400" }],
+            "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .toggle-checkbox:checked {
+      right: 0;
+      border-color: #111111;
+      background-color: #111111;
+    }
+    .toggle-checkbox:checked + .toggle-label {
+      background-color: #111111;
+    }
+    /* Subtle glowing backdrop matching inspiration */
+    .hero-glow-bg {
+      background: radial-gradient(circle at 50% 20%, rgba(219, 225, 255, 0.7) 0%, rgba(240, 243, 255, 0.4) 45%, rgba(249, 249, 255, 0) 80%);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased font-body-md min-h-screen relative flex flex-col justify-between selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- Ambient Gradient Layer -->
+<div class="fixed inset-0 pointer-events-none hero-glow-bg z-0"></div>
+<!-- Primary Wrapper Constraint -->
+<div class="relative z-10 w-full max-w-md mx-auto flex flex-col min-h-screen px-margin-mobile sm:px-margin pt-4 pb-8 justify-between">
+<!-- Top Navigation Stratum -->
+<header class="flex items-center justify-between w-full pt-2 pb-4">
+<!-- Brand & Pro Tag -->
+<div class="flex items-center space-x-2.5">
+<span class="font-headline-md text-headline-md tracking-tight font-extrabold text-on-surface">UTOS</span>
+<div class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-surface-container-high border border-outline-variant/30 shadow-sm">
+<span class="font-label-sm text-label-sm font-bold text-secondary tracking-wide">PRO+</span>
+</div>
+</div>
+<!-- Actions: Search & Crucial Close Button (No Notification/Bell) -->
+<div class="flex items-center space-x-2">
+<button aria-label="Search features" class="w-10 h-10 rounded-full bg-surface-container-lowest border border-outline-variant/40 flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors active:scale-95 duration-150" type="button">
+
+</button>
+<button aria-label="Close upgrade screen" class="w-10 h-10 rounded-full bg-surface-container-lowest border border-outline-variant/40 flex items-center justify-center text-on-surface hover:bg-surface-container transition-colors active:scale-95 duration-150" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="close">close</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col items-center justify-center my-auto w-full py-2">
+<!-- Hero Emblem / Avatar Badge Section -->
+<div class="flex flex-col items-center text-center mb-6">
+<div class="relative mb-4">
+<!-- Outer subtle aura ring -->
+<div class="absolute -inset-1.5 rounded-full bg-secondary-fixed-dim/40 blur-md"></div>
+<!-- Central Circular Badge / Financial Shield Emblem -->
+<div class="relative w-28 h-28 rounded-full bg-gradient-to-tr from-surface-container-high via-surface-container-lowest to-surface-variant p-1 shadow-lg ring-1 ring-outline-variant/50 flex items-center justify-center overflow-hidden">
+<img alt="UTOS Pro Membership Avatar" class="w-full h-full object-cover rounded-full" data-alt="A regal digital artwork of a sophisticated crypto investor wearing a high-collared royal mantle and a refined dark metallic crown, set against an elegant modern architectural background with soft ambient lighting and deep burgundy accents in high-contrast luxury fintech realism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPhMb6bC6eNyei6t9MlRF8RO9BDQ0D61YuDuxcIj_puEHpQxTVkwmP_ydnz-gLBDtxEcRBvjoN_3e52yC8rYT9rD6VO2COM8RcPs_zxSOiDLl5gMLCdejEm9fcgT4ApmFoobdlPsdDnUIjLoTvZPdxNCh7J1LILiZ2r1yJbB_n2xDTVt5W8Uugx15JyD8z36zCOXsgTWmh5h8FPG0XtTv0szRF4r1VJT9S05aBd09kNId-GVTiWO8FdQ">
+<!-- Micro Badge Icon -->
+<div class="absolute bottom-1 right-2 w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center ring-2 ring-surface-container-lowest shadow">
+<span class="material-symbols-outlined text-[13px]" data-icon="shield" style="font-variation-settings: 'FILL' 1;">shield</span>
+</div>
+</div>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-extrabold tracking-tight mb-2">
+          Upgrade to UTOS Pro
+        </h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-xs leading-relaxed">
+          Supercharge your crypto portfolio and trading capabilities with institutional-grade tools.
+        </p>
+</div>
+<!-- Pricing & Plan Tiers Card (Elevated Bento Container) -->
+<div class="w-full bg-surface-container-lowest rounded-3xl border border-outline-variant/40 shadow-sm p-space-lg space-y-5">
+<!-- Tier 1: Monthly Plan -->
+<div class="plan-option cursor-pointer group transition-all" onclick="selectPlan('monthly')">
+<div class="flex items-center justify-between mb-1.5">
+<div class="flex items-center space-x-2">
+<div class="w-4 h-4 rounded-full border-2 border-primary flex items-center justify-center transition-colors" id="radio-monthly">
+<div class="w-2 h-2 rounded-full bg-primary transition-opacity"></div>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface font-semibold group-hover:text-secondary transition-colors">Monthly Plan</span>
+</div>
+<!-- Auto Pay Switch -->
+<div class="flex items-center space-x-2" onclick="event.stopPropagation()">
+<label class="font-label-sm text-label-sm text-outline cursor-pointer select-none" for="autopay-monthly">Auto-renew</label>
+<div class="relative inline-block w-9 align-middle select-none">
+<input checked="" class="sr-only peer" id="autopay-monthly" type="checkbox">
+<div class="w-9 h-5 bg-surface-variant peer-checked:bg-primary rounded-full transition-colors duration-200 ease-in-out cursor-pointer"></div>
+<div class="dot absolute left-0.5 top-0.5 bg-surface-container-lowest w-4 h-4 rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-4 cursor-pointer"></div>
+</div>
+</div>
+</div>
+<div class="pl-6 flex items-baseline space-x-1.5">
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-bold tracking-tight">$19.99</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">/Month</span>
+</div>
+</div>
+<!-- Hairline Divider -->
+<hr class="border-t border-outline-variant/30 my-2">
+<!-- Tier 2: Annual Plan (Popular Option) -->
+<div class="plan-option cursor-pointer group transition-all" onclick="selectPlan('annual')">
+<div class="flex items-center justify-between mb-1.5">
+<div class="flex items-center space-x-2">
+<div class="w-4 h-4 rounded-full border-2 border-outline-variant flex items-center justify-center transition-colors" id="radio-annual">
+<div class="w-2 h-2 rounded-full bg-primary opacity-0 transition-opacity"></div>
+</div>
+<div class="flex items-center space-x-2">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold group-hover:text-secondary transition-colors">Annual Plan</span>
+<span class="px-2 py-0.5 rounded-full text-[10px] font-bold tracking-wider bg-secondary-fixed text-on-secondary-fixed uppercase">Save 38%</span>
+</div>
+</div>
+<!-- Auto Pay Switch -->
+<div class="flex items-center space-x-2" onclick="event.stopPropagation()">
+<label class="font-label-sm text-label-sm text-outline cursor-pointer select-none" for="autopay-annual">Auto-renew</label>
+<div class="relative inline-block w-9 align-middle select-none">
+<input checked="" class="sr-only peer" id="autopay-annual" type="checkbox">
+<div class="w-9 h-5 bg-surface-variant peer-checked:bg-primary rounded-full transition-colors duration-200 ease-in-out cursor-pointer"></div>
+<div class="dot absolute left-0.5 top-0.5 bg-surface-container-lowest w-4 h-4 rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-4 cursor-pointer"></div>
+</div>
+</div>
+</div>
+<div class="pl-6 flex items-baseline space-x-1.5">
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-bold tracking-tight">$149.99</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">/Year ($12.49/mo)</span>
+</div>
+</div>
+<!-- Hairline Divider -->
+<hr class="border-t border-outline-variant/30 my-3">
+<!-- Feature Value Prop Checklist -->
+<ul class="space-y-3 pt-1">
+<li class="flex items-center space-x-3">
+<span class="w-5 h-5 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[13px] font-bold" data-icon="check">check</span>
+</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Unlimited AI Market Insights &amp; Signals</span>
+</li>
+<li class="flex items-center space-x-3">
+<span class="w-5 h-5 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[13px] font-bold" data-icon="check">check</span>
+</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Zero-Fee Instant Crypto Transfers</span>
+</li>
+<li class="flex items-center space-x-3">
+<span class="w-5 h-5 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[13px] font-bold" data-icon="check">check</span>
+</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Advanced Candlestick &amp; Order Book Analytics</span>
+</li>
+<li class="flex items-center space-x-3">
+<span class="w-5 h-5 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[13px] font-bold" data-icon="check">check</span>
+</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Priority 24/7 Dedicated Support &amp; Higher Limits</span>
+</li>
+<li class="flex items-center space-x-3">
+<span class="w-5 h-5 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[13px] font-bold" data-icon="check">check</span>
+</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Automated DCA &amp; Smart Bot Strategies</span>
+</li>
+</ul>
+</div>
+</main>
+<!-- Bottom Action Anchor (Zero-Risk Tactile CTAs) -->
+<footer class="w-full flex flex-col items-center space-y-3 pt-5">
+<!-- Primary Pill Action Button -->
+<button class="w-full h-[54px] rounded-full bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center shadow hover:bg-neutral-800 active:scale-[0.985] transition-all duration-150 focus:outline-none focus:ring-4 focus:ring-secondary/20" type="button">
+        Continue to Payment
+      </button>
+<!-- Dismissive / Secondary Action -->
+<button class="py-2 px-4 rounded-full font-label-md text-label-md text-outline hover:text-on-surface transition-colors active:scale-95 duration-150" type="button">
+        Skip For Now
+      </button>
+<!-- Security Microcopy & Compliance -->
+<p class="text-[11px] font-label-sm text-outline-variant text-center tracking-normal">
+        Secured with 256-bit encryption. Cancel anytime in account settings.
+      </p>
+</footer>
+</div>
+<!-- Interactive Selection Logic -->
+<script>
+    function selectPlan(planType) {
+      const radioMonthly = document.getElementById('radio-monthly');
+      const radioAnnual = document.getElementById('radio-annual');
+      const dotMonthly = radioMonthly.querySelector('div');
+      const dotAnnual = radioAnnual.querySelector('div');
+
+      if (planType === 'monthly') {
+        radioMonthly.classList.remove('border-outline-variant');
+        radioMonthly.classList.add('border-primary');
+        dotMonthly.classList.remove('opacity-0');
+
+        radioAnnual.classList.add('border-outline-variant');
+        radioAnnual.classList.remove('border-primary');
+        dotAnnual.classList.add('opacity-0');
+      } else {
+        radioAnnual.classList.remove('border-outline-variant');
+        radioAnnual.classList.add('border-primary');
+        dotAnnual.classList.remove('opacity-0');
+
+        radioMonthly.classList.add('border-outline-variant');
+        radioMonthly.classList.remove('border-primary');
+        dotMonthly.classList.add('opacity-0');
+      }
+    }
+  </script>
+
+
+</body></html>

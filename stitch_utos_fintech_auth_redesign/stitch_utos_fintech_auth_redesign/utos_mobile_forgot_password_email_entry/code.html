@@ -1,0 +1,188 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>UTOS Mobile Forgot Password - Email Entry</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "inverse-primary": "#c8c6c5",
+            "on-secondary-container": "#fefcff",
+            "tertiary-fixed": "#6ffbbe",
+            "on-primary-fixed": "#1c1b1b",
+            "outline": "#747878",
+            "on-tertiary-fixed": "#002113",
+            "on-secondary": "#ffffff",
+            "secondary": "#0051d5",
+            "on-tertiary-container": "#009668",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-container": "#002113",
+            "inverse-surface": "#2a313d",
+            "on-tertiary-fixed-variant": "#005236",
+            "surface-bright": "#f9f9ff",
+            "on-primary": "#ffffff",
+            "on-error": "#ffffff",
+            "on-error-container": "#93000a",
+            "on-background": "#151c27",
+            "error": "#ba1a1a",
+            "secondary-fixed": "#dbe1ff",
+            "inverse-on-surface": "#ebf1ff",
+            "on-secondary-fixed-variant": "#003ea8",
+            "secondary-container": "#316bf3",
+            "surface-container-low": "#f0f3ff",
+            "background": "#f9f9ff",
+            "on-primary-container": "#858383",
+            "on-primary-fixed-variant": "#474646",
+            "surface-variant": "#dce2f3",
+            "error-container": "#ffdad6",
+            "outline-variant": "#c4c7c7",
+            "on-surface-variant": "#444748",
+            "secondary-fixed-dim": "#b4c5ff",
+            "primary-container": "#1c1b1b",
+            "on-secondary-fixed": "#00174b",
+            "primary-fixed": "#e5e2e1",
+            "surface-container-high": "#e2e8f8",
+            "surface-tint": "#5f5e5e",
+            "surface-container": "#e7eefe",
+            "surface": "#f9f9ff",
+            "on-tertiary": "#ffffff",
+            "surface-dim": "#d3daea",
+            "tertiary": "#000000",
+            "tertiary-fixed-dim": "#4edea3",
+            "primary": "#000000",
+            "surface-container-highest": "#dce2f3",
+            "primary-fixed-dim": "#c8c6c5",
+            "on-surface": "#151c27"
+          },
+          borderRadius: {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "margin": "1.5rem",
+            "gutter-mobile": "0.75rem",
+            "space-sm": "0.5rem",
+            "gutter": "1rem",
+            "space-xl": "2rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xs": "0.25rem",
+            "margin-mobile": "1.25rem"
+          },
+          fontFamily: {
+            "body-sm": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"]
+          },
+          fontSize: {
+            "body-sm": ["13px", { lineHeight: "18px", letterSpacing: "0.005em", fontWeight: "400" }],
+            "headline-sm": ["18px", { lineHeight: "26px", letterSpacing: "-0.01em", fontWeight: "600" }],
+            "headline-md": ["22px", { lineHeight: "30px", letterSpacing: "-0.015em", fontWeight: "600" }],
+            "body-lg": ["16px", { lineHeight: "24px", letterSpacing: "-0.005em", fontWeight: "400" }],
+            "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "700" }],
+            "label-md": ["13px", { lineHeight: "18px", letterSpacing: "0.01em", fontWeight: "600" }],
+            "body-md": ["14px", { lineHeight: "20px", letterSpacing: "0em", fontWeight: "400" }],
+            "label-lg": ["15px", { lineHeight: "20px", letterSpacing: "-0.01em", fontWeight: "600" }],
+            "label-sm": ["11px", { lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "600" }],
+            "headline-lg-mobile": ["26px", { lineHeight: "34px", letterSpacing: "-0.02em", fontWeight: "700" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface antialiased font-body-md min-h-[884px]">
+<div class="w-full min-h-[884px] flex flex-col justify-between pt-safe px-margin-mobile pb-safe max-w-lg mx-auto">
+<!-- Top Navigation Header (Shared Component: TopAppBar aligned) -->
+<header class="flex items-center justify-between py-space-md w-full shrink-0">
+<button aria-label="Go back" class="w-10 h-10 rounded-full border border-outline-variant/60 bg-surface-container-lowest flex items-center justify-center text-on-surface active:scale-95 transition-transform duration-150 hover:bg-surface-container-high focus:outline-none" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_back">arrow_back</span>
+</button>
+<!-- Center UTOS Brand Identity -->
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-primary flex items-center justify-center text-on-primary font-headline-sm text-label-md font-bold tracking-tight">
+          U
+        </div>
+<span class="text-headline-sm font-headline-sm font-bold text-on-background tracking-tight">
+          UTOS
+        </span>
+</div>
+<!-- Symmetrical spacer -->
+<div aria-hidden="true" class="w-10 h-10"></div>
+</header>
+<!-- Main Content Area: Centered and Balanced Vertical Core -->
+<main class="flex-1 flex flex-col justify-center items-center py-space-xl w-full">
+<div class="w-full max-w-sm flex flex-col items-center">
+<!-- Visual Security Recovery Badge -->
+<div class="w-16 h-16 rounded-[20px] bg-secondary-fixed/50 border border-secondary-fixed flex items-center justify-center mb-6 relative">
+<span class="material-symbols-outlined text-[30px] text-secondary" data-icon="mark_email_unread">mark_email_unread</span>
+<span class="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-surface-container-lowest border border-outline-variant/50 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[14px]" data-icon="lock" data-weight="fill" style="font-variation-settings: 'FILL' 1;">lock</span>
+</span>
+</div>
+<!-- Title & Explanatory Narrative -->
+<h1 class="text-headline-lg-mobile font-headline-lg-mobile text-on-surface text-center mb-2 tracking-tight">
+          Forgot Password
+        </h1>
+<p class="text-body-md font-body-md text-on-surface-variant text-center max-w-xs mb-8">
+          Please enter your email address to reset your password.
+        </p>
+<!-- Form Submission Core -->
+<form class="w-full space-y-5" onsubmit="event.preventDefault();">
+<div class="w-full text-left">
+<label class="block text-label-md font-label-md text-on-surface mb-2" for="email">
+              Email Address
+            </label>
+<div class="relative flex items-center rounded-2xl border border-outline-variant/60 bg-surface-container-lowest px-4 h-14 shadow-sm transition-all duration-150 focus-within:border-secondary focus-within:ring-2 focus-within:ring-secondary/15">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant/70 mr-3 shrink-0 flex items-center justify-center" data-icon="mail">mail</span>
+<input autocomplete="email" class="w-full bg-transparent border-0 p-0 text-body-md font-body-md text-on-surface placeholder:text-outline-variant focus:ring-0 focus:outline-none" id="email" name="email" placeholder="name@example.com" required="" type="email">
+</div>
+</div>
+<!-- Primary Action CTA -->
+<button class="w-full h-14 rounded-full bg-primary hover:bg-primary-container active:scale-[0.985] text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 transition-all duration-150 cursor-pointer" type="submit">
+<span class="">Send Reset Link</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</form>
+<!-- Contextual Support Block -->
+<div class="mt-8 text-center space-y-1">
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+            Don't remember your email?
+          </p>
+<a class="inline-block text-label-md font-label-md text-secondary hover:underline transition-colors" href="mailto:support@utos.com">
+            Contact us at support@utos.com
+          </a>
+</div>
+</div>
+</main>
+<!-- Bottom Security / Trust Anchor -->
+<footer class="py-space-md w-full flex items-center justify-center gap-1.5 text-outline text-label-sm font-label-sm shrink-0">
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="verified_user">verified_user</span>
+<span class="">Protected by UTOS 256-bit encryption</span>
+</footer>
+</div>
+
+
+</body></html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+<title>Checkout</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f4ff',
+              100: '#e0eaff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            }
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      background-color: #f8f9fd;
+    }
+    .flow-screen {
+      transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+    }
+    .flow-screen.hidden-screen {
+      display: none !important;
+    }
+    .touch-btn:active {
+      transform: scale(0.985);
+    }
+    /* iOS home bar spacer */
+    .pb-safe {
+      padding-bottom: env(safe-area-inset-bottom, 16px);
+    }
+  </style>
+</head>
+<body class="bg-[#f8f9fd] text-slate-900 min-h-screen antialiased flex justify-center">
+<!-- Mobile Screen Container -->
+<main class="w-full max-w-md min-h-screen flex flex-col bg-[#f8f9fd] px-5 py-5 sm:px-6 relative justify-between pb-safe">
+<!-- ========================================== -->
+<!-- SCREEN 1: CHECKOUT SCREEN                  -->
+<!-- ========================================== -->
+<section class="flow-screen flex-1 flex flex-col justify-between" id="screen-checkout">
+<div>
+<!-- Top App Bar -->
+<header class="flex items-center justify-between pt-1 pb-5">
+<button aria-label="Back" class="w-11 h-11 rounded-full bg-white flex items-center justify-center border border-slate-100 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] text-slate-700 touch-btn focus:outline-none" type="button">
+<svg class="w-5 h-5 stroke-[2.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M15.75 19.5L8.25 12l7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<h1 class="font-bold text-lg text-slate-900 tracking-tight">Checkout</h1>
+<div class="w-11 h-11 pointer-events-none"></div> <!-- Balance spacer -->
+</header>
+<!-- Product / Item Card -->
+<div class="bg-white rounded-3xl p-4 sm:p-5 shadow-[0_4px_20px_-4px_rgba(15,23,42,0.05)] border border-slate-100/80 flex items-center gap-4 mb-6">
+<div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-blue-500/20 flex-shrink-0">
+<svg class="w-8 h-8 text-white drop-shadow-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2">
+<h2 class="font-bold text-slate-900 text-base tracking-tight truncate">UTOS Pro Plan</h2>
+<span class="text-[10px] bg-blue-50 text-blue-600 font-bold px-2 py-0.5 rounded-full border border-blue-100">PRO+</span>
+</div>
+<p class="text-xs text-slate-500 font-medium mt-0.5 truncate">Annual Trading &amp; Signals Pass</p>
+<p class="text-sm font-bold text-indigo-600 mt-1">$48.00</p>
+</div>
+</div>
+<!-- Payment Method Header Row -->
+<div class="flex items-center justify-between mb-3 px-1">
+<h3 class="font-bold text-base text-slate-900 tracking-tight">Payment Method</h3>
+<button class="text-sm font-semibold text-indigo-600 hover:text-indigo-700 flex items-center gap-1 touch-btn focus:outline-none transition-colors" id="btn-see-all" type="button">
+<span>See All</span>
+<svg class="w-4 h-4 stroke-[2.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M8.25 4.5l7.5 7.5-7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+<!-- Selected Payment Method Active Card -->
+<div class="bg-white rounded-2xl p-4 shadow-[0_3px_14px_-3px_rgba(15,23,42,0.05)] border border-slate-100 flex items-center justify-between mb-6 cursor-pointer touch-btn" id="checkout-selected-method-card">
+<div class="flex items-center gap-3.5">
+<!-- Icon Container -->
+<div class="w-12 h-9 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center justify-center flex-shrink-0" id="checkout-method-icon">
+<!-- Mastercard / Card Icon -->
+<div class="flex -space-x-1.5 items-center" id="checkout-icon-card">
+<div class="w-4 h-4 rounded-full bg-[#eb001b]"></div>
+<div class="w-4 h-4 rounded-full bg-[#f79e1b] opacity-90"></div>
+</div>
+<!-- UPI Icon (Alternative state) -->
+<span class="hidden text-[10px] font-black tracking-tight text-emerald-600 bg-white px-1 py-0.5 rounded border border-emerald-300" id="checkout-icon-upi">UPI</span>
+</div>
+<div>
+<p class="font-bold text-sm text-slate-900" id="checkout-method-name">Card</p>
+<p class="text-xs text-slate-500 font-medium" id="checkout-card-digits">•••• 435</p>
+</div>
+</div>
+<!-- Selected Check Badge -->
+<div class="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-xs flex-shrink-0">
+<svg class="w-3.5 h-3.5 stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M4.5 12.75l6 6 9-13.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+<!-- Breakdown Card -->
+<div class="bg-white rounded-3xl p-5 shadow-[0_4px_20px_-4px_rgba(15,23,42,0.05)] border border-slate-100 space-y-3.5 mb-6">
+<div class="flex items-center justify-between text-sm text-slate-500 font-medium">
+<span>Total</span>
+<span class="text-slate-900 font-semibold">$38.00</span>
+</div>
+<div class="flex items-center justify-between text-sm text-slate-500 font-medium">
+<span>Network Access Fee</span>
+<span class="text-slate-900 font-semibold">$5.00</span>
+</div>
+<div class="flex items-center justify-between text-sm text-slate-500 font-medium">
+<span>Tax &amp; Platform Security</span>
+<span class="text-slate-900 font-semibold">$5.00</span>
+</div>
+<div class="border-t border-slate-100 pt-3 flex items-center justify-between">
+<span class="text-base font-bold text-slate-900">Subtotal</span>
+<span class="text-lg font-extrabold text-slate-900">$48.00</span>
+</div>
+</div>
+</div>
+<!-- Action Footer -->
+<footer class="pt-2">
+<button class="w-full py-4 bg-[#0f172a] hover:bg-[#1e293b] text-white font-bold text-base rounded-2xl shadow-lg shadow-slate-900/10 flex items-center justify-center gap-2 touch-btn transition-colors" id="btn-checkout-pay" type="button">
+<span>Pay $48.00</span>
+<svg class="w-4 h-4 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<p class="text-center text-[11px] text-slate-400 font-medium mt-3.5 flex items-center justify-center gap-1.5">
+<svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>UTOS 256-bit encrypted checkout</span>
+</p>
+</footer>
+</section>
+<!-- ========================================== -->
+<!-- SCREEN 2: PAYMENT METHODS SELECTION        -->
+<!-- ========================================== -->
+<section class="flow-screen hidden-screen flex-1 flex flex-col justify-between" id="screen-methods">
+<div>
+<!-- Top App Bar -->
+<header class="flex items-center justify-between pt-1 pb-5">
+<button aria-label="Back to checkout" class="w-11 h-11 rounded-full bg-white flex items-center justify-center border border-slate-100 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] text-slate-700 touch-btn focus:outline-none" id="btn-back-to-checkout" type="button">
+<svg class="w-5 h-5 stroke-[2.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M15.75 19.5L8.25 12l7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<h1 class="font-bold text-lg text-slate-900 tracking-tight">Payment Method</h1>
+<div class="w-11 h-11 pointer-events-none"></div>
+</header>
+<p class="text-xs text-slate-500 font-medium mb-4 px-1">Select a method or configure a new card to complete payment.</p>
+<!-- Method List: Card & UPI Only -->
+<div class="space-y-3 mb-6">
+<!-- CARD OPTION (Clicking opens Add/Edit Card) -->
+<div class="group bg-white rounded-2xl p-4 border-2 border-emerald-500 bg-emerald-50/10 shadow-[0_2px_10px_-2px_rgba(15,23,42,0.04)] cursor-pointer flex items-center justify-between touch-btn transition-all" id="method-option-card" role="button" tabindex="0">
+<div class="flex items-center gap-3.5">
+<div class="w-12 h-10 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center justify-center flex-shrink-0">
+<div class="flex -space-x-1.5 items-center">
+<div class="w-4 h-4 rounded-full bg-[#eb001b]"></div>
+<div class="w-4 h-4 rounded-full bg-[#f79e1b] opacity-90"></div>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<p class="text-sm font-bold text-slate-900">Card</p>
+<span class="text-[10px] font-bold bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-full border border-indigo-100" id="methods-card-badge">Saved</span>
+</div>
+<p class="text-xs text-slate-500 font-medium mt-0.5" id="methods-card-sub">•••• 435</p>
+</div>
+</div>
+<!-- Selection Checkbox -->
+<div class="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-xs" id="indicator-card">
+<svg class="w-3.5 h-3.5 stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M4.5 12.75l6 6 9-13.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+<!-- UPI OPTION -->
+<div class="group bg-white rounded-2xl p-4 border-2 border-slate-100 hover:border-slate-200 shadow-[0_2px_10px_-2px_rgba(15,23,42,0.04)] cursor-pointer flex items-center justify-between touch-btn transition-all" id="method-option-upi" role="button" tabindex="0">
+<div class="flex items-center gap-3.5">
+<div class="w-12 h-10 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center flex-shrink-0">
+<span class="text-xs font-black tracking-tight text-emerald-600 bg-white px-1.5 py-0.5 rounded border border-emerald-200">UPI</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900">UPI</p>
+<p class="text-xs text-slate-500 font-medium mt-0.5">Google Pay, PhonePe, BHIM</p>
+</div>
+</div>
+<!-- Selection Checkbox -->
+<div class="w-6 h-6 rounded-full border-2 border-slate-300 flex items-center justify-center transition-colors" id="indicator-upi">
+<svg class="w-3.5 h-3.5 text-white stroke-[3] hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M4.5 12.75l6 6 9-13.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- Informative Callout -->
+<div class="p-4 rounded-2xl bg-indigo-50/60 border border-indigo-100 text-xs text-indigo-900 flex items-start gap-3">
+<svg class="w-4 h-4 text-indigo-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="font-medium leading-relaxed">Tapping <strong>Card</strong> lets you configure or add new card credentials with instant masked tokenization.</span>
+</div>
+</div>
+<!-- Action Footer -->
+<footer class="pt-2">
+<button class="w-full py-4 bg-[#0f172a] hover:bg-[#1e293b] text-white font-bold text-base rounded-2xl shadow-lg shadow-slate-900/10 flex items-center justify-center gap-2 touch-btn transition-colors" id="btn-confirm-methods" type="button">
+<span>Set As Default</span>
+</button>
+</footer>
+</section>
+<!-- ========================================== -->
+<!-- SCREEN 3: ADD PAYMENT METHOD               -->
+<!-- ========================================== -->
+<section class="flow-screen hidden-screen flex-1 flex flex-col justify-between" id="screen-add-card">
+<div>
+<!-- Top App Bar -->
+<header class="flex items-center justify-between pt-1 pb-5">
+<button aria-label="Back to methods" class="w-11 h-11 rounded-full bg-white flex items-center justify-center border border-slate-100 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.06)] text-slate-700 touch-btn focus:outline-none" id="btn-back-to-methods" type="button">
+<svg class="w-5 h-5 stroke-[2.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M15.75 19.5L8.25 12l7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<h1 class="font-bold text-lg text-slate-900 tracking-tight">Add Payment Method</h1>
+<div class="w-11 h-11 pointer-events-none"></div>
+</header>
+<!-- Form fields matching Reference Screen 3 -->
+<form class="space-y-4" id="form-add-card" onsubmit="event.preventDefault();">
+<!-- Name on Card -->
+<div>
+<label class="block text-xs font-bold text-slate-700 mb-1.5 px-0.5" for="input-card-name">Name on Card</label>
+<input class="w-full h-13 py-3.5 px-4 rounded-2xl bg-white border border-slate-200/90 text-sm font-semibold text-slate-900 placeholder:text-slate-400 placeholder:font-normal focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent transition-all shadow-xs" id="input-card-name" placeholder="Felicia Ayase" required="" type="text" value="Felicia Ayase">
+</div>
+<!-- Card Number -->
+<div>
+<label class="block text-xs font-bold text-slate-700 mb-1.5 px-0.5" for="input-card-number">Card Number</label>
+<div class="relative flex items-center">
+<input class="w-full h-13 py-3.5 pl-4 pr-12 rounded-2xl bg-white border border-slate-200/90 text-sm font-semibold text-slate-900 placeholder:text-slate-400 placeholder:font-normal focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent transition-all shadow-xs tracking-wider" id="input-card-number" maxlength="19" placeholder="7463 8472 8472 435" required="" type="text" value="7463 8472 8472 435">
+<div class="absolute right-3.5 flex items-center pointer-events-none">
+<div class="flex -space-x-1.5 items-center">
+<div class="w-4 h-4 rounded-full bg-[#eb001b]"></div>
+<div class="w-4 h-4 rounded-full bg-[#f79e1b] opacity-90"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Expiration and CVV in 2 columns -->
+<div class="grid grid-cols-2 gap-3.5">
+<div>
+<label class="block text-xs font-bold text-slate-700 mb-1.5 px-0.5" for="input-card-exp">Expiration</label>
+<input class="w-full h-13 py-3.5 px-4 rounded-2xl bg-white border border-slate-200/90 text-sm font-semibold text-slate-900 placeholder:text-slate-400 placeholder:font-normal focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent transition-all shadow-xs" id="input-card-exp" maxlength="5" placeholder="09/10" required="" type="text" value="09/28">
+</div>
+<div>
+<label class="block text-xs font-bold text-slate-700 mb-1.5 px-0.5" for="input-card-cvv">CVV</label>
+<input class="w-full h-13 py-3.5 px-4 rounded-2xl bg-white border border-slate-200/90 text-sm font-semibold text-slate-900 placeholder:text-slate-400 placeholder:font-normal focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent transition-all shadow-xs" id="input-card-cvv" maxlength="4" placeholder="2952" required="" type="password" value="295">
+</div>
+</div>
+<!-- Postal Code -->
+<div>
+<label class="block text-xs font-bold text-slate-700 mb-1.5 px-0.5" for="input-card-postal">Postal Code</label>
+<input class="w-full h-13 py-3.5 px-4 rounded-2xl bg-white border border-slate-200/90 text-sm font-semibold text-slate-900 placeholder:text-slate-400 placeholder:font-normal focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent transition-all shadow-xs" id="input-card-postal" placeholder="498384" required="" type="text" value="498384">
+</div>
+</form>
+</div>
+<!-- Action Footer -->
+<footer class="pt-6">
+<button class="w-full py-4 bg-[#0f172a] hover:bg-[#1e293b] text-white font-bold text-base rounded-2xl shadow-lg shadow-slate-900/10 flex items-center justify-center gap-2 touch-btn transition-colors" id="btn-submit-card" type="button">
+<span>Add New</span>
+</button>
+</footer>
+</section>
+</main>
+<!-- Interactive JavaScript Logic -->
+<script>
+    (function() {
+      // Application state
+      const state = {
+        selectedType: 'card', // 'card' or 'upi'
+        hasCardSaved: true,
+        savedCardLast4: '435',
+        cardHolderName: 'Felicia Ayase'
+      };
+
+      // Screen containers
+      const screenCheckout = document.getElementById('screen-checkout');
+      const screenMethods = document.getElementById('screen-methods');
+      const screenAddCard = document.getElementById('screen-add-card');
+
+      // Buttons
+      const btnSeeAll = document.getElementById('btn-see-all');
+      const btnBackToCheckout = document.getElementById('btn-back-to-checkout');
+      const btnConfirmMethods = document.getElementById('btn-confirm-methods');
+      const btnBackToMethods = document.getElementById('btn-back-to-methods');
+      const btnSubmitCard = document.getElementById('btn-submit-card');
+      const inputCardNumber = document.getElementById('input-card-number');
+
+      // Method elements
+      const optionCard = document.getElementById('method-option-card');
+      const optionUpi = document.getElementById('method-option-upi');
+      const indicatorCard = document.getElementById('indicator-card');
+      const indicatorUpi = document.getElementById('indicator-upi');
+      const methodsCardSub = document.getElementById('methods-card-sub');
+      const methodsCardBadge = document.getElementById('methods-card-badge');
+
+      // Checkout UI elements
+      const checkoutSelectedCard = document.getElementById('checkout-selected-method-card');
+      const checkoutMethodName = document.getElementById('checkout-method-name');
+      const checkoutCardDigits = document.getElementById('checkout-card-digits');
+      const checkoutIconCard = document.getElementById('checkout-icon-card');
+      const checkoutIconUpi = document.getElementById('checkout-icon-upi');
+
+      // Switch Screens smoothly
+      function showScreen(targetScreen) {
+        [screenCheckout, screenMethods, screenAddCard].forEach(screen => {
+          if (screen === targetScreen) {
+            screen.classList.remove('hidden-screen');
+          } else {
+            screen.classList.add('hidden-screen');
+          }
+        });
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }
+
+      // Render Methods Screen Selection UI
+      function renderMethodsUI() {
+        if (state.selectedType === 'card') {
+          // Card selected
+          optionCard.classList.add('border-emerald-500', 'bg-emerald-50/10');
+          optionCard.classList.remove('border-slate-100');
+          indicatorCard.className = 'w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-xs';
+          indicatorCard.innerHTML = `<svg class="w-3.5 h-3.5 stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>`;
+
+          // UPI unselected
+          optionUpi.classList.remove('border-emerald-500', 'bg-emerald-50/10');
+          optionUpi.classList.add('border-slate-100');
+          indicatorUpi.className = 'w-6 h-6 rounded-full border-2 border-slate-300 flex items-center justify-center transition-colors';
+          indicatorUpi.innerHTML = '';
+        } else {
+          // UPI selected
+          optionUpi.classList.add('border-emerald-500', 'bg-emerald-50/10');
+          optionUpi.classList.remove('border-slate-100');
+          indicatorUpi.className = 'w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-xs';
+          indicatorUpi.innerHTML = `<svg class="w-3.5 h-3.5 stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>`;
+
+          // Card unselected
+          optionCard.classList.remove('border-emerald-500', 'bg-emerald-50/10');
+          optionCard.classList.add('border-slate-100');
+          indicatorCard.className = 'w-6 h-6 rounded-full border-2 border-slate-300 flex items-center justify-center transition-colors';
+          indicatorCard.innerHTML = '';
+        }
+
+        if (state.hasCardSaved) {
+          methodsCardSub.textContent = `•••• ${state.savedCardLast4}`;
+          methodsCardBadge.classList.remove('hidden');
+        } else {
+          methodsCardSub.textContent = 'Add credit or debit card';
+          methodsCardBadge.classList.add('hidden');
+        }
+      }
+
+      // Render Checkout Screen with chosen state
+      function renderCheckoutUI() {
+        if (state.selectedType === 'card') {
+          checkoutMethodName.textContent = 'Card';
+          checkoutCardDigits.textContent = state.hasCardSaved ? `•••• ${state.savedCardLast4}` : 'Debit / Credit Card';
+          checkoutIconCard.classList.remove('hidden');
+          checkoutIconUpi.classList.add('hidden');
+        } else {
+          checkoutMethodName.textContent = 'UPI';
+          checkoutCardDigits.textContent = 'Google Pay / PhonePe';
+          checkoutIconCard.classList.add('hidden');
+          checkoutIconUpi.classList.remove('hidden');
+        }
+      }
+
+      // Navigation: Checkout -> See All / Tap Card -> Payment Methods
+      btnSeeAll.addEventListener('click', () => {
+        renderMethodsUI();
+        showScreen(screenMethods);
+      });
+      checkoutSelectedCard.addEventListener('click', () => {
+        renderMethodsUI();
+        showScreen(screenMethods);
+      });
+
+      // Navigation: Methods -> Checkout
+      btnBackToCheckout.addEventListener('click', () => {
+        renderCheckoutUI();
+        showScreen(screenCheckout);
+      });
+
+      btnConfirmMethods.addEventListener('click', () => {
+        renderCheckoutUI();
+        showScreen(screenCheckout);
+      });
+
+      // Methods -> Card option click opens Add Card
+      optionCard.addEventListener('click', () => {
+        showScreen(screenAddCard);
+      });
+
+      // Methods -> UPI selection
+      optionUpi.addEventListener('click', () => {
+        state.selectedType = 'upi';
+        renderMethodsUI();
+      });
+
+      // Navigation: Add Card -> Methods
+      btnBackToMethods.addEventListener('click', () => {
+        renderMethodsUI();
+        showScreen(screenMethods);
+      });
+
+      // Card Number formatting
+      inputCardNumber.addEventListener('input', (e) => {
+        let val = e.target.value.replace(/\D/g, '');
+        if (val.length > 16) val = val.substring(0, 16);
+        let formatted = val.match(/.{1,4}/g)?.join(' ') || val;
+        e.target.value = formatted;
+      });
+
+      // Submit Card
+      btnSubmitCard.addEventListener('click', () => {
+        const numVal = inputCardNumber.value.replace(/\D/g, '');
+        const nameVal = document.getElementById('input-card-name').value.trim();
+
+        let last4 = '435';
+        if (numVal.length >= 4) {
+          last4 = numVal.slice(-4);
+        }
+
+        state.hasCardSaved = true;
+        state.savedCardLast4 = last4;
+        state.cardHolderName = nameVal || 'Felicia Ayase';
+        state.selectedType = 'card';
+
+        renderMethodsUI();
+        renderCheckoutUI();
+        showScreen(screenMethods);
+      });
+
+      // Initial View Setup
+      renderMethodsUI();
+      renderCheckoutUI();
+    })();
+  </script>
+</body></html>

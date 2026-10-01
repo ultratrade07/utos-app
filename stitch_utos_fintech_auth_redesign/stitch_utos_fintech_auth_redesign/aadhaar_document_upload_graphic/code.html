@@ -1,0 +1,74 @@
+<svg width="280" height="170" viewBox="0 0 280 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cardBg" x1="20" y1="20" x2="240" y2="150" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f0fdf4"/>
+    </linearGradient>
+    <linearGradient id="primaryGreen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+    <linearGradient id="accentOrange" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <filter id="shadow" x="12" y="14" width="248" height="142" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#059669" flood-opacity="0.12"/>
+    </filter>
+    <filter id="badgeShadow" x="180" y="80" width="70" height="70" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#059669" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Ambient background glow circles -->
+  <circle cx="140" cy="85" r="75" fill="#ecfdf5" opacity="0.8"/>
+  <circle cx="210" cy="110" r="45" fill="#d1fae5" opacity="0.6"/>
+
+  <!-- Back Card (Subtle Depth Tilt) -->
+  <rect x="36" y="24" width="200" height="116" rx="14" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1.5" opacity="0.7" transform="rotate(-3 136 82)"/>
+
+  <!-- Aadhaar Front Card -->
+  <g filter="url(#shadow)">
+    <rect x="28" y="22" width="216" height="122" rx="14" fill="url(#cardBg)" stroke="#86efac" stroke-width="1.5"/>
+
+    <!-- Aadhaar Tricolor / Header Strip -->
+    <rect x="29" y="23" width="214" height="6" rx="3" fill="url(#accentOrange)" opacity="0.85"/>
+
+    <!-- Document Header Text Placeholder & Emblems -->
+    <rect x="44" y="38" width="68" height="6" rx="3" fill="#0f172a" opacity="0.8"/>
+    <rect x="44" y="48" width="45" height="4" rx="2" fill="#64748b" opacity="0.6"/>
+
+    <!-- Ashok Chakra / Micro Icon -->
+    <circle cx="222" cy="42" r="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.2"/>
+    <circle cx="222" cy="42" r="3" fill="#059669"/>
+
+    <!-- Photo ID Window -->
+    <rect x="44" y="60" width="42" height="48" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+    <!-- Photo Avatar Silhouette -->
+    <circle cx="65" cy="76" r="9" fill="#94a3b8"/>
+    <path d="M50 102 C50 93 57 90 65 90 C73 90 80 93 80 102 Z" fill="#94a3b8"/>
+
+    <!-- Details Lines -->
+    <rect x="96" y="62" width="70" height="6" rx="3" fill="#1e293b"/>
+    <rect x="96" y="74" width="52" height="5" rx="2.5" fill="#64748b" opacity="0.8"/>
+    <rect x="96" y="84" width="40" height="5" rx="2.5" fill="#94a3b8" opacity="0.6"/>
+
+    <!-- Masked 12-digit Aadhaar UID mockup -->
+    <rect x="96" y="98" width="100" height="9" rx="4.5" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
+    <text x="102" y="105.5" font-family="Plus Jakarta Sans, sans-serif" font-size="7" font-weight="700" fill="#047857" letter-spacing="1">•••• •••• 3419</text>
+  </g>
+
+  <!-- Upload Action Floating Badge -->
+  <g filter="url(#badgeShadow)">
+    <circle cx="212" cy="112" r="24" fill="url(#primaryGreen)"/>
+    <circle cx="212" cy="112" r="28" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.6"/>
+    <!-- Upload Arrow with Card Tray -->
+    <path d="M212 121 V104 M206 110 L212 104 L218 110" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M204 123 H220" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <!-- Verification Sparkles -->
+  <path d="M25 60 L28 63 L25 66 L22 63 Z" fill="#10b981" opacity="0.8"/>
+  <path d="M255 45 L258 48 L255 51 L252 48 Z" fill="#f59e0b" opacity="0.9"/>
+  <circle cx="16" cy="110" r="3" fill="#34d399" opacity="0.5"/>
+</svg>

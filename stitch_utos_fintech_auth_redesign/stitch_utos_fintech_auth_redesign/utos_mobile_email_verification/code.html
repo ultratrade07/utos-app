@@ -1,0 +1,168 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>UTOS Mobile Email Verification</title>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS CDN with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'Avenir Next', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              black: '#111111',
+              dark: '#111827',
+              muted: '#6B7280',
+              blue: '#2563EB',
+              border: '#E5E7EB',
+              bg: '#F7F8FA',
+            }
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="base-typography">
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background-color: #F7F8FA;
+    }
+    /* Simulated blinking cursor for active OTP box */
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    .caret-blink {
+      animation: blink 1s infinite;
+    }
+  </style>
+</head>
+<body class="bg-white text-brand-dark min-h-screen selection:bg-blue-100">
+<!-- BEGIN: PhoneContainer -->
+<!-- Outer shell simulating the mobile frame matching 390 x 844 iPhone dimensions -->
+<div class="w-full min-h-[100dvh] bg-white relative flex flex-col justify-between" data-purpose="mobile-device-shell">
+<!-- BEGIN: TopBarArea -->
+<!-- Native iOS Status Bar with Dynamic Island -->
+<header class="w-full pt-4 px-7 z-20 select-none max-w-md mx-auto" data-purpose="status-and-nav">
+<!-- Status Bar Row -->
+
+<!-- Navigation Header with Back Button and Brand Mark -->
+<nav class="relative flex items-center justify-center mt-3 h-11" data-purpose="navigation-header">
+<!-- Circular Back Arrow Button -->
+<button aria-label="Go back" class="absolute left-0 w-10 h-10 rounded-full border border-gray-200 bg-white flex items-center justify-center text-brand-dark hover:bg-neutral-50 active:scale-95 transition-all" type="button">
+<svg class="w-4 h-4 stroke-[2.2] stroke-current" fill="none" viewBox="0 0 24 24">
+<path d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<!-- Centered UTOS Logo Badge -->
+<div class="flex items-center space-x-2">
+<div class="w-6 h-6 rounded-full bg-brand-black text-white font-bold flex items-center justify-center text-[13px] tracking-tight">
+            U
+          </div>
+<span class="font-bold text-[14px] tracking-wider text-brand-dark uppercase">UTOS</span>
+</div>
+</nav>
+</header>
+<!-- END: TopBarArea -->
+<!-- BEGIN: MainContent -->
+<main class="flex-1 flex flex-col justify-start px-7 pt-8 w-full max-w-md mx-auto" data-purpose="verification-body">
+<!-- Premium Email Verification Icon -->
+<div class="flex justify-center mb-[22px]" data-purpose="verification-icon">
+<div class="w-[60px] h-[60px] rounded-2xl bg-[#EFF6FF] flex items-center justify-center relative border border-blue-100 shadow-sm">
+<svg class="w-7 h-7 text-[#2563EB]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+<path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<!-- Subtle verification check badge in UTOS blue -->
+<span class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-[#2563EB] text-white flex items-center justify-center ring-2 ring-white shadow-sm">
+<svg class="w-3 h-3 stroke-[2.8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</span>
+</div>
+</div>
+<!-- Headline & Subtitle -->
+<section class="text-center" data-purpose="headline-section">
+<h1 class="text-[26px] font-semibold text-[#111827] tracking-[-0.025em] leading-[32px]">
+          Verify your email
+        </h1>
+<p class="text-[13.5px] text-[#6B7280] font-normal mt-2 tracking-normal leading-relaxed">
+          We've sent a 6-digit verification code to
+        </p>
+<!-- Masked Recipient Email Badge -->
+<div class="inline-flex items-center mt-[6px] px-3.5 py-1 rounded-full bg-[#F0F4FF] border border-blue-100/60">
+<span class="text-[13.5px] font-medium text-[#111827] tracking-tight">m***@example.com</span>
+</div>
+</section>
+<!-- BEGIN: VerificationForm -->
+<form class="mt-[26px] flex flex-col" data-purpose="otp-input-form" onsubmit="event.preventDefault();">
+<!-- 6-Digit OTP Boxes -->
+<div class="grid grid-cols-6 gap-2 w-full justify-between" data-purpose="digit-cells-group">
+<!-- Box 1 (Filled: '4') -->
+<div class="h-[54px] rounded-2xl bg-white border border-[#E5E7EB] flex items-center justify-center text-xl font-semibold text-[#111827] shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+            4
+          </div>
+<!-- Box 2 (Filled: '8') -->
+<div class="h-[54px] rounded-2xl bg-white border border-[#E5E7EB] flex items-center justify-center text-xl font-semibold text-[#111827] shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+            8
+          </div>
+<!-- Box 3 (Filled: '2') -->
+<div class="h-[54px] rounded-2xl bg-white border border-[#E5E7EB] flex items-center justify-center text-xl font-semibold text-[#111827] shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+            2
+          </div>
+<!-- Box 4 (Active/Focused with cursor) -->
+<div class="h-[54px] rounded-2xl bg-white border-2 border-[#2563EB] flex items-center justify-center relative shadow-[0_0_0_3px_rgba(37,99,235,0.12)]">
+<span class="w-[2px] h-6 bg-[#2563EB] rounded caret-blink"></span>
+</div>
+<!-- Box 5 (Empty / Placeholder dot) -->
+<div class="h-[54px] rounded-2xl bg-white border border-[#E5E7EB] flex items-center justify-center">
+<span class="w-2 h-2 rounded-full bg-neutral-300"></span>
+</div>
+<!-- Box 6 (Empty / Placeholder dot) -->
+<div class="h-[54px] rounded-2xl bg-white border border-[#E5E7EB] flex items-center justify-center">
+<span class="w-2 h-2 rounded-full bg-neutral-300"></span>
+</div>
+</div>
+<!-- Timer / Resend Row -->
+<div class="flex items-center justify-center space-x-1.5 mt-[18px] text-[13.5px] font-medium" data-purpose="resend-timer-wrapper">
+<span class="text-[#6B7280]">Didn't receive the code?</span>
+<button class="text-[#2563EB] font-medium hover:underline focus:outline-none" type="button">
+            Resend in <span class="tabular-nums font-semibold">00:30</span>
+</button>
+</div>
+<!-- Primary CTA Button -->
+<button class="w-full h-[54px] mt-[22px] bg-[#111111] text-white rounded-2xl font-semibold text-[15.5px] flex items-center justify-center space-x-2 shadow-lg hover:bg-black active:scale-[0.99] transition-colors" data-purpose="submit-verification" type="submit">
+<span class="">Verify Email</span>
+<span class="text-base font-semibold">→</span>
+</button>
+</form>
+<!-- END: VerificationForm -->
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: FooterActions -->
+<!-- Secondary options & Home Indicator Bar -->
+<footer class="w-full pb-8 px-7 flex flex-col items-center max-w-md mx-auto" data-purpose="page-footer">
+<!-- Wrong email link -->
+<div class="text-[13.5px] text-[#6B7280] text-center mb-6">
+        Wrong email address? 
+        <a class="text-[#2563EB] font-medium ml-1 hover:underline" href="#">Change email</a>
+</div>
+<!-- iOS Home Bar Indicator -->
+
+</footer>
+<!-- END: FooterActions -->
+</div>
+<!-- END: PhoneContainer -->
+
+
+
+
+</body></html>

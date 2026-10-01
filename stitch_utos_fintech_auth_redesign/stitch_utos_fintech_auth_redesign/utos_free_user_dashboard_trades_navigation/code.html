@@ -1,0 +1,1221 @@
+<!DOCTYPE html><html lang="en" style=""><head></head><body class="bg-[#f5f7f6] text-[#141d17] antialiased selection:bg-utos-emerald selection:text-white"><svg aria-hidden="true" class="inline-defs-container" style="position:absolute;width:0;height:0;overflow:hidden"></svg>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+<title>UTOS - Mobile Trading &amp; Dashboard</title>
+<!-- Tailwind CSS CDN with Forms & Container Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Tailwind Configuration -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          colors: {
+            utos: {
+              dark: '#0e2316',
+              primary: '#113521',
+              emerald: '#00a35c',
+              mint: '#34d399',
+              lightbg: '#f5f7f6',
+              card: '#ffffff',
+            }
+          }
+        }
+      }
+    }
+  </script>
+<!-- BEGIN: Custom Micro-Styles -->
+<style data-purpose="custom-typography-and-effects">
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    /* Subtle touch active state for mobile cards and buttons */
+    .tap-effect:active {
+      transform: scale(0.975);
+      transition: transform 0.1s ease;
+    }
+    
+    /* Hide scrollbars for clean presentation */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    * {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<!-- END: Custom Micro-Styles -->
+<!-- Main Viewport Container (True responsive mobile layout) -->
+<div class="min-h-[100dvh] w-full max-w-md mx-auto flex flex-col relative px-5 pt-4 pb-28">
+<!-- ==================== VIEW 1: DASHBOARD VIEW ==================== -->
+<div class="w-full flex flex-col" id="dashboard-view">
+<!-- BEGIN: TopHeader -->
+<header class="flex items-center justify-between pt-1 pb-4" data-purpose="app-header">
+<!-- Brand Logo & Wordmark -->
+<div class="flex items-center gap-2" data-purpose="brand-logo">
+<div class="w-8 h-8 rounded-xl bg-utos-dark flex items-center justify-center text-white shadow-sm shadow-utos-dark/20">
+<!-- Sleek geometric UTOS glyph -->
+<svg class="w-4 h-4 text-emerald-400" fill="currentColor" viewBox="0 0 24 24">
+<path d="M12 2L4 6.5V17.5L12 22L20 17.5V6.5L12 2ZM12 4.6L18 8V16L12 19.4L6 16V8L12 4.6Z"></path>
+</svg>
+</div>
+<span class="text-xl font-extrabold tracking-tight text-utos-dark">UTOS</span>
+</div>
+<!-- Header Actions: Notifications & User Avatar -->
+<div class="flex items-center gap-2.5" data-purpose="header-controls">
+<!-- Notification Pill with Green Live Dot -->
+<button aria-label="Notifications" class="relative w-10 h-10 rounded-full bg-white border border-black/[0.04] shadow-sm flex items-center justify-center text-gray-700 tap-effect">
+<svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-emerald-500 ring-2 ring-white"></span>
+</button>
+<!-- User Profile Avatar with Subtle Ring -->
+<div class="w-10 h-10 rounded-full p-0.5 bg-gradient-to-tr from-emerald-500 to-teal-400">
+<div class="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden border-2 border-white">
+<img alt="User profile avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-pmQ6f-6AEG_CV6AR2eDe13_Af6mNZo3q7cF2cYUaPRMrVd3g0ZufQy2cg1o-F0I9m11dkAs6VzI6K_uGSy66OSrhUWtGIFrc3A-94dE8AqGJqtLBCTqQSjGbIuVagaODeG9P4hKU5hBbAm9dXeSyFL0SxkBKrT74IKCMNlt8q8K2VB_p1PYO2c_X0-5ANtSM8kujENosPBaqSBAh8kydbADvbSHpp8EsApMSw_SSv8JXxhvMMIVNNg">
+</div>
+</div>
+</div>
+</header>
+<!-- END: TopHeader -->
+<!-- BEGIN: TotalBalanceSection -->
+<section class="mt-2 mb-6" data-purpose="total-balance">
+<!-- Balance Header Label with Currency Swap Pill -->
+<div class="flex items-center gap-1.5 text-xs font-semibold text-gray-500">
+<span class="">Total Balance</span>
+<button class="inline-flex items-center justify-center p-0.5 bg-gray-200/80 hover:bg-gray-300 rounded-full text-gray-600 transition-colors" title="Switch primary currency">
+<svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+<path clip-rule="evenodd" d="M15.312 11.424a5.5 5.5 0 01-9.201 2.466l-.312-.311h2.433a.75.75 0 000-1.5H4.5a.75.75 0 00-.75.75v3.732a.75.75 0 001.5 0v-2.128l.454.453a7 7 0 0011.83-3.155.75.75 0 10-1.222-.307zM4.688 8.576a5.5 5.5 0 019.201-2.466l.312.311H11.77a.75.75 0 000 1.5h3.73a.75.75 0 0075-.75V3.44a.75.75 0 00-1.5 0v2.128l-.454-.453a7 7 0 00-11.83 3.155.75.75 0 001.222.307z" fill-rule="evenodd"></path>
+</svg>
+</button>
+</div>
+<!-- Main Balance Display & Free Tier Pill Badge -->
+<div class="flex items-center justify-between mt-1">
+<div class="flex items-center gap-2.5">
+<div class="text-3xl sm:text-[34px] font-extrabold tracking-tight text-utos-dark flex items-baseline">
+<span class="text-xl mr-1 font-semibold text-gray-400">$</span>000<span class="text-2xl font-bold text-gray-400">.00</span>
+</div>
+<!-- Toggle Balance Visibility Eye -->
+<button aria-label="Toggle balance visibility" class="text-gray-400 hover:text-gray-600 transition-colors mt-0.5">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+<path d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+<!-- Tier Status Pill Badge: "FREE" -->
+<div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-utos-dark text-white border border-emerald-900/30 shadow-sm" data-purpose="user-tier-badge">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+<span class="text-xs font-bold tracking-wider text-emerald-100 uppercase">FREE</span>
+</div>
+</div>
+</section>
+<!-- END: TotalBalanceSection -->
+<!-- BEGIN: MyPortfolioSection -->
+<section class="mb-7" data-purpose="portfolio-grid-section">
+<!-- Section Header -->
+<div class="flex items-center justify-between mb-3.5">
+<h2 class="text-base font-bold text-utos-dark">My Portfolio</h2>
+<a class="text-xs font-semibold text-gray-500 hover:text-utos-emerald flex items-center transition-colors cursor-pointer" onclick="showTab('markets')">
+          View Details
+          <svg class="w-3.5 h-3.5 ml-0.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+<path d="M8.25 4.5l7.5 7.5-7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+</div>
+<!-- 2x2 Equal Portfolio Cards Grid -->
+<div class="grid grid-cols-2 gap-3" data-purpose="portfolio-cards">
+<!-- Portfolio Card 1: BTC -->
+<article class="bg-white rounded-[22px] p-3.5 border border-black/[0.04] shadow-[0_2px_8px_rgba(0,0,0,0.03)] flex flex-col justify-between relative overflow-hidden tap-effect">
+<div>
+<div class="flex items-start justify-between">
+<div>
+<h3 class="font-extrabold text-sm text-utos-dark leading-tight">BTC</h3>
+<p class="text-[11px] font-medium text-gray-400">Bitcoin</p>
+</div>
+<!-- BTC Amber Badge -->
+<div class="w-7 h-7 rounded-full bg-[#f7931a] flex items-center justify-center text-white shadow-xs shrink-0 font-bold text-xs">
+<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+<path d="M15.7 10.3c.3-.8.2-1.8-.4-2.4-.7-.7-1.8-.9-2.9-.8V5h-1.5v2.1c-.4 0-.8 0-1.2.1V5H8.2v2.2H6.5v1.6h1.7c.1 1.6.1 3.2.1 4.8H6.5v1.6h1.7v2.2h1.5v-2.2c.4 0 .8 0 1.2.1v2.1h1.5v-2.1c1.3.1 2.6-.2 3.3-1.1.7-.8.7-2 .1-2.9.8-.3 1.2-1.1.9-2.1zm-4.3-1.7c.9 0 1.9.1 2 .8.1.8-.8.9-1.6.9h-1.8V8.6h1.4zm.5 4.9h-1.9v-1.7h1.9c.9 0 1.9.1 2 .9.1.9-.9.8-2 .8z"></path>
+</svg>
+</div>
+</div>
+<!-- Balances -->
+<div class="mt-2.5">
+<div class="text-base font-extrabold text-utos-dark tracking-tight" id="val-btc">$20<span class="text-xs text-gray-400">.00</span></div>
+<div class="text-[11px] font-semibold text-gray-400 mt-0.5" id="change-btc">10.00%</div>
+</div>
+</div>
+<!-- Sparkline Chart Subtle Vector (Dynamic Target) -->
+<div class="mt-2 -mx-3.5 -mb-3.5 pt-1 overflow-hidden rounded-b-[22px]" id="chart-btc">
+<svg class="w-full h-12 block" preserveAspectRatio="none" viewBox="0 0 200 60">
+<defs>
+<linearGradient id="spark-grad-btc" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#f59e0b" stop-opacity="0.25"></stop>
+<stop offset="70%" stop-color="#f59e0b" stop-opacity="0.05"></stop>
+<stop offset="100%" stop-color="#f59e0b" stop-opacity="0"></stop>
+</linearGradient>
+</defs>
+<path d="M 0,40.6 L 10,41.9 L 20,36.9 L 30,44 L 40,41.6 L 50,33.3 L 60,36.4 L 70,29.1 L 80,33.8 L 90,26 L 100,30.2 L 110,19.2 L 120,25.5 L 130,15.5 L 140,21.3 L 150,12.4 L 160,20.7 L 170,14.5 L 180,8 L 190,11.9 L 200,8 L 200,60 L 0,60 Z" fill="url(#spark-grad-btc)"></path>
+<path d="M 0,40.6 L 10,41.9 L 20,36.9 L 30,44 L 40,41.6 L 50,33.3 L 60,36.4 L 70,29.1 L 80,33.8 L 90,26 L 100,30.2 L 110,19.2 L 120,25.5 L 130,15.5 L 140,21.3 L 150,12.4 L 160,20.7 L 170,14.5 L 180,8 L 190,11.9 L 200,8" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"></path>
+</svg>
+</div>
+</article>
+<!-- Portfolio Card 2: ETH -->
+<article class="bg-white rounded-[22px] p-3.5 border border-black/[0.04] shadow-[0_2px_8px_rgba(0,0,0,0.03)] flex flex-col justify-between relative overflow-hidden tap-effect">
+<div>
+<div class="flex items-start justify-between">
+<div>
+<h3 class="font-extrabold text-sm text-utos-dark leading-tight">ETH</h3>
+<p class="text-[11px] font-medium text-gray-400">Ethereum</p>
+</div>
+<!-- ETH Slate/Purple Badge -->
+<div class="w-7 h-7 rounded-full bg-[#627eea] flex items-center justify-center text-white shadow-xs shrink-0">
+<svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 32 32">
+<path d="M16 2.5L7.5 16.5L16 21.5L24.5 16.5L16 2.5Z" fill-opacity="0.8"></path>
+<path d="M7.5 18.2L16 29.5L24.5 18.2L16 23.2L7.5 18.2Z"></path>
+</svg>
+</div>
+</div>
+<!-- Balances -->
+<div class="mt-2.5">
+<div class="text-base font-extrabold text-utos-dark tracking-tight" id="val-eth">$0<span class="text-xs text-gray-400">.00</span></div>
+<div class="text-[11px] font-semibold text-gray-400 mt-0.5" id="change-eth">0.00%</div>
+</div>
+</div>
+<!-- Sparkline Chart Subtle Vector (Dynamic Target) -->
+<div class="mt-2 -mx-3.5 -mb-3.5 pt-1 overflow-hidden rounded-b-[22px]" id="chart-eth">
+<svg class="w-full h-12 block" preserveAspectRatio="none" viewBox="0 0 200 60">
+<defs>
+<linearGradient id="spark-grad-eth" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#6366f1" stop-opacity="0.25"></stop>
+<stop offset="70%" stop-color="#6366f1" stop-opacity="0.05"></stop>
+<stop offset="100%" stop-color="#6366f1" stop-opacity="0"></stop>
+</linearGradient>
+</defs>
+<path d="M 0,29.6 L 10,44 L 20,18.8 L 30,36.8 L 40,15.2 L 50,40.4 L 60,22.4 L 70,33.2 L 80,11.6 L 90,29.6 L 100,40.4 L 110,18.8 L 120,36.8 L 130,8 L 140,26 L 150,36.8 L 160,15.2 L 170,29.6 L 180,40.4 L 190,22.4 L 200,29.6 L 200,60 L 0,60 Z" fill="url(#spark-grad-eth)"></path>
+<path d="M 0,29.6 L 10,44 L 20,18.8 L 30,36.8 L 40,15.2 L 50,40.4 L 60,22.4 L 70,33.2 L 80,11.6 L 90,29.6 L 100,40.4 L 110,18.8 L 120,36.8 L 130,8 L 140,26 L 150,36.8 L 160,15.2 L 170,29.6 L 180,40.4 L 190,22.4 L 200,29.6" fill="none" stroke="#6366f1" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"></path>
+</svg>
+</div>
+</article>
+<!-- Portfolio Card 3: SOL -->
+<article class="bg-white rounded-[22px] p-3.5 border border-black/[0.04] shadow-[0_2px_8px_rgba(0,0,0,0.03)] flex flex-col justify-between relative overflow-hidden tap-effect">
+<div>
+<div class="flex items-start justify-between">
+<div>
+<h3 class="font-extrabold text-sm text-utos-dark leading-tight">SOL</h3>
+<p class="text-[11px] font-medium text-gray-400">Solana</p>
+</div>
+<!-- SOL Gradient Badge -->
+<div class="w-7 h-7 rounded-full bg-gradient-to-tr from-[#9945FF] to-[#14F195] flex items-center justify-center text-white shadow-xs shrink-0">
+<svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+<path d="M5 8.5h14.5l-2.5 3H2.5L5 8.5zm2.5 7h14.5l-2.5 3H5l2.5-3zm-2.5-7h14.5l-2.5 3H2.5L5 8.5z"></path>
+</svg>
+</div>
+</div>
+<!-- Balances -->
+<div class="mt-2.5">
+<div class="text-base font-extrabold text-utos-dark tracking-tight" id="val-sol">$0<span class="text-xs text-gray-400">.00</span></div>
+<div class="text-[11px] font-semibold text-gray-400 mt-0.5" id="change-sol">10.00%</div>
+</div>
+</div>
+<!-- Sparkline Chart Subtle Vector (Dynamic Target) -->
+<div class="mt-2 -mx-3.5 -mb-3.5 pt-1 overflow-hidden rounded-b-[22px]" id="chart-sol">
+<svg class="w-full h-12 block" preserveAspectRatio="none" viewBox="0 0 200 60">
+<defs>
+<linearGradient id="spark-grad-sol" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#10b981" stop-opacity="0.25"></stop>
+<stop offset="70%" stop-color="#10b981" stop-opacity="0.05"></stop>
+<stop offset="100%" stop-color="#10b981" stop-opacity="0"></stop>
+</linearGradient>
+</defs>
+<path d="M 0,35.3 L 10,22.2 L 20,40.7 L 30,13.5 L 40,26.5 L 50,44 L 60,18.9 L 70,34.2 L 80,11.3 L 90,29.8 L 100,37.5 L 110,14.5 L 120,33.1 L 130,8 L 140,24.4 L 150,39.6 L 160,20 L 170,35.3 L 180,23.3 L 190,37.5 L 200,35.3 L 200,60 L 0,60 Z" fill="url(#spark-grad-sol)"></path>
+<path d="M 0,35.3 L 10,22.2 L 20,40.7 L 30,13.5 L 40,26.5 L 50,44 L 60,18.9 L 70,34.2 L 80,11.3 L 90,29.8 L 100,37.5 L 110,14.5 L 120,33.1 L 130,8 L 140,24.4 L 150,39.6 L 160,20 L 170,35.3 L 180,23.3 L 190,37.5 L 200,35.3" fill="none" stroke="#10b981" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"></path>
+</svg>
+</div>
+</article>
+<!-- Portfolio Card 4: USDT -->
+<article class="bg-white rounded-[22px] p-3.5 border border-black/[0.04] shadow-[0_2px_8px_rgba(0,0,0,0.03)] flex flex-col justify-between relative overflow-hidden tap-effect">
+<div>
+<div class="flex items-start justify-between">
+<div>
+<h3 class="font-extrabold text-sm text-utos-dark leading-tight">USDT</h3>
+<p class="text-[11px] font-medium text-gray-400">Tether</p>
+</div>
+<!-- USDT Teal Badge -->
+<div class="w-7 h-7 rounded-full bg-[#26A17B] flex items-center justify-center text-white shadow-xs shrink-0 font-bold text-xs">
+<svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.2 5.5v1.25h3.6v1.95h-3.6v1.3c2.4.15 4.2.65 4.2 1.25s-1.8 1.1-4.2 1.25V18h-2.4v-3.5c-2.4-.15-4.2-.65-4.2-1.25s1.8-1.1 4.2-1.25V8.7H7.2V6.75h6z"></path>
+</svg>
+</div>
+</div>
+<!-- Balances -->
+<div class="mt-2.5">
+<div class="text-base font-extrabold text-utos-dark tracking-tight" id="val-usdt">$0<span class="text-xs text-gray-400">.00</span></div>
+<div class="text-[11px] font-semibold text-gray-400 mt-0.5" id="change-usdt">0.00%</div>
+</div>
+</div>
+<!-- Sparkline Chart Subtle Vector (Dynamic Target) -->
+<div class="mt-2 -mx-3.5 -mb-3.5 pt-1 overflow-hidden rounded-b-[22px]" id="chart-usdt">
+<svg class="w-full h-12 block" preserveAspectRatio="none" viewBox="0 0 200 60">
+<defs>
+<linearGradient id="spark-grad-usdt" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#14b8a6" stop-opacity="0.25"></stop>
+<stop offset="70%" stop-color="#14b8a6" stop-opacity="0.05"></stop>
+<stop offset="100%" stop-color="#14b8a6" stop-opacity="0"></stop>
+</linearGradient>
+</defs>
+<path d="M 0,17 L 10,35 L 20,8 L 30,39.5 L 40,21.5 L 50,30.5 L 60,12.5 L 70,35 L 80,17 L 90,44 L 100,12.5 L 110,30.5 L 120,21.5 L 130,39.5 L 140,8 L 150,35 L 160,17 L 170,30.5 L 180,21.5 L 190,35 L 200,26 L 200,60 L 0,60 Z" fill="url(#spark-grad-usdt)"></path>
+<path d="M 0,17 L 10,35 L 20,8 L 30,39.5 L 40,21.5 L 50,30.5 L 60,12.5 L 70,35 L 80,17 L 90,44 L 100,12.5 L 110,30.5 L 120,21.5 L 130,39.5 L 140,8 L 150,35 L 160,17 L 170,30.5 L 180,21.5 L 190,35 L 200,26" fill="none" stroke="#14b8a6" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"></path>
+</svg>
+</div>
+</article>
+</div>
+</section>
+<!-- END: MyPortfolioSection -->
+<!-- BEGIN: TodayTopMoversSection -->
+<section class="mb-4" data-purpose="top-movers-section">
+<!-- Section Title & Action -->
+<div class="flex items-center justify-between mb-3.5">
+<h2 class="text-base font-bold text-utos-dark">Today's Top Movers</h2>
+<a class="text-xs font-semibold text-gray-500 hover:text-utos-emerald transition-colors" href="#">See All</a>
+</div>
+<!-- Main White Rounded Enclosure -->
+<div class="bg-white rounded-[26px] p-5 shadow-sm border border-black/[0.04]">
+<!-- Venue Group 1: Binance -->
+<div class="mb-5" data-purpose="exchange-group-binance">
+<div class="text-[11px] font-bold text-gray-400 tracking-wider mb-3.5 flex items-center gap-1.5 uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+            BINANCE
+          </div>
+<div class="grid grid-cols-4 gap-2 text-center">
+<!-- Binance Item 1: BTC -->
+<div class="flex flex-col items-center">
+<div class="w-11 h-11 rounded-full bg-[#FFF7E8] text-[#F7931A] flex items-center justify-center mb-1.5 shadow-sm">
+<svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+<path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm2.8 8.8c.2-.5.1-1.2-.3-1.6-.5-.5-1.2-.6-1.9-.5V7.4h-1v1.4h-.8V7.4h-1v1.5H8.7v1.1h1.1c.1 1.1.1 2.2.1 3.3H8.7v1.1h1.1v1.5h1v-1.5h.8v1.5h1v-1.4c.9.1 1.7-.1 2.2-.7.5-.5.5-1.3.1-1.9.5-.2.8-.7.6-1.4zm-2.8-1.1c.6 0 1.2.1 1.3.5.1.5-.5.6-1.1.6h-1.2V9.2h1zm.3 3.3h-1.3v-1.1h1.3c.6 0 1.3.1 1.3.6 0 .6-.6.5-1.3.5z"></path>
+</svg>
+</div>
+<span class="text-xs font-bold text-utos-dark">BTC</span>
+<span class="text-[11px] font-semibold text-emerald-600 mt-0.5">+2.84%</span>
+</div>
+<!-- Binance Item 2: ETH -->
+<div class="flex flex-col items-center">
+<div class="w-11 h-11 rounded-full bg-[#EEF2FF] text-[#627EEA] flex items-center justify-center mb-1.5 shadow-sm">
+<svg class="w-5 h-5 fill-current" viewBox="0 0 32 32">
+<path d="M16 2.5L7.5 16.5L16 21.5L24.5 16.5L16 2.5Z"></path>
+<path d="M7.5 18.2L16 29.5L24.5 18.2L16 23.2L7.5 18.2Z" opacity="0.7"></path>
+</svg>
+</div>
+<span class="text-xs font-bold text-utos-dark">ETH</span>
+<span class="text-[11px] font-semibold text-emerald-600 mt-0.5">+3.42%</span>
+</div>
+<!-- Binance Item 3: SOL -->
+<div class="flex flex-col items-center">
+<div class="w-11 h-11 rounded-full bg-gradient-to-tr from-[#9945FF]/10 to-[#14F195]/20 text-[#843ce0] flex items-center justify-center mb-1.5 shadow-sm">
+<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+<path d="M5 8.5h14.5l-2.5 3H2.5L5 8.5zm2.5 7h14.5l-2.5 3H5l2.5-3zm-2.5-7h14.5l-2.5 3H2.5L5 8.5z"></path>
+</svg>
+</div>
+<span class="text-xs font-bold text-utos-dark">SOL</span>
+<span class="text-[11px] font-semibold text-emerald-600 mt-0.5">+5.16%</span>
+</div>
+<!-- Binance Item 4: BNB -->
+<div class="flex flex-col items-center">
+<div class="w-11 h-11 rounded-full bg-[#1e2026] text-[#F3BA2F] flex items-center justify-center mb-1.5 shadow-sm">
+<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+<path d="M12 2L6 8l2.5 2.5L12 7l3.5 3.5L18 8l-6-6zm-6 8l-3.5 3.5L6 17l2.5-2.5L6 12l2.5-2zm12 0l-2.5 2.5 2.5 2.5L21.5 13.5 18 10zm-6 2l-2.5 2.5L12 17l2.5-2.5L12 12zm0 6l-3.5-3.5L6 17l6 6 6-6-2.5-2.5L12 18z"></path>
+</svg>
+</div>
+<span class="text-xs font-bold text-utos-dark">BNB</span>
+<span class="text-[11px] font-semibold text-emerald-600 mt-0.5">+1.75%</span>
+</div>
+</div>
+</div>
+<!-- Clean Subtle Divider -->
+<div class="h-px bg-gray-100 w-full my-4"></div>
+<!-- Venue Group 2: Bybit -->
+<div data-purpose="exchange-group-bybit">
+<div class="text-[11px] font-bold text-gray-400 tracking-wider mb-3.5 flex items-center gap-1.5 uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
+            BYBIT
+          </div>
+<div class="grid grid-cols-4 gap-2 text-center">
+<!-- Bybit Item 1: XRP -->
+<div class="flex flex-col items-center">
+<div class="w-11 h-11 rounded-full bg-gray-900 text-white flex items-center justify-center mb-1.5 shadow-sm font-bold text-sm">
+                ✕
+              </div>
+<span class="text-xs font-bold text-utos-dark">XRP</span>
+<span class="text-[11px] font-semibold text-emerald-600 mt-0.5">+4.20%</span>
+</div>
+<!-- Bybit Item 2: ADA -->
+<div class="flex flex-col items-center">
+<div class="w-11 h-11 rounded-full bg-[#0033ad]/10 text-[#0033ad] flex items-center justify-center mb-1.5 shadow-sm font-bold text-sm">
+                ₳
+              </div>
+<span class="text-xs font-bold text-utos-dark">ADA</span>
+<span class="text-[11px] font-semibold text-rose-500 mt-0.5">-1.15%</span>
+</div>
+<!-- Bybit Item 3: DOGE -->
+<div class="flex flex-col items-center">
+<div class="w-11 h-11 rounded-full bg-[#c2a633]/20 text-[#b59521] flex items-center justify-center mb-1.5 shadow-sm font-bold text-sm">
+                Ð
+              </div>
+<span class="text-xs font-bold text-utos-dark">DOGE</span>
+<span class="text-[11px] font-semibold text-emerald-600 mt-0.5">+6.80%</span>
+</div>
+<!-- Bybit Item 4: AVAX -->
+<div class="flex flex-col items-center">
+<div class="w-11 h-11 rounded-full bg-[#e84142]/10 text-[#e84142] flex items-center justify-center mb-1.5 shadow-sm font-bold text-sm">
+                ▲
+              </div>
+<span class="text-xs font-bold text-utos-dark">AVAX</span>
+<span class="text-[11px] font-semibold text-emerald-600 mt-0.5">+2.10%</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: TodayTopMoversSection -->
+</div>
+<!-- ==================== VIEW 2: TRADES (MARKETS) VIEW ==================== -->
+<div class="w-full flex-col hidden" id="trades-view">
+<!-- Header with Back Button, Title & Live Status -->
+<header class="flex items-center justify-between pt-1 pb-4">
+<div class="flex items-center gap-3">
+<button aria-label="Go back to Dashboard" class="w-10 h-10 rounded-full bg-white border border-black/[0.04] shadow-sm flex items-center justify-center text-gray-700 tap-effect" onclick="showTab('home')">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+<path d="M15.75 19.5L8.25 12l7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<div>
+<h1 class="text-xl font-extrabold tracking-tight text-utos-dark leading-tight">Trades</h1>
+<p class="text-[11px] font-medium text-gray-500">Real-time synchronized positions</p>
+</div>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 shadow-xs">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+<span class="text-[11px] font-bold tracking-wide text-emerald-700 uppercase">Live Synced</span>
+</div>
+</header>
+<!-- Segmented Tab Bar: Active (10) vs Closed (10) -->
+<div class="bg-gray-200/70 p-1 rounded-2xl flex items-center mb-4">
+<button class="flex-1 py-2 rounded-xl text-xs font-bold text-utos-dark bg-white shadow-xs transition-all tap-effect" id="trade-tab-active" onclick="switchTradeSubTab('active')">
+        Active (10)
+      </button>
+<button class="flex-1 py-2 rounded-xl text-xs font-bold text-gray-500 hover:text-utos-dark transition-all tap-effect" id="trade-tab-closed" onclick="switchTradeSubTab('closed')">
+        Closed (10)
+      </button>
+</div>
+<!-- Active Trades Grid (10 items) -->
+<div class="grid grid-cols-2 gap-3" id="active-trades-container">
+<!-- 1. BTC -->
+<article class="bg-white rounded-[22px] p-3.5 border border-black/[0.04] shadow-sm flex flex-col justify-between tap-effect">
+<div>
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-[#f7931a] flex items-center justify-center text-white shadow-xs shrink-0 font-bold text-xs">
+<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M15.7 10.3c.3-.8.2-1.8-.4-2.4-.7-.7-1.8-.9-2.9-.8V5h-1.5v2.1c-.4 0-.8 0-1.2.1V5H8.2v2.2H6.5v1.6h1.7c.1 1.6.1 3.2.1 4.8H6.5v1.6h1.7v2.2h1.5v-2.2c.4 0 .8 0 1.2.1v2.1h1.5v-2.1c1.3.1 2.6-.2 3.3-1.1.7-.8.7-2 .1-2.9.8-.3 1.2-1.1.9-2.1zm-4.3-1.7c.9 0 1.9.1 2 .8.1.8-.8.9-1.6.9h-1.8V8.6h1.4zm.5 4.9h-1.9v-1.7h1.9c.9 0 1.9.1 2 .9.1.9-.9.8-2 .8z"></path></svg>
+</div>
+<div>
+<div class="flex items-center gap-1">
+<span class="font-extrabold text-sm text-utos-dark">BTC</span>
+<span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800">10x</span>
+</div>
+<p class="text-[11px] text-gray-400">Bitcoin</p>
+</div>
+</div>
+<span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full shrink-0">LONG</span>
+</div>
+<div class="mt-2.5">
+<div class="text-[10px] text-gray-400">Mark: <span class="font-semibold text-utos-dark">$68,420</span></div>
+<div class="text-[10px] text-gray-400">Entry: $64,200</div>
+</div>
+</div>
+<div class="mt-3 pt-2 border-t border-gray-100 flex items-center justify-between">
+<span class="text-[11px] font-medium text-gray-500">P&amp;L</span>
+<span class="text-xs font-extrabold text-emerald-600">+65.73%</span>
+</div>
+</article>
+<!-- 2. ETH -->
+<article class="bg-white rounded-[22px] p-3.5 border border-black/[0.04] shadow-sm flex flex-col justify-between tap-effect">
+<div>
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-[#627eea] flex items-center justify-center text-white shadow-xs shrink-0">
+<svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 32 32"><path d="M16 2.5L7.5 16.5L16 21.5L24.5 16.5L16 2.5Z" fill-opacity="0.8"></path><path d="M7.5 18.2L16 29.5L24.5 18.2L16 23.2L7.5 18.2Z"></path></svg>
+</div>
+<div>
+<div class="flex items-center gap-1">
+<span class="font-extrabold text-sm text-utos-dark">ETH</span>
+<span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800">15x</span>
+</div>
+<p class="text-[11px] text-gray-400">Ethereum</p>
+</div>
+</div>
+<span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full shrink-0">LONG</span>
+</div>
+<div class="mt-2.5">
+<div class="text-[10px] text-gray-400">Mark: <span class="font-semibold text-utos-dark">$3,560</span></div>
+<div class="text-[10px] text-gray-400">Entry: $3,420</div>
+</div>
+</div>
+<div class="mt-3 pt-2 border-t border-gray-100 flex items-center justify-between">
+<span class="text-[11px] font-medium text-gray-500">P&amp;L</span>
+<span class="text-xs font-extrabold text-emerald-600">+61.40%</span>
+</div>
+</article>
+<!-- 3. SOL -->
+<article class="bg-white rounded-[22px] p-3.5 border border-black/[0.04] shadow-sm flex flex-col justify-between tap-effect">
+<div>
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-gradient-to-tr from-[#9945FF] to-[#14F195] flex items-center justify-center text-white shadow-xs shrink-0">
+<svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M5 8.5h14.5l-2.5 3H2.5L5 8.5zm2.5 7h14.5l-2.5 3H5l2.5-3zm-2.5-7h14.5l-2.5 3H2.5L5 8.5z"></path></svg>
+</div>
+<div>
+<div class="flex items-center gap-1">
+<span class="font-extrabold text-sm text-utos-dark">SOL</span>
+<span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800">8x</span>
+</div>
+<p class="text-[11px] text-gray-400">Solana</p>
+</div>
+</div>
+<span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full shrink-0">LONG</span>
+</div>
+<div class="mt-2.5">
+<div class="text-[10px] text-gray-400">Mark: <span class="font-semibold text-utos-dark">$152.40</span></div>
+<div class="text-[10px] text-gray-400">Entry: $141.20</div>
+</div>
+</div>
+<div class="mt-3 pt-2 border-t border-gray-100 flex items-center justify-between">
+<span class="text-[11px] font-medium text-gray-500">P&amp;L</span>
+<span class="text-xs font-extrabold text-emerald-600">+63.45%</span>
+</div>
+</article>
+<!-- 4. AVAX -->
+<article class="bg-white rounded-[22px] p-3.5 border border-black/[0.04] shadow-sm flex flex-col justify-between tap-effect">
+<div>
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-[#E84142] flex items-center justify-center text-white shadow-xs shrink-0 font-bold text-xs">
+<svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 3L2 20.5h4.2L12 9.5l5.8 11H22L12 3zm0 9.8l2.9 5.5H9.1l2.9-5.5z"></path></svg>
+</div>
+<div>
+<div class="flex items-center gap-1">
+<span class="font-extrabold text-sm text-utos-dark">AVAX</span>
+<span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-rose-100 text-rose-800">5x</span>
+</div>
+<p class="text-[11px] text-gray-400">Avalanche</p>
+</div>
+</div>
+<span class="text-[10px] font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full shrink-0">SHORT</span>
+</div>
+<div class="mt-2.5">
+<div class="text-[10px] text-gray-400">Mark: <span class="font-semibold text-utos-dark">$29.10</span></div>
+<div class="text-[10px] text-gray-400">Entry: $31.40</div>
+</div>
+</div>
+<div class="mt-3 pt-2 border-t border-gray-100 flex items-center justify-between">
+<span class="text-[11px] font-medium text-gray-500">P&amp;L</span>
+<span class="text-xs font-extrabold text-emerald-600">+36.62%</span>
+</div>
+</article>
+<!-- 5. BNB -->
+<article class="bg-white rounded-[22px] p-3.5 border border-black/[0.04] shadow-sm flex flex-col justify-between tap-effect">
+<div>
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-[#F3BA2F] flex items-center justify-center text-white shadow-xs shrink-0">
+<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2L6 8l2.5 2.5L12 7l3.5 3.5L18 8l-6-6zm-6 8l-3.5 3.5L6 17l2.5-2.5L6 12l2.5-2zm12 0l-2.5 2.5 2.5 2.5L21.5 13.5 18 10zm-6 2l-2.5 2.5L12 17l2.5-2.5L12 12zm0 6l-3.5-3.5L6 17l6 6 6-6-2.5-2.5L12 18z"></path></svg>
+</div>
+<div>
+<div class="flex items-center gap-1">
+<span class="font-extrabold text-sm text-utos-dark">BNB</span>
+<span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800">10x</span>
+</div>
+<p class="text-[11px] text-gray-400">Binance Coin</p>
+</div>
+</div>
+<span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full shrink-0">LONG</span>
+</div>
+<div class="mt-2.5">
+<div class="text-[10px] text-gray-400">Mark: <span class="font-semibold text-utos-dark">$582.00</span></div>
+<div class="text-[10px] text-gray-400">Entry: $565.00</div>
+</div>
+</div>
+<div class="mt-3 pt-2 border-t border-gray-100 flex items-center justify-between">
+<span class="text-[11px] font-medium text-gray-500">P&amp;L</span>
+<span class="text-xs font-extrabold text-emerald-600">+30.08%</span>
+</div>
+</article>
+<!-- 6. LINK -->
+<article class="bg-white rounded-[22px] p-3.5 border border-black/[0.04] shadow-sm flex flex-col justify-between tap-effect">
+<div>
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-[#375BD2] flex items-center justify-center text-white shadow-xs shrink-0 font-bold text-xs">
+<svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 2L4 6.6v10.8L12 22l8-4.6V6.6L12 2zm5.7 14.1L12 19.4l-5.7-3.3V7.9L12 4.6l5.7 3.3v8.2z"></path></svg>
+</div>
+<div>
+<div class="flex items-center gap-1">
+<span class="font-extrabold text-sm text-utos-dark">LINK</span>
+<span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800">5x</span>
+</div>
+<p class="text-[11px] text-gray-400">Chainlink</p>
+</div>
+</div>
+<span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full shrink-0">LONG</span>
+</div>
+<div class="mt-2.5">
+<div class="text-[10px] text-gray-400">Mark: <span class="font-semibold text-utos-dark">$14.85</span></div>
+<div class="text-[10px] text-gray-400">Entry: $14.10</div>
+</div>
+</div>
+<div class="mt-3 pt-2 border-t border-gray-100 flex items-center justify-between">
+<span class="text-[11px] font-medium text-gray-500">P&amp;L</span>
+<span class="text-xs font-extrabold text-emerald-600">+26.59%</span>
+</div>
+</article>
+<!-- 7. NEAR -->
+<article class="bg-white rounded-[22px] p-3.5 border border-black/[0.04] shadow-sm flex flex-col justify-between tap-effect">
+<div>
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-[#000000] flex items-center justify-center text-white shadow-xs shrink-0 font-extrabold text-xs">
+<svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M17.47 3.5H6.53A3.03 3.03 0 003.5 6.53v10.94a3.03 3.03 0 003.03 3.03h10.94a3.03 3.03 0 003.03-3.03V6.53A3.03 3.03 0 0017.47 3.5zm-1.8 12.37l-4.73-7.07v7.07H8.33V8.13h2.61l4.73 7.07V8.13h2.61v7.74h-2.61z"></path></svg>
+</div>
+<div>
+<div class="flex items-center gap-1">
+<span class="font-extrabold text-sm text-utos-dark">NEAR</span>
+<span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800">6x</span>
+</div>
+<p class="text-[11px] text-gray-400">NEAR Protocol</p>
+</div>
+</div>
+<span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full shrink-0">LONG</span>
+</div>
+<div class="mt-2.5">
+<div class="text-[10px] text-gray-400">Mark: <span class="font-semibold text-utos-dark">$5.42</span></div>
+<div class="text-[10px] text-gray-400">Entry: $5.12</div>
+</div>
+</div>
+<div class="mt-3 pt-2 border-t border-gray-100 flex items-center justify-between">
+<span class="text-[11px] font-medium text-gray-500">P&amp;L</span>
+<span class="text-xs font-extrabold text-emerald-600">+35.15%</span>
+</div>
+</article>
+<!-- 8. DOGE -->
+<article class="bg-white rounded-[22px] p-3.5 border border-black/[0.04] shadow-sm flex flex-col justify-between tap-effect">
+<div>
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-[#C2A633] flex items-center justify-center text-white shadow-xs shrink-0 font-bold text-xs">
+                Ð
+              </div>
+<div>
+<div class="flex items-center gap-1">
+<span class="font-extrabold text-sm text-utos-dark">DOGE</span>
+<span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-rose-100 text-rose-800">4x</span>
+</div>
+<p class="text-[11px] text-gray-400">Dogecoin</p>
+</div>
+</div>
+<span class="text-[10px] font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full shrink-0">SHORT</span>
+</div>
+<div class="mt-2.5">
+<div class="text-[10px] text-gray-400">Mark: <span class="font-semibold text-utos-dark">$0.124</span></div>
+<div class="text-[10px] text-gray-400">Entry: $0.129</div>
+</div>
+</div>
+<div class="mt-3 pt-2 border-t border-gray-100 flex items-center justify-between">
+<span class="text-[11px] font-medium text-gray-500">P&amp;L</span>
+<span class="text-xs font-extrabold text-emerald-600">+15.50%</span>
+</div>
+</article>
+<!-- 9. SUI -->
+<article class="bg-white rounded-[22px] p-3.5 border border-black/[0.04] shadow-sm flex flex-col justify-between tap-effect">
+<div>
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-[#2A82E4] flex items-center justify-center text-white shadow-xs shrink-0">
+<svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 2.5s-7 8.2-7 12.8A7 7 0 0012 22a7 7 0 007-6.7c0-4.6-7-12.8-7-12.8zm0 16.5a4.2 4.2 0 01-4.2-4.2c0-2.3 2.7-6.2 4.2-8.3 1.5 2.1 4.2 6 4.2 8.3a4.2 4.2 0 01-4.2 4.2z"></path></svg>
+</div>
+<div>
+<div class="flex items-center gap-1">
+<span class="font-extrabold text-sm text-utos-dark">SUI</span>
+<span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800">5x</span>
+</div>
+<p class="text-[11px] text-gray-400">Sui Network</p>
+</div>
+</div>
+<span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full shrink-0">LONG</span>
+</div>
+<div class="mt-2.5">
+<div class="text-[10px] text-gray-400">Mark: <span class="font-semibold text-utos-dark">$1.98</span></div>
+<div class="text-[10px] text-gray-400">Entry: $1.86</div>
+</div>
+</div>
+<div class="mt-3 pt-2 border-t border-gray-100 flex items-center justify-between">
+<span class="text-[11px] font-medium text-gray-500">P&amp;L</span>
+<span class="text-xs font-extrabold text-emerald-600">+32.25%</span>
+</div>
+</article>
+<!-- 10. ADA -->
+<article class="bg-white rounded-[22px] p-3.5 border border-black/[0.04] shadow-sm flex flex-col justify-between tap-effect">
+<div>
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-[#0033AD] flex items-center justify-center text-white shadow-xs shrink-0 font-bold text-xs">
+                ₳
+              </div>
+<div>
+<div class="flex items-center gap-1">
+<span class="font-extrabold text-sm text-utos-dark">ADA</span>
+<span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-rose-100 text-rose-800">6x</span>
+</div>
+<p class="text-[11px] text-gray-400">Cardano</p>
+</div>
+</div>
+<span class="text-[10px] font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full shrink-0">SHORT</span>
+</div>
+<div class="mt-2.5">
+<div class="text-[10px] text-gray-400">Mark: <span class="font-semibold text-utos-dark">$0.354</span></div>
+<div class="text-[10px] text-gray-400">Entry: $0.362</div>
+</div>
+</div>
+<div class="mt-3 pt-2 border-t border-gray-100 flex items-center justify-between">
+<span class="text-[11px] font-medium text-gray-500">P&amp;L</span>
+<span class="text-xs font-extrabold text-emerald-600">+13.25%</span>
+</div>
+</article>
+</div>
+<!-- Closed Trades Grid (10 items) -->
+<div class="grid grid-cols-2 gap-3 hidden" id="closed-trades-container">
+<!-- 1. Closed BTC -->
+<article class="bg-white rounded-[22px] p-3.5 border border-black/[0.04] shadow-sm flex flex-col justify-between tap-effect opacity-85">
+<div>
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-[#f7931a] flex items-center justify-center text-white shadow-xs shrink-0 font-bold text-xs">
+<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M15.7 10.3c.3-.8.2-1.8-.4-2.4-.7-.7-1.8-.9-2.9-.8V5h-1.5v2.1c-.4 0-.8 0-1.2.1V5H8.2v2.2H6.5v1.6h1.7c.1 1.6.1 3.2.1 4.8H6.5v1.6h1.7v2.2h1.5v-2.2c.4 0 .8 0 1.2.1v2.1h1.5v-2.1c1.3.1 2.6-.2 3.3-1.1.7-.8.7-2 .1-2.9.8-.3 1.2-1.1.9-2.1zm-4.3-1.7c.9 0 1.9.1 2 .8.1.8-.8.9-1.6.9h-1.8V8.6h1.4zm.5 4.9h-1.9v-1.7h1.9c.9 0 1.9.1 2 .9.1.9-.9.8-2 .8z"></path></svg>
+</div>
+<div>
+<span class="font-extrabold text-sm text-utos-dark">BTC</span>
+<p class="text-[11px] text-gray-400">Bitcoin (8x Long)</p>
+</div>
+</div>
+<span class="text-[10px] font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full shrink-0">CLOSED</span>
+</div>
+<div class="mt-2.5">
+<div class="text-[10px] text-gray-400">Exit: <span class="font-semibold text-utos-dark">$67,800</span></div>
+<div class="text-[10px] text-gray-400">Entry: $63,100</div>
+</div>
+</div>
+<div class="mt-3 pt-2 border-t border-gray-100 flex items-center justify-between">
+<span class="text-[11px] font-medium text-gray-500">Realized</span>
+<span class="text-xs font-extrabold text-emerald-600">+$3,410.20</span>
+</div>
+</article>
+<!-- 2. Closed ETH -->
+<article class="bg-white rounded-[22px] p-3.5 border border-black/[0.04] shadow-sm flex flex-col justify-between tap-effect opacity-85">
+<div>
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-[#627eea] flex items-center justify-center text-white shadow-xs shrink-0">
+<svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 32 32"><path d="M16 2.5L7.5 16.5L16 21.5L24.5 16.5L16 2.5Z" fill-opacity="0.8"></path><path d="M7.5 18.2L16 29.5L24.5 18.2L16 23.2L7.5 18.2Z"></path></svg>
+</div>
+<div>
+<span class="font-extrabold text-sm text-utos-dark">ETH</span>
+<p class="text-[11px] text-gray-400">Ethereum (10x Long)</p>
+</div>
+</div>
+<span class="text-[10px] font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full shrink-0">CLOSED</span>
+</div>
+<div class="mt-2.5">
+<div class="text-[10px] text-gray-400">Exit: <span class="font-semibold text-utos-dark">$3,490</span></div>
+<div class="text-[10px] text-gray-400">Entry: $3,210</div>
+</div>
+</div>
+<div class="mt-3 pt-2 border-t border-gray-100 flex items-center justify-between">
+<span class="text-[11px] font-medium text-gray-500">Realized</span>
+<span class="text-xs font-extrabold text-emerald-600">+$1,870.00</span>
+</div>
+</article>
+<!-- 3. Closed SOL -->
+<article class="bg-white rounded-[22px] p-3.5 border border-black/[0.04] shadow-sm flex flex-col justify-between tap-effect opacity-85">
+<div>
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-gradient-to-tr from-[#9945FF] to-[#14F195] flex items-center justify-center text-white shadow-xs shrink-0">
+<svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M5 8.5h14.5l-2.5 3H2.5L5 8.5zm2.5 7h14.5l-2.5 3H5l2.5-3zm-2.5-7h14.5l-2.5 3H2.5L5 8.5z"></path></svg>
+</div>
+<div>
+<span class="font-extrabold text-sm text-utos-dark">SOL</span>
+<p class="text-[11px] text-gray-400">Solana (5x Long)</p>
+</div>
+</div>
+<span class="text-[10px] font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full shrink-0">CLOSED</span>
+</div>
+<div class="mt-2.5">
+<div class="text-[10px] text-gray-400">Exit: <span class="font-semibold text-utos-dark">$149.00</span></div>
+<div class="text-[10px] text-gray-400">Entry: $132.00</div>
+</div>
+</div>
+<div class="mt-3 pt-2 border-t border-gray-100 flex items-center justify-between">
+<span class="text-[11px] font-medium text-gray-500">Realized</span>
+<span class="text-xs font-extrabold text-emerald-600">+$824.50</span>
+</div>
+</article>
+<!-- 4. Closed BNB -->
+<article class="bg-white rounded-[22px] p-3.5 border border-black/[0.04] shadow-sm flex flex-col justify-between tap-effect opacity-85">
+<div>
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-[#F3BA2F] flex items-center justify-center text-white shadow-xs shrink-0">
+<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2L6 8l2.5 2.5L12 7l3.5 3.5L18 8l-6-6zm-6 8l-3.5 3.5L6 17l2.5-2.5L6 12l2.5-2zm12 0l-2.5 2.5 2.5 2.5L21.5 13.5 18 10zm-6 2l-2.5 2.5L12 17l2.5-2.5L12 12zm0 6l-3.5-3.5L6 17l6 6 6-6-2.5-2.5L12 18z"></path></svg>
+</div>
+<div>
+<span class="font-extrabold text-sm text-utos-dark">BNB</span>
+<p class="text-[11px] text-gray-400">BNB (6x Short)</p>
+</div>
+</div>
+<span class="text-[10px] font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full shrink-0">CLOSED</span>
+</div>
+<div class="mt-2.5">
+<div class="text-[10px] text-gray-400">Exit: <span class="font-semibold text-utos-dark">$572.00</span></div>
+<div class="text-[10px] text-gray-400">Entry: $560.00</div>
+</div>
+</div>
+<div class="mt-3 pt-2 border-t border-gray-100 flex items-center justify-between">
+<span class="text-[11px] font-medium text-gray-500">Realized</span>
+<span class="text-xs font-extrabold text-rose-500">-$210.30</span>
+</div>
+</article>
+<!-- 5. Closed XRP -->
+<article class="bg-white rounded-[22px] p-3.5 border border-black/[0.04] shadow-sm flex flex-col justify-between tap-effect opacity-85">
+<div>
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-gray-900 text-white flex items-center justify-center shadow-xs shrink-0 font-bold text-xs">
+                ✕
+              </div>
+<div>
+<span class="font-extrabold text-sm text-utos-dark">XRP</span>
+<p class="text-[11px] text-gray-400">Ripple (5x Long)</p>
+</div>
+</div>
+<span class="text-[10px] font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full shrink-0">CLOSED</span>
+</div>
+<div class="mt-2.5">
+<div class="text-[10px] text-gray-400">Exit: <span class="font-semibold text-utos-dark">$0.612</span></div>
+<div class="text-[10px] text-gray-400">Entry: $0.540</div>
+</div>
+</div>
+<div class="mt-3 pt-2 border-t border-gray-100 flex items-center justify-between">
+<span class="text-[11px] font-medium text-gray-500">Realized</span>
+<span class="text-xs font-extrabold text-emerald-600">+$540.00</span>
+</div>
+</article>
+<!-- 6. Closed AVAX -->
+<article class="bg-white rounded-[22px] p-3.5 border border-black/[0.04] shadow-sm flex flex-col justify-between tap-effect opacity-85">
+<div>
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-[#E84142] flex items-center justify-center text-white shadow-xs shrink-0 font-bold text-xs">
+<svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 3L2 20.5h4.2L12 9.5l5.8 11H22L12 3zm0 9.8l2.9 5.5H9.1l2.9-5.5z"></path></svg>
+</div>
+<div>
+<span class="font-extrabold text-sm text-utos-dark">AVAX</span>
+<p class="text-[11px] text-gray-400">Avalanche (4x Long)</p>
+</div>
+</div>
+<span class="text-[10px] font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full shrink-0">CLOSED</span>
+</div>
+<div class="mt-2.5">
+<div class="text-[10px] text-gray-400">Exit: <span class="font-semibold text-utos-dark">$32.50</span></div>
+<div class="text-[10px] text-gray-400">Entry: $27.90</div>
+</div>
+</div>
+<div class="mt-3 pt-2 border-t border-gray-100 flex items-center justify-between">
+<span class="text-[11px] font-medium text-gray-500">Realized</span>
+<span class="text-xs font-extrabold text-emerald-600">+$615.10</span>
+</div>
+</article>
+<!-- 7. Closed LINK -->
+<article class="bg-white rounded-[22px] p-3.5 border border-black/[0.04] shadow-sm flex flex-col justify-between tap-effect opacity-85">
+<div>
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-[#375BD2] flex items-center justify-center text-white shadow-xs shrink-0 font-bold text-xs">
+<svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 2L4 6.6v10.8L12 22l8-4.6V6.6L12 2zm5.7 14.1L12 19.4l-5.7-3.3V7.9L12 4.6l5.7 3.3v8.2z"></path></svg>
+</div>
+<div>
+<span class="font-extrabold text-sm text-utos-dark">LINK</span>
+<p class="text-[11px] text-gray-400">Chainlink (4x Short)</p>
+</div>
+</div>
+<span class="text-[10px] font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full shrink-0">CLOSED</span>
+</div>
+<div class="mt-2.5">
+<div class="text-[10px] text-gray-400">Exit: <span class="font-semibold text-utos-dark">$13.90</span></div>
+<div class="text-[10px] text-gray-400">Entry: $14.60</div>
+</div>
+</div>
+<div class="mt-3 pt-2 border-t border-gray-100 flex items-center justify-between">
+<span class="text-[11px] font-medium text-gray-500">Realized</span>
+<span class="text-xs font-extrabold text-emerald-600">+$310.80</span>
+</div>
+</article>
+<!-- 8. Closed DOGE -->
+<article class="bg-white rounded-[22px] p-3.5 border border-black/[0.04] shadow-sm flex flex-col justify-between tap-effect opacity-85">
+<div>
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-[#C2A633] flex items-center justify-center text-white shadow-xs shrink-0 font-bold text-xs">
+                Ð
+              </div>
+<div>
+<span class="font-extrabold text-sm text-utos-dark">DOGE</span>
+<p class="text-[11px] text-gray-400">Dogecoin (5x Long)</p>
+</div>
+</div>
+<span class="text-[10px] font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full shrink-0">CLOSED</span>
+</div>
+<div class="mt-2.5">
+<div class="text-[10px] text-gray-400">Exit: <span class="font-semibold text-utos-dark">$0.132</span></div>
+<div class="text-[10px] text-gray-400">Entry: $0.118</div>
+</div>
+</div>
+<div class="mt-3 pt-2 border-t border-gray-100 flex items-center justify-between">
+<span class="text-[11px] font-medium text-gray-500">Realized</span>
+<span class="text-xs font-extrabold text-emerald-600">+$412.00</span>
+</div>
+</article>
+<!-- 9. Closed NEAR -->
+<article class="bg-white rounded-[22px] p-3.5 border border-black/[0.04] shadow-sm flex flex-col justify-between tap-effect opacity-85">
+<div>
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-[#000000] flex items-center justify-center text-white shadow-xs shrink-0 font-extrabold text-xs">
+<svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M17.47 3.5H6.53A3.03 3.03 0 003.5 6.53v10.94a3.03 3.03 0 003.03-3.03V6.53A3.03 3.03 0 0017.47 3.5zm-1.8 12.37l-4.73-7.07v7.07H8.33V8.13h2.61l4.73 7.07V8.13h2.61v7.74h-2.61z"></path></svg>
+</div>
+<div>
+<span class="font-extrabold text-sm text-utos-dark">NEAR</span>
+<p class="text-[11px] text-gray-400">NEAR (5x Long)</p>
+</div>
+</div>
+<span class="text-[10px] font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full shrink-0">CLOSED</span>
+</div>
+<div class="mt-2.5">
+<div class="text-[10px] text-gray-400">Exit: <span class="font-semibold text-utos-dark">$5.30</span></div>
+<div class="text-[10px] text-gray-400">Entry: $4.65</div>
+</div>
+</div>
+<div class="mt-3 pt-2 border-t border-gray-100 flex items-center justify-between">
+<span class="text-[11px] font-medium text-gray-500">Realized</span>
+<span class="text-xs font-extrabold text-emerald-600">+$560.40</span>
+</div>
+</article>
+<!-- 10. Closed ADA -->
+<article class="bg-white rounded-[22px] p-3.5 border border-black/[0.04] shadow-sm flex flex-col justify-between tap-effect opacity-85">
+<div>
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-[#0033AD] flex items-center justify-center text-white shadow-xs shrink-0 font-bold text-xs">
+                ₳
+              </div>
+<div>
+<span class="font-extrabold text-sm text-utos-dark">ADA</span>
+<p class="text-[11px] text-gray-400">Cardano (4x Short)</p>
+</div>
+</div>
+<span class="text-[10px] font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full shrink-0">CLOSED</span>
+</div>
+<div class="mt-2.5">
+<div class="text-[10px] text-gray-400">Exit: <span class="font-semibold text-utos-dark">$0.345</span></div>
+<div class="text-[10px] text-gray-400">Entry: $0.358</div>
+</div>
+</div>
+<div class="mt-3 pt-2 border-t border-gray-100 flex items-center justify-between">
+<span class="text-[11px] font-medium text-gray-500">Realized</span>
+<span class="text-xs font-extrabold text-emerald-600">+$245.00</span>
+</div>
+</article>
+</div>
+</div>
+<!-- BEGIN: BottomNavigationBar -->
+<nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white/95 backdrop-blur-md border-t border-gray-100 px-6 py-2 pb-5 z-50 flex items-center justify-between" data-purpose="bottom-navigation">
+<!-- Tab 1: Home -->
+<button class="flex flex-col items-center gap-1 group tap-effect" id="nav-btn-home" onclick="showTab('home')">
+<svg class="w-5 h-5 text-utos-dark transition-colors" fill="none" id="nav-icon-home" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+<path d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-[10px] font-bold text-utos-dark transition-colors" id="nav-text-home">Home</span>
+<span class="w-1 h-1 rounded-full bg-utos-dark -mt-0.5 transition-opacity opacity-100" id="nav-dot-home"></span>
+</button>
+<!-- Tab 2: Markets / Trade -->
+<button class="flex flex-col items-center gap-1 text-gray-400 hover:text-utos-dark transition-colors tap-effect" id="nav-btn-markets" onclick="showTab('markets')">
+<svg class="w-5 h-5 text-gray-400 transition-colors" fill="none" id="nav-icon-markets" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-[10px] font-medium text-gray-400 transition-colors" id="nav-text-markets">Markets</span>
+<span class="w-1 h-1 rounded-full bg-utos-dark -mt-0.5 transition-opacity opacity-0" id="nav-dot-markets"></span>
+</button>
+<!-- Center Action Button (Deep Dark Green with Sparkle/Action Icon) -->
+<div class="-mt-5">
+<button aria-label="Quick Action" class="w-12 h-12 rounded-full bg-utos-dark text-white flex items-center justify-center shadow-lg shadow-utos-dark/30 tap-effect hover:brightness-110 transition-all border-2 border-white">
+<svg class="w-5 h-5 text-emerald-400" fill="currentColor" viewBox="0 0 24 24">
+<path d="M12 2L14.2 8.3L20.5 10.5L14.2 12.7L12 19L9.8 12.7L3.5 10.5L9.8 8.3L12 2Z"></path>
+</svg>
+</button>
+</div>
+<!-- Tab 3: Card -->
+<a class="flex flex-col items-center gap-1 text-gray-400 hover:text-utos-dark transition-colors tap-effect" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-[10px] font-medium">Card</span>
+<span class="w-1 h-1 opacity-0"></span>
+</a>
+<!-- Tab 4: Profile -->
+<a class="flex flex-col items-center gap-1 text-gray-400 hover:text-utos-dark transition-colors tap-effect" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+<path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-[10px] font-medium">Profile</span>
+<span class="w-1 h-1 opacity-0"></span>
+</a>
+</nav>
+<!-- END: BottomNavigationBar -->
+</div>
+<!-- BEGIN: Navigation & App Interactivity Scripts -->
+<script>
+/**
+ * Tab Navigation Router (Home vs Markets/Trades)
+ */
+function showTab(tab) {
+  const dashboardView = document.getElementById('dashboard-view');
+  const tradesView = document.getElementById('trades-view');
+  
+  const navIconHome = document.getElementById('nav-icon-home');
+  const navTextHome = document.getElementById('nav-text-home');
+  const navDotHome = document.getElementById('nav-dot-home');
+  
+  const navIconMarkets = document.getElementById('nav-icon-markets');
+  const navTextMarkets = document.getElementById('nav-text-markets');
+  const navDotMarkets = document.getElementById('nav-dot-markets');
+
+  if (tab === 'home') {
+    dashboardView.classList.remove('hidden');
+    tradesView.classList.add('hidden');
+
+    // Activate Home icon
+    navIconHome.className = 'w-5 h-5 text-utos-dark transition-colors';
+    navTextHome.className = 'text-[10px] font-bold text-utos-dark transition-colors';
+    navDotHome.classList.remove('opacity-0');
+    navDotHome.classList.add('opacity-100');
+
+    // Deactivate Markets icon
+    navIconMarkets.className = 'w-5 h-5 text-gray-400 transition-colors';
+    navTextMarkets.className = 'text-[10px] font-medium text-gray-400 transition-colors';
+    navDotMarkets.classList.remove('opacity-100');
+    navDotMarkets.classList.add('opacity-0');
+  } else if (tab === 'markets') {
+    dashboardView.classList.add('hidden');
+    tradesView.classList.remove('hidden');
+
+    // Deactivate Home icon
+    navIconHome.className = 'w-5 h-5 text-gray-400 transition-colors';
+    navTextHome.className = 'text-[10px] font-medium text-gray-400 transition-colors';
+    navDotHome.classList.remove('opacity-100');
+    navDotHome.classList.add('opacity-0');
+
+    // Activate Markets icon
+    navIconMarkets.className = 'w-5 h-5 text-utos-dark transition-colors';
+    navTextMarkets.className = 'text-[10px] font-bold text-utos-dark transition-colors';
+    navDotMarkets.classList.remove('opacity-0');
+    navDotMarkets.classList.add('opacity-100');
+  }
+
+  // Smoothly scroll window to top on tab change
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+/**
+ * Trades Internal Sub-Tabs: Active vs Closed positions
+ */
+function switchTradeSubTab(type) {
+  const activeContainer = document.getElementById('active-trades-container');
+  const closedContainer = document.getElementById('closed-trades-container');
+  const tabActive = document.getElementById('trade-tab-active');
+  const tabClosed = document.getElementById('trade-tab-closed');
+
+  if (type === 'active') {
+    activeContainer.classList.remove('hidden');
+    closedContainer.classList.add('hidden');
+    tabActive.className = 'flex-1 py-2 rounded-xl text-xs font-bold text-utos-dark bg-white shadow-xs transition-all tap-effect';
+    tabClosed.className = 'flex-1 py-2 rounded-xl text-xs font-bold text-gray-500 hover:text-utos-dark transition-all tap-effect';
+  } else {
+    activeContainer.classList.add('hidden');
+    closedContainer.classList.remove('hidden');
+    tabClosed.className = 'flex-1 py-2 rounded-xl text-xs font-bold text-utos-dark bg-white shadow-xs transition-all tap-effect';
+    tabActive.className = 'flex-1 py-2 rounded-xl text-xs font-bold text-gray-500 hover:text-utos-dark transition-all tap-effect';
+  }
+}
+</script>
+<!-- BEGIN: Portfolio Dynamic Mini-Charts JavaScript Engine -->
+<script data-purpose="portfolio-mini-charts-engine">
+/**
+ * UTOS Portfolio Data Store & Algorithmic SVG Mini-Chart Renderer
+ */
+const portfolioData = {
+  btc: {
+    id: 'btc',
+    symbol: 'BTC',
+    name: 'Bitcoin',
+    value: 20.00,
+    changePercent: 10.00,
+    color: '#f59e0b',
+    // 21 volatile intraday points ending +10% higher with realistic micro-swings
+    series: [
+      62400, 62150, 63100, 61750, 62200, 63800, 63200, 64600, 63700, 65200,
+      64400, 66500, 65300, 67200, 66100, 67800, 66200, 67400, 68640, 67900, 68640
+    ]
+  },
+  eth: {
+    id: 'eth',
+    symbol: 'ETH',
+    name: 'Ethereum',
+    value: 0.00,
+    changePercent: 0.00,
+    color: '#6366f1',
+    // Flat consolidation with tight micro-swings returning to base
+    series: [
+      3450, 3430, 3465, 3440, 3470, 3435, 3460, 3445, 3475, 3450,
+      3435, 3465, 3440, 3480, 3455, 3440, 3470, 3450, 3435, 3460, 3450
+    ]
+  },
+  sol: {
+    id: 'sol',
+    symbol: 'SOL',
+    name: 'Solana',
+    value: 0.00,
+    changePercent: 0.00,
+    color: '#10b981',
+    // Micro-fluctuation band consolidating at 0%
+    series: [
+      142.0, 143.2, 141.5, 144.0, 142.8, 141.2, 143.5, 142.1, 144.2, 142.5,
+      141.8, 143.9, 142.2, 144.5, 143.0, 141.6, 143.4, 142.0, 143.1, 141.8, 142.0
+    ]
+  },
+  usdt: {
+    id: 'usdt',
+    symbol: 'USDT',
+    name: 'Tether',
+    value: 0.00,
+    changePercent: 0.00,
+    color: '#14b8a6',
+    // Stablecoin sub-cent micro-peg variance
+    series: [
+      1.0002, 0.9998, 1.0004, 0.9997, 1.0001, 0.9999, 1.0003, 0.9998, 1.0002, 0.9996,
+      1.0003, 0.9999, 1.0001, 0.9997, 1.0004, 0.9998, 1.0002, 0.9999, 1.0001, 0.9998, 1.0000
+    ]
+  }
+};
+
+/**
+ * Generate responsive dynamic SVG string with jagged polyline and translucent gradient area
+ */
+function createSparklineSVG(id, series, strokeColor, width = 200, height = 60) {
+  if (!series || series.length < 2) return '';
+
+  const min = Math.min(...series);
+  const max = Math.max(...series);
+  const range = max - min === 0 ? 1 : max - min;
+
+  // Chart coordinate space: 0 to width (X), padding top & bottom for peaks
+  const paddingTop = 8;
+  const paddingBottom = 16;
+  const availableHeight = height - paddingTop - paddingBottom;
+
+  const points = series.map((val, idx) => {
+    const x = (idx / (series.length - 1)) * width;
+    // Invert Y so highest value is near top (lower y coordinate)
+    const normalized = (val - min) / range;
+    const y = paddingTop + (1 - normalized) * availableHeight;
+    return { x: Number(x.toFixed(1)), y: Number(y.toFixed(1)) };
+  });
+
+  const linePath = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x},${p.y}`).join(' ');
+  const areaPath = `${linePath} L ${width},${height} L 0,${height} Z`;
+  const gradId = `spark-grad-${id}`;
+
+  return `
+    <svg class="w-full h-12 block" preserveAspectRatio="none" viewBox="0 0 ${width} ${height}">
+      <defs>
+        <linearGradient id="${gradId}" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="${strokeColor}" stop-opacity="0.25"></stop>
+          <stop offset="70%" stop-color="${strokeColor}" stop-opacity="0.05"></stop>
+          <stop offset="100%" stop-color="${strokeColor}" stop-opacity="0"></stop>
+        </linearGradient>
+      </defs>
+      <path d="${areaPath}" fill="url(#${gradId})"></path>
+      <path d="${linePath}" fill="none" stroke="${strokeColor}" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"></path>
+    </svg>
+  `;
+}
+
+/**
+ * Render single portfolio card chart & metadata
+ */
+function renderPortfolioItem(item) {
+  // Render SVG Chart
+  const chartContainer = document.getElementById(`chart-${item.id}`);
+  if (chartContainer) {
+    chartContainer.innerHTML = createSparklineSVG(item.id, item.series, item.color);
+  }
+
+  // Render Formatted Value
+  const valEl = document.getElementById(`val-${item.id}`);
+  if (valEl) {
+    const parts = item.value.toFixed(2).split('.');
+    valEl.innerHTML = `$${parts[0]}<span class="text-xs text-gray-400">.${parts[1]}</span>`;
+  }
+
+  // Render Change Percent
+  const changeEl = document.getElementById(`change-${item.id}`);
+  if (changeEl) {
+    changeEl.textContent = `${item.changePercent.toFixed(2)}%`;
+  }
+}
+
+/**
+ * Public trigger to update any portfolio item dynamically
+ */
+window.updatePortfolio = function(id, newValue, newChangePercent, newSeries) {
+  if (!portfolioData[id]) return;
+  if (newValue !== undefined) portfolioData[id].value = newValue;
+  if (newChangePercent !== undefined) portfolioData[id].changePercent = newChangePercent;
+  if (newSeries && Array.isArray(newSeries)) portfolioData[id].series = newSeries;
+  renderPortfolioItem(portfolioData[id]);
+};
+
+// Initialize all charts on load
+document.addEventListener('DOMContentLoaded', () => {
+  Object.values(portfolioData).forEach(renderPortfolioItem);
+});
+</script>
+<!-- END: Portfolio Dynamic Mini-Charts JavaScript Engine -->
+</body></html>
